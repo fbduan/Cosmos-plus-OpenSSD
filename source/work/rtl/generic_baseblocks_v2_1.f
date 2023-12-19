@@ -1,0 +1,17 @@
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_carry_and.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_carry_latch_and.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_carry_latch_or.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_carry_or.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_carry.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_command_fifo.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_mask_static.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_mask.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_sel_mask_static.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_sel_mask.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_sel_static.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_sel.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator_static.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_comparator.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_mux_enc.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_mux.v
+${OPENSSD_HOME}/source/work/rtl/generic_baseblocks_v2_1/da89d453/hdl/verilog/generic_baseblocks_v2_1_nto1_mux.v
