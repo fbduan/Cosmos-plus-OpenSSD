@@ -173,7 +173,7 @@ module Dispatcher
     output  [5:0]                       oPCGROpcode     ;
     output  [4:0]                       oPCGRTargetID   ;
     output  [4:0]                       oPCGRSourceID   ;
-    output  [39:0]                      oPCGRAddress    ;
+    output  [AddressWidth - 1:0]        oPCGRAddress    ;
     output  [InnerIFLengthWidth - 1:0]  oPCGRLength     ;
     output                              oPCGRCmdValid   ;
     input                               iPCGRCmdReady   ;
@@ -198,14 +198,14 @@ module Dispatcher
     wire    [5:0]                       wMuxedWOpcode   ;
     wire    [4:0]                       wMuxedWTargetID ;
     wire    [4:0]                       wMuxedWSourceID ;
-    wire    [39:0]                      wMuxedWAddress  ;
+    wire    [AddressWidth - 1:0]        wMuxedWAddress  ;
     wire    [InnerIFLengthWidth - 1:0]  wMuxedWLength   ;
     wire                                wMuxedWCmdValid ;
     wire                                wMuxedWCmdReady ;
     wire    [5:0]                       wMuxedROpcode   ;
     wire    [4:0]                       wMuxedRTargetID ;
     wire    [4:0]                       wMuxedRSourceID ;
-    wire    [39:0]                      wMuxedRAddress  ;
+    wire    [AddressWidth - 1:0]        wMuxedRAddress  ;
     wire    [InnerIFLengthWidth - 1:0]  wMuxedRLength   ;
     wire                                wMuxedRCmdValid ;
     wire                                wMuxedRCmdReady ;
