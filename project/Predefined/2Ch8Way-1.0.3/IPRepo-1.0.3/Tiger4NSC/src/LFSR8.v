@@ -63,6 +63,7 @@ module LFSR8
     
     reg     [8:0]   rShiftReg   ;
     wire            wInfeed     ;
+    wire            wFeedback   ;
     
     always @ (posedge iClock)
         if (iReset)

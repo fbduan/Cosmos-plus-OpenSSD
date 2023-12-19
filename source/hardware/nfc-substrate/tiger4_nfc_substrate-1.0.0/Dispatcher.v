@@ -617,7 +617,7 @@ module Dispatcher
         begin
             if (iWriteValid && oWriteAck)
                 case (iWriteAddress[7:0])
-                1'h00:
+                8'h00:
                     rUProgramSelect         <= iWriteData;
                 8'h04:
                     rRowAddress             <= iWriteData;

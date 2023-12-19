@@ -161,7 +161,7 @@ module Dispatcher
     output  [5:0]                       oPCGWOpcode     ;
     output  [4:0]                       oPCGWTargetID   ;
     output  [4:0]                       oPCGWSourceID   ;
-    output  [39:0]                      oPCGWAddress    ;
+    output  [AddressWidth - 1:0]        oPCGWAddress    ;
     output  [InnerIFLengthWidth - 1:0]  oPCGWLength     ;
     output                              oPCGWCmdValid   ;
     input                               iPCGWCmdReady   ;
@@ -617,7 +617,7 @@ module Dispatcher
         begin
             if (iWriteValid && oWriteAck)
                 case (iWriteAddress[7:0])
-                1'h00:
+                8'h00:
                     rUProgramSelect         <= iWriteData;
                 8'h04:
                     rRowAddress             <= iWriteData;
