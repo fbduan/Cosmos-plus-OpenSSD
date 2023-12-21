@@ -22,6 +22,7 @@
 
 module tb_OpenSSD2_Top(/*autoarg*/);
 
+glbl glbl();
 
 initial begin
     string fsdb_name = "tb_openssd2_top.fsdb";
