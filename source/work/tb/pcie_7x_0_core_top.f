@@ -6,7 +6,7 @@
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_axi_basic_tx_thrtl_ctl.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_axi_basic_tx.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_core_top.v
-../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_funcsim.v
+//// ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_funcsim.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_gt_common.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_gtp_cpllpd_ovrd.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_gtp_pipe_drp.v
@@ -38,3 +38,5 @@
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_qpll_wrapper.v
 ../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_rxeq_scan.v
 //////../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top.v
+../tb/model/pcie_7x_0_core_top/pcie_7x_0_core_top_stub.v
+

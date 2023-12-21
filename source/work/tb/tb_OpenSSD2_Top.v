@@ -24,57 +24,97 @@ module tb_OpenSSD2_Top(/*autoarg*/);
 
 /*autodefine*/
 //auto wires{{{
-wire [14:0]   DDR_addr;
-wire [2:0]    DDR_ba;
-wire          DDR_cas_n;
-wire          DDR_ck_n;
-wire          DDR_ck_p;
-wire          DDR_cke;
-wire          DDR_cs_n;
-wire [3:0]    DDR_dm;
-wire [31:0]   DDR_dq;
-wire [3:0]    DDR_dqs_n;
-wire [3:0]    DDR_dqs_p;
-wire          DDR_odt;
-wire          DDR_ras_n;
-wire          DDR_reset_n;
-wire          DDR_we_n;
-wire          FIXED_IO_ddr_vrn;
-wire          FIXED_IO_ddr_vrp;
-wire [53:0]   FIXED_IO_mio;
-wire          FIXED_IO_ps_clk;
-wire          FIXED_IO_ps_porb;
-wire          FIXED_IO_ps_srstb;
-wire [7:0]    IO_NAND_CH0_DQ;
-wire          IO_NAND_CH0_DQS_N;
-wire          IO_NAND_CH0_DQS_P;
-wire [7:0]    IO_NAND_CH1_DQ;
-wire          IO_NAND_CH1_DQS_N;
-wire          IO_NAND_CH1_DQS_P;
-wire [7:0]    I_NAND_CH0_RB;
-wire [7:0]    I_NAND_CH1_RB;
-wire [31:0]   O_DEBUG;
-wire          O_NAND_CH0_ALE;
-wire [7:0]    O_NAND_CH0_CE;
-wire          O_NAND_CH0_CLE;
-wire          O_NAND_CH0_RE_N;
-wire          O_NAND_CH0_RE_P;
-wire          O_NAND_CH0_WE;
-wire          O_NAND_CH0_WP;
-wire          O_NAND_CH1_ALE;
-wire [7:0]    O_NAND_CH1_CE;
-wire          O_NAND_CH1_CLE;
-wire          O_NAND_CH1_RE_N;
-wire          O_NAND_CH1_RE_P;
-wire          O_NAND_CH1_WE;
-wire          O_NAND_CH1_WP;
-wire          pcie_perst_n;
-wire          pcie_ref_clk_n;
-wire          pcie_ref_clk_p;
-wire [7:0]    pcie_rx_n;
-wire [7:0]    pcie_rx_p;
-wire [7:0]    pcie_tx_n;
-wire [7:0]    pcie_tx_p;
+wire [14:0]            DDR_addr;
+wire [2:0]             DDR_ba;
+wire                   DDR_cas_n;
+wire                   DDR_ck_n;
+wire                   DDR_ck_p;
+wire                   DDR_cke;
+wire                   DDR_cs_n;
+wire [3:0]             DDR_dm;
+wire [31:0]            DDR_dq;
+wire [3:0]             DDR_dqs_n;
+wire [3:0]             DDR_dqs_p;
+wire                   DDR_odt;
+wire                   DDR_ras_n;
+wire                   DDR_reset_n;
+wire                   DDR_we_n;
+wire                   FIXED_IO_ddr_vrn;
+wire                   FIXED_IO_ddr_vrp;
+wire [53:0]            FIXED_IO_mio;
+wire                   FIXED_IO_ps_clk;
+wire                   FIXED_IO_ps_porb;
+wire                   FIXED_IO_ps_srstb;
+wire [7:0]             IO_NAND_CH0_DQ;
+wire                   IO_NAND_CH0_DQS_N;
+wire                   IO_NAND_CH0_DQS_P;
+wire [7:0]             IO_NAND_CH1_DQ;
+wire                   IO_NAND_CH1_DQS_N;
+wire                   IO_NAND_CH1_DQS_P;
+wire [7:0]             I_NAND_CH0_RB;
+wire [7:0]             I_NAND_CH1_RB;
+wire [31:0]            O_DEBUG;
+wire                   O_NAND_CH0_ALE;
+wire [7:0]             O_NAND_CH0_CE;
+wire                   O_NAND_CH0_CLE;
+wire                   O_NAND_CH0_RE_N;
+wire                   O_NAND_CH0_RE_P;
+wire                   O_NAND_CH0_WE;
+wire                   O_NAND_CH0_WP;
+wire                   O_NAND_CH1_ALE;
+wire [7:0]             O_NAND_CH1_CE;
+wire                   O_NAND_CH1_CLE;
+wire                   O_NAND_CH1_RE_N;
+wire                   O_NAND_CH1_RE_P;
+wire                   O_NAND_CH1_WE;
+wire                   O_NAND_CH1_WP;
+wire                   pcie_perst_n;
+wire                   pcie_ref_clk_n;
+wire                   pcie_ref_clk_p;
+wire [7:0]             pcie_rx_n;
+wire [7:0]             pcie_rx_p;
+wire [7:0]             pcie_tx_n;
+wire [7:0]             pcie_tx_p;
+wire                   ps_m_axi_gp0_aclk;
+wire [31:0]            ps_m_axi_gp0_araddr;
+wire [1:0]             ps_m_axi_gp0_arburst;
+wire [3:0]             ps_m_axi_gp0_arcache;
+wire                   ps_m_axi_gp0_aresetn;
+wire [11:0]            ps_m_axi_gp0_arid;
+wire [3:0]             ps_m_axi_gp0_arlen;
+wire [1:0]             ps_m_axi_gp0_arlock;
+wire [2:0]             ps_m_axi_gp0_arprot;
+wire [3:0]             ps_m_axi_gp0_arqos;
+wire                   ps_m_axi_gp0_arready;
+wire [2:0]             ps_m_axi_gp0_arsize;
+wire                   ps_m_axi_gp0_arvalid;
+wire [31:0]            ps_m_axi_gp0_awaddr;
+wire [1:0]             ps_m_axi_gp0_awburst;
+wire [3:0]             ps_m_axi_gp0_awcache;
+wire [11:0]            ps_m_axi_gp0_awid;
+wire [3:0]             ps_m_axi_gp0_awlen;
+wire [1:0]             ps_m_axi_gp0_awlock;
+wire [2:0]             ps_m_axi_gp0_awprot;
+wire [3:0]             ps_m_axi_gp0_awqos;
+wire                   ps_m_axi_gp0_awready;
+wire [2:0]             ps_m_axi_gp0_awsize;
+wire                   ps_m_axi_gp0_awvalid;
+wire [11:0]            ps_m_axi_gp0_bid;
+wire                   ps_m_axi_gp0_bready;
+wire [1:0]             ps_m_axi_gp0_bresp;
+wire                   ps_m_axi_gp0_bvalid;
+wire [31:0]            ps_m_axi_gp0_rdata;
+wire [11:0]            ps_m_axi_gp0_rid;
+wire                   ps_m_axi_gp0_rlast;
+wire                   ps_m_axi_gp0_rready;
+wire [1:0]             ps_m_axi_gp0_rresp;
+wire                   ps_m_axi_gp0_rvalid;
+wire [31:0]            ps_m_axi_gp0_wdata;
+wire [11:0]            ps_m_axi_gp0_wid;
+wire                   ps_m_axi_gp0_wlast;
+wire                   ps_m_axi_gp0_wready;
+wire [3:0]             ps_m_axi_gp0_wstrb;
+wire                   ps_m_axi_gp0_wvalid;
 //}}}
 // End of automatic define
 
@@ -150,7 +190,7 @@ generate
         );
     end
     for(gvar_i=0; gvar_i<8; gvar_i=gvar_i+1) begin:NAND_CH1_WAY
-        nand_model u_nand_ch0_way(
+        nand_model u_nand_ch1_way(
                 .Dq_Io     ( IO_NAND_CH1_DQ[7:0]   ),    //IO [DQ_BITS-1:0] u_nand_ch0_way0
                 .Dqs       ( IO_NAND_CH1_DQS_P     ),    //IO               u_nand_ch0_way0
                 .Cle       ( O_NAND_CH1_CLE        ),    //I                u_nand_ch0_way0
@@ -169,7 +209,7 @@ assign IO_NAND_CH1_DQS_N = (IO_NAND_CH1_DQS_P === 1'b0) ? 1'b1 :
                            (IO_NAND_CH1_DQS_P === 1'b1) ? 1'b0 : IO_NAND_CH1_DQS_P;
 
 
-ddr3 u_ddr3_upper( /*AUTOINST*/
+ddr3 u_ddr3_upper( 
         .rst_n   ( DDR_reset_n              ),    //I                  u_ddr3    
         .ck      ( DDR_ck_p                 ),    //I                  u_ddr3    
         .ck_n    ( DDR_ck_n                 ),    //I                  u_ddr3    
@@ -188,7 +228,7 @@ ddr3 u_ddr3_upper( /*AUTOINST*/
         .odt     ( DDR_odt                  )     //I                  u_ddr3    
 );
 
-ddr3 u_ddr3_lower( /*AUTOINST*/
+ddr3 u_ddr3_lower( 
         .rst_n   ( DDR_reset_n              ),    //I                  u_ddr3    
         .ck      ( DDR_ck_p                 ),    //I                  u_ddr3    
         .ck_n    ( DDR_ck_n                 ),    //I                  u_ddr3    
@@ -207,12 +247,116 @@ ddr3 u_ddr3_lower( /*AUTOINST*/
         .odt     ( DDR_odt                  )     //I                  u_ddr3    
 );
 
+assign ps_m_axi_gp0_aclk        = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_ACLK;
+assign ps_m_axi_gp0_aresetn     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_ARESETN[0:0];
+assign ps_m_axi_gp0_awready     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awready   ;
+assign ps_m_axi_gp0_wready      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wready    ;
+assign ps_m_axi_gp0_bvalid      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_bvalid    ;
+assign ps_m_axi_gp0_bid[11:0]   = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_bid[11:0] ;
+assign ps_m_axi_gp0_bresp[1:0]  = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_bresp[1:0];
+assign ps_m_axi_gp0_arready     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arready   ;
+assign ps_m_axi_gp0_rvalid      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rvalid    ;
+assign ps_m_axi_gp0_rid[11:0]   = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rid[11:0] ;
+assign ps_m_axi_gp0_rdata[31:0] = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rdata[31:0];
+assign ps_m_axi_gp0_rlast       = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rlast     ;
+assign ps_m_axi_gp0_rresp[1:0]  = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rresp[1:0];
+
+initial begin
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_araddr[31:0]  = ps_m_axi_gp0_araddr[31:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arburst[1:0]  = ps_m_axi_gp0_arburst[1:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arcache[3:0]  = ps_m_axi_gp0_arcache[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arid[11:0]    = ps_m_axi_gp0_arid[11:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arlen[3:0]    = ps_m_axi_gp0_arlen[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arlock[1:0]   = ps_m_axi_gp0_arlock[1:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arprot[2:0]   = ps_m_axi_gp0_arprot[2:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arqos[3:0]    = ps_m_axi_gp0_arqos[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arsize[2:0]   = ps_m_axi_gp0_arsize[2:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_arvalid       = ps_m_axi_gp0_arvalid;
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awaddr[31:0]  = ps_m_axi_gp0_awaddr[31:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awburst[1:0]  = ps_m_axi_gp0_awburst[1:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awcache[3:0]  = ps_m_axi_gp0_awcache[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awid[11:0]    = ps_m_axi_gp0_awid[11:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awlen[3:0]    = ps_m_axi_gp0_awlen[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awlock[1:0]   = ps_m_axi_gp0_awlock[1:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awprot[2:0]   = ps_m_axi_gp0_awprot[2:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awqos[3:0]    = ps_m_axi_gp0_awqos[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awsize[2:0]   = ps_m_axi_gp0_awsize[2:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_awvalid       = ps_m_axi_gp0_awvalid;
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_bready        = ps_m_axi_gp0_bready;
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_rready        = ps_m_axi_gp0_rready;
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wdata[31:0]   = ps_m_axi_gp0_wdata[31:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wid[11:0]     = ps_m_axi_gp0_wid[11:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wlast         = ps_m_axi_gp0_wlast;
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wstrb[3:0]    = ps_m_axi_gp0_wstrb[3:0];
+    force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.GPIC0.S00_AXI_wvalid        = ps_m_axi_gp0_wvalid;
+end
+
+axi_master_bfm_core #(
+        .VERBOSE            ( 0             ),
+        .ERROR_RESP_FINISH  ( 1             ),
+
+        .ADDR_WIDTH         ( 32            ),
+        .DATA_WIDTH         ( 32            ),
+        .ID_WIDTH           ( 12            ),
+        .SIZE_WIDTH         ( 3             ),
+        .QOS_WIDTH          ( 4             ),
+        .MAX_CMDNUM         ( 16            ),
+        .MAX_ID             ( 31            ),
+        .MAX_BURSTLEN       ( 16            ),   // when change this you must change
+        .WLOG_NAME          ( "axi_master_write.log"),
+        .RLOG_NAME          ( "axi_master_read.log" ),
+        .CFG_W_MAX_LATENCY  ( 200           ),  //ns
+        .CFG_R_MAX_LATENCY  ( 200           ),  //ns
+        .AXI_VERSION        ( 3             ) 
+        ) u_PS_M_AXI_GP0( /*AUTOINST*/
+         .aclk    ( ps_m_axi_gp0_aclk                     )    //I                    u_axi_master_bfm_core    
+        ,.aresetn ( ps_m_axi_gp0_aresetn                  )    //I                    u_axi_master_bfm_core    
+        ,.awaddr  ( ps_m_axi_gp0_awaddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.awburst ( ps_m_axi_gp0_awburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_axi_master_bfm_core    
+        ,.awid    ( ps_m_axi_gp0_awid[11:0]               )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
+        ,.awlen   ( ps_m_axi_gp0_awlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_axi_master_bfm_core    
+        ,.awsize  ( ps_m_axi_gp0_awsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.awprot  ( ps_m_axi_gp0_awprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.awcache ( ps_m_axi_gp0_awcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_axi_master_bfm_core    
+        ,.awlock  ( ps_m_axi_gp0_awlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.awqos   ( ps_m_axi_gp0_awqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_axi_master_bfm_core    
+        ,.awvalid ( ps_m_axi_gp0_awvalid                  )    //O                    u_axi_master_bfm_core    
+        ,.awready ( ps_m_axi_gp0_awready                  )    //I                    u_axi_master_bfm_core    
+        ,.wvalid  ( ps_m_axi_gp0_wvalid                   )    //O                    u_axi_master_bfm_core    
+        ,.wready  ( ps_m_axi_gp0_wready                   )    //I                    u_axi_master_bfm_core    
+        ,.wid     ( ps_m_axi_gp0_wid[11:0]                )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
+        ,.wdata   ( ps_m_axi_gp0_wdata[31:0]              )    //O  [DATA_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.wstrb   ( ps_m_axi_gp0_wstrb[3:0]               )    //O  [STRB_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.wlast   ( ps_m_axi_gp0_wlast                    )    //O                    u_axi_master_bfm_core    
+        ,.bvalid  ( ps_m_axi_gp0_bvalid                   )    //I                    u_axi_master_bfm_core    
+        ,.bready  ( ps_m_axi_gp0_bready                   )    //O                    u_axi_master_bfm_core    
+        ,.bid     ( ps_m_axi_gp0_bid[11:0]                )    //I  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
+        ,.bresp   ( ps_m_axi_gp0_bresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.arvalid ( ps_m_axi_gp0_arvalid                  )    //O                    u_axi_master_bfm_core    
+        ,.arready ( ps_m_axi_gp0_arready                  )    //I                    u_axi_master_bfm_core    
+        ,.arid    ( ps_m_axi_gp0_arid[11:0]               )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
+        ,.araddr  ( ps_m_axi_gp0_araddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.arburst ( ps_m_axi_gp0_arburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_axi_master_bfm_core    
+        ,.arlen   ( ps_m_axi_gp0_arlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_axi_master_bfm_core    
+        ,.arsize  ( ps_m_axi_gp0_arsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.arprot  ( ps_m_axi_gp0_arprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.arcache ( ps_m_axi_gp0_arcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_axi_master_bfm_core    
+        ,.arlock  ( ps_m_axi_gp0_arlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.arqos   ( ps_m_axi_gp0_arqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_axi_master_bfm_core    
+        ,.rvalid  ( ps_m_axi_gp0_rvalid                   )    //I                    u_axi_master_bfm_core    
+        ,.rready  ( ps_m_axi_gp0_rready                   )    //O                    u_axi_master_bfm_core    
+        ,.rid     ( ps_m_axi_gp0_rid[11:0]                )    //I  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
+        ,.rdata   ( ps_m_axi_gp0_rdata[31:0]              )    //I  [DATA_WIDTH-1:0]  u_axi_master_bfm_core    
+        ,.rlast   ( ps_m_axi_gp0_rlast                    )    //I                    u_axi_master_bfm_core    
+        ,.rresp   ( ps_m_axi_gp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_axi_master_bfm_core    
+);
+
 endmodule
 
-//verilog-library-files: ("./DDR3/ddr3.v")
-//verilog-library-files: ("./m73a_nand_model/nand_model.v")
+//verilog-library-files: ()
 //verilog-library-directories: (".")
 //verilog-library-directories: ("$OPENSSD_HOME/source/work/rtl")
 //verilog-library-directories: ("../rtl/OpenSSD")
+//verilog-library-directories: ("../tb/model/sim")
 
 

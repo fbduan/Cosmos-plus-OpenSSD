@@ -172,4 +172,104 @@ module pcie_7x_0_core_top(pci_exp_txp, pci_exp_txn, pci_exp_rxp, pci_exp_rxn, us
   output [6:0]cfg_vc_tcvc_map;
   input sys_clk;
   input sys_rst_n;
+
+  /*autodefine*/
+
+
+
+assign pci_exp_txp[7:0]                           = 8'd0;
+assign pci_exp_txn[7:0]                           = 8'd0;
+assign user_clk_out                               = 1'b0;
+assign user_reset_out                             = 1'b0;
+assign user_lnk_up                                = 1'b0;
+assign user_app_rdy                               = 1'b0;
+assign tx_buf_av[5:0]                             = 6'd0;
+assign tx_cfg_req                                 = 1'b0;
+assign tx_err_drop                                = 1'b0;
+assign s_axis_tx_tready                           = 1'b0;
+assign m_axis_rx_tdata[127:0]                     = 128'd0;
+assign m_axis_rx_tkeep[15:0]                      = 16'd0;
+assign m_axis_rx_tlast                            = 1'b0;
+assign m_axis_rx_tvalid                           = 1'b0;
+assign m_axis_rx_tuser[21:0]                      = 22'd0;
+assign fc_cpld[11:0]                              = 12'd0;
+assign fc_cplh[7:0]                               = 8'd0;
+assign fc_npd[11:0]                               = 12'd0;
+assign fc_nph[7:0]                                = 8'd0;
+assign fc_pd[11:0]                                = 12'd0;
+assign fc_ph[7:0]                                 = 8'd0;
+assign cfg_mgmt_do[31:0]                          = 32'd0;
+assign cfg_mgmt_rd_wr_done                        = 1'b0;
+assign cfg_status[15:0]                           = 16'd0;
+assign cfg_command[15:0]                          = 16'd0;
+assign cfg_dstatus[15:0]                          = 16'd0;
+assign cfg_dcommand[15:0]                         = 16'd0;
+assign cfg_lstatus[15:0]                          = 16'd0;
+assign cfg_lcommand[15:0]                         = 16'd0;
+assign cfg_dcommand2[15:0]                        = 16'd0;
+assign cfg_pcie_link_state[2:0]                   = 3'd0;
+assign cfg_pmcsr_pme_en                           = 1'b0;
+assign cfg_pmcsr_powerstate[1:0]                  = 1'd0;
+assign cfg_pmcsr_pme_status                       = 1'b0;
+assign cfg_received_func_lvl_rst                  = 1'b0;
+assign cfg_err_cpl_rdy                            = 1'b0;
+assign cfg_interrupt_rdy                          = 1'b0;
+assign cfg_interrupt_do[7:0]                      = 8'd0;
+assign cfg_interrupt_mmenable[2:0]                = 3'd0;
+assign cfg_interrupt_msienable                    = 1'b0;
+assign cfg_interrupt_msixenable                   = 1'b0;
+assign cfg_interrupt_msixfm                       = 1'b0;
+assign cfg_to_turnoff                             = 1'b0;
+assign cfg_bus_number[7:0]                        = 8'd0;
+assign cfg_device_number[4:0]                     = 5'd0;
+assign cfg_function_number[2:0]                   = 3'd0;
+assign cfg_msg_received                           = 1'b0;
+assign cfg_msg_data[15:0]                         = 16'd0;
+assign cfg_bridge_serr_en                         = 1'b0;
+assign cfg_slot_control_electromech_il_ctl_pulse  = 1'b0;
+assign cfg_root_control_syserr_corr_err_en        = 1'b0;
+assign cfg_root_control_syserr_non_fatal_err_en   = 1'b0;
+assign cfg_root_control_syserr_fatal_err_en       = 1'b0;
+assign cfg_root_control_pme_int_en                = 1'b0;
+assign cfg_aer_rooterr_corr_err_reporting_en      = 1'b0;
+assign cfg_aer_rooterr_non_fatal_err_reporting_en = 1'b0;
+assign cfg_aer_rooterr_fatal_err_reporting_en     = 1'b0;
+assign cfg_aer_rooterr_corr_err_received          = 1'b0;
+assign cfg_aer_rooterr_non_fatal_err_received     = 1'b0;
+assign cfg_aer_rooterr_fatal_err_received         = 1'b0;
+assign cfg_msg_received_err_cor                   = 1'b0;
+assign cfg_msg_received_err_non_fatal             = 1'b0;
+assign cfg_msg_received_err_fatal                 = 1'b0;
+assign cfg_msg_received_pm_as_nak                 = 1'b0;
+assign cfg_msg_received_pm_pme                    = 1'b0;
+assign cfg_msg_received_pme_to_ack                = 1'b0;
+assign cfg_msg_received_assert_int_a              = 1'b0;
+assign cfg_msg_received_assert_int_b              = 1'b0;
+assign cfg_msg_received_assert_int_c              = 1'b0;
+assign cfg_msg_received_assert_int_d              = 1'b0;
+assign cfg_msg_received_deassert_int_a            = 1'b0;
+assign cfg_msg_received_deassert_int_b            = 1'b0;
+assign cfg_msg_received_deassert_int_c            = 1'b0;
+assign cfg_msg_received_deassert_int_d            = 1'b0;
+assign cfg_msg_received_setslotpowerlimit         = 1'b0;
+assign pl_sel_lnk_rate                            = 1'b0;
+assign pl_sel_lnk_width[1:0]                      = 1'd0;
+assign pl_ltssm_state[5:0]                        = 6'd0;
+assign pl_lane_reversal_mode[1:0]                 = 1'd0;
+assign pl_phy_lnk_up                              = 1'b0;
+assign pl_tx_pm_state[2:0]                        = 3'd0;
+assign pl_rx_pm_state[1:0]                        = 1'd0;
+assign pl_link_upcfg_cap                          = 1'b0;
+assign pl_link_gen2_cap                           = 1'b0;
+assign pl_link_partner_gen2_supported             = 1'b0;
+assign pl_initial_link_width[2:0]                 = 3'd0;
+assign pl_directed_change_done                    = 1'b0;
+assign pl_received_hot_rst                        = 1'b0;
+assign cfg_err_aer_headerlog_set                  = 1'b0;
+assign cfg_aer_ecrc_check_en                      = 1'b0;
+assign cfg_aer_ecrc_gen_en                        = 1'b0;
+assign cfg_vc_tcvc_map[6:0]                       = 7'd0;
+
+
+
 endmodule
