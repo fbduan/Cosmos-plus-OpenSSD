@@ -1,2 +1,2 @@
 
-setenv OPENSSD_HOME /home/orysduan/work/ip/Cosmos-plus-OpenSSD
+setenv OPENSSD_HOME /home/orysduan/proj/Cosmos-plus-OpenSSD

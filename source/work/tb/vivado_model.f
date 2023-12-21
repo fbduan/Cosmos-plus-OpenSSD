@@ -1109,3 +1109,8 @@
 ////../tb/model/macros/SDPRAM_16A9024X32B4512.v
 ../tb/model/macros/SDPRAM_9A16x9B16_funcsim.v
 ////../tb/model/macros/SDPRAM_9A16x9B16.v
+
+../tb/model/secureip/in_fifo/in_fifo_001.vp
+../tb/model/secureip/in_fifo/in_fifo_002.vp
+../tb/model/secureip/oserdese2/oserdese2_001.vp
+../tb/model/secureip/oserdese2/oserdese2_002.vp

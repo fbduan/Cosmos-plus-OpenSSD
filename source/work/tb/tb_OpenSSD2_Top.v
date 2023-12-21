@@ -22,6 +22,15 @@
 
 module tb_OpenSSD2_Top(/*autoarg*/);
 
+
+initial begin
+    string fsdb_name = "tb_openssd2_top.fsdb";
+    $fsdbDumpfile(fsdb_name);
+    $fsdbDumpvars(0, tb_OpenSSD2_Top);
+    $fsdbDumpSVA();
+    $fsdbDumpDMA(0, tb_OpenSSD2_Top);
+end
+
 /*autodefine*/
 //auto wires{{{
 wire [14:0]            DDR_addr;
@@ -308,48 +317,62 @@ axi_master_bfm_core #(
         .CFG_W_MAX_LATENCY  ( 200           ),  //ns
         .CFG_R_MAX_LATENCY  ( 200           ),  //ns
         .AXI_VERSION        ( 3             ) 
-        ) u_PS_M_AXI_GP0( /*AUTOINST*/
-         .aclk    ( ps_m_axi_gp0_aclk                     )    //I                    u_axi_master_bfm_core    
-        ,.aresetn ( ps_m_axi_gp0_aresetn                  )    //I                    u_axi_master_bfm_core    
-        ,.awaddr  ( ps_m_axi_gp0_awaddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.awburst ( ps_m_axi_gp0_awburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_axi_master_bfm_core    
-        ,.awid    ( ps_m_axi_gp0_awid[11:0]               )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
-        ,.awlen   ( ps_m_axi_gp0_awlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_axi_master_bfm_core    
-        ,.awsize  ( ps_m_axi_gp0_awsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.awprot  ( ps_m_axi_gp0_awprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.awcache ( ps_m_axi_gp0_awcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_axi_master_bfm_core    
-        ,.awlock  ( ps_m_axi_gp0_awlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.awqos   ( ps_m_axi_gp0_awqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_axi_master_bfm_core    
-        ,.awvalid ( ps_m_axi_gp0_awvalid                  )    //O                    u_axi_master_bfm_core    
-        ,.awready ( ps_m_axi_gp0_awready                  )    //I                    u_axi_master_bfm_core    
-        ,.wvalid  ( ps_m_axi_gp0_wvalid                   )    //O                    u_axi_master_bfm_core    
-        ,.wready  ( ps_m_axi_gp0_wready                   )    //I                    u_axi_master_bfm_core    
-        ,.wid     ( ps_m_axi_gp0_wid[11:0]                )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
-        ,.wdata   ( ps_m_axi_gp0_wdata[31:0]              )    //O  [DATA_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.wstrb   ( ps_m_axi_gp0_wstrb[3:0]               )    //O  [STRB_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.wlast   ( ps_m_axi_gp0_wlast                    )    //O                    u_axi_master_bfm_core    
-        ,.bvalid  ( ps_m_axi_gp0_bvalid                   )    //I                    u_axi_master_bfm_core    
-        ,.bready  ( ps_m_axi_gp0_bready                   )    //O                    u_axi_master_bfm_core    
-        ,.bid     ( ps_m_axi_gp0_bid[11:0]                )    //I  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
-        ,.bresp   ( ps_m_axi_gp0_bresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.arvalid ( ps_m_axi_gp0_arvalid                  )    //O                    u_axi_master_bfm_core    
-        ,.arready ( ps_m_axi_gp0_arready                  )    //I                    u_axi_master_bfm_core    
-        ,.arid    ( ps_m_axi_gp0_arid[11:0]               )    //O  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
-        ,.araddr  ( ps_m_axi_gp0_araddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.arburst ( ps_m_axi_gp0_arburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_axi_master_bfm_core    
-        ,.arlen   ( ps_m_axi_gp0_arlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_axi_master_bfm_core    
-        ,.arsize  ( ps_m_axi_gp0_arsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.arprot  ( ps_m_axi_gp0_arprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.arcache ( ps_m_axi_gp0_arcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_axi_master_bfm_core    
-        ,.arlock  ( ps_m_axi_gp0_arlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.arqos   ( ps_m_axi_gp0_arqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_axi_master_bfm_core    
-        ,.rvalid  ( ps_m_axi_gp0_rvalid                   )    //I                    u_axi_master_bfm_core    
-        ,.rready  ( ps_m_axi_gp0_rready                   )    //O                    u_axi_master_bfm_core    
-        ,.rid     ( ps_m_axi_gp0_rid[11:0]                )    //I  [ID_WIDTH-1:0]    u_axi_master_bfm_core    
-        ,.rdata   ( ps_m_axi_gp0_rdata[31:0]              )    //I  [DATA_WIDTH-1:0]  u_axi_master_bfm_core    
-        ,.rlast   ( ps_m_axi_gp0_rlast                    )    //I                    u_axi_master_bfm_core    
-        ,.rresp   ( ps_m_axi_gp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_axi_master_bfm_core    
+        ) u_psnf( /*AUTOINST*/
+         .aclk    ( ps_m_axi_gp0_aclk                     )    //I                    u_psnf    
+        ,.aresetn ( ps_m_axi_gp0_aresetn                  )    //I                    u_psnf    
+        ,.awaddr  ( ps_m_axi_gp0_awaddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_psnf    
+        ,.awburst ( ps_m_axi_gp0_awburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_psnf    
+        ,.awid    ( ps_m_axi_gp0_awid[11:0]               )    //O  [ID_WIDTH-1:0]    u_psnf    
+        ,.awlen   ( ps_m_axi_gp0_awlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_psnf    
+        ,.awsize  ( ps_m_axi_gp0_awsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_psnf    
+        ,.awprot  ( ps_m_axi_gp0_awprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_psnf    
+        ,.awcache ( ps_m_axi_gp0_awcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_psnf    
+        ,.awlock  ( ps_m_axi_gp0_awlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_psnf    
+        ,.awqos   ( ps_m_axi_gp0_awqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_psnf    
+        ,.awvalid ( ps_m_axi_gp0_awvalid                  )    //O                    u_psnf    
+        ,.awready ( ps_m_axi_gp0_awready                  )    //I                    u_psnf    
+        ,.wvalid  ( ps_m_axi_gp0_wvalid                   )    //O                    u_psnf    
+        ,.wready  ( ps_m_axi_gp0_wready                   )    //I                    u_psnf    
+        ,.wid     ( ps_m_axi_gp0_wid[11:0]                )    //O  [ID_WIDTH-1:0]    u_psnf    
+        ,.wdata   ( ps_m_axi_gp0_wdata[31:0]              )    //O  [DATA_WIDTH-1:0]  u_psnf    
+        ,.wstrb   ( ps_m_axi_gp0_wstrb[3:0]               )    //O  [STRB_WIDTH-1:0]  u_psnf    
+        ,.wlast   ( ps_m_axi_gp0_wlast                    )    //O                    u_psnf    
+        ,.bvalid  ( ps_m_axi_gp0_bvalid                   )    //I                    u_psnf    
+        ,.bready  ( ps_m_axi_gp0_bready                   )    //O                    u_psnf    
+        ,.bid     ( ps_m_axi_gp0_bid[11:0]                )    //I  [ID_WIDTH-1:0]    u_psnf    
+        ,.bresp   ( ps_m_axi_gp0_bresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_psnf    
+        ,.arvalid ( ps_m_axi_gp0_arvalid                  )    //O                    u_psnf    
+        ,.arready ( ps_m_axi_gp0_arready                  )    //I                    u_psnf    
+        ,.arid    ( ps_m_axi_gp0_arid[11:0]               )    //O  [ID_WIDTH-1:0]    u_psnf    
+        ,.araddr  ( ps_m_axi_gp0_araddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_psnf    
+        ,.arburst ( ps_m_axi_gp0_arburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_psnf    
+        ,.arlen   ( ps_m_axi_gp0_arlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_psnf    
+        ,.arsize  ( ps_m_axi_gp0_arsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_psnf    
+        ,.arprot  ( ps_m_axi_gp0_arprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_psnf    
+        ,.arcache ( ps_m_axi_gp0_arcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_psnf    
+        ,.arlock  ( ps_m_axi_gp0_arlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_psnf    
+        ,.arqos   ( ps_m_axi_gp0_arqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_psnf    
+        ,.rvalid  ( ps_m_axi_gp0_rvalid                   )    //I                    u_psnf    
+        ,.rready  ( ps_m_axi_gp0_rready                   )    //O                    u_psnf    
+        ,.rid     ( ps_m_axi_gp0_rid[11:0]                )    //I  [ID_WIDTH-1:0]    u_psnf    
+        ,.rdata   ( ps_m_axi_gp0_rdata[31:0]              )    //I  [DATA_WIDTH-1:0]  u_psnf    
+        ,.rlast   ( ps_m_axi_gp0_rlast                    )    //I                    u_psnf    
+        ,.rresp   ( ps_m_axi_gp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_psnf    
 );
+
+wire [31:0] tmp_rdata;
+initial begin
+    @(posedge ps_m_axi_gp0_aresetn);
+    repeat(100) @(posedge ps_m_axi_gp0_aclk);
+    u_psnf.single_read(4, 32'h43C0_0000, tmp_rdata[31:0]);
+    u_psnf.single_read(4, 32'h43C0_0004, tmp_rdata[31:0]);
+    u_psnf.single_read(4, 32'h43C0_0008, tmp_rdata[31:0]);
+    u_psnf.single_read(4, 32'h43C0_000C, tmp_rdata[31:0]);
+
+
+    #10000;
+    $finish();
+end
 
 endmodule
 
