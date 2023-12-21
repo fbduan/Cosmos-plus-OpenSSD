@@ -177,10 +177,11 @@ reg  [C_BUS_RESET_WAIT-1:0]  bus_rst_n_dly;
 reg  [C_EXT_RST_WIDTH-1:0]   exr_rst_n_sync;
 reg                          lpf_rst_n;
 reg  [C_MB_RESET_WAIT-1:0]   mb_rst_n_dly;
-reg  [C_PRI_RESET_WAIT-1:0]  pri_rst_n_dly;
+reg  [C_PER_RESET_WAIT-1:0]  pri_rst_n_dly;
 //}}}
 // End of automatic define
 
+wire srl_time_out;
 
 //////////////////////////////////////////////////////////////////////////////
 // Design Logic                                                             //
@@ -195,7 +196,7 @@ assign interconnect_aresetn[0:C_NUM_INTERCONNECT_ARESETN - 1] = {C_NUM_INTERCONN
 assign peripheral_aresetn[0:C_NUM_PERP_ARESETN - 1]           = {C_NUM_PERP_ARESETN{ pri_rst_n_dly[0]}};
 
 always @(posedge slowest_sync_clk or negedge lpf_rst_n) begin
-    if(!rstn) begin
+    if(!lpf_rst_n) begin
         bus_rst_n_dly[C_BUS_RESET_WAIT-1:0] <= {1'b1, {(C_BUS_RESET_WAIT-1){1'b0}}};
     end
     else begin
@@ -204,16 +205,16 @@ always @(posedge slowest_sync_clk or negedge lpf_rst_n) begin
 end
 
 always @(posedge slowest_sync_clk or negedge bus_rst_n_dly[0]) begin
-    if(!rstn) begin
-        pri_rst_n_dly[C_PRI_RESET_WAIT-1:0] <= {1'b1, {(C_PRI_RESET_WAIT-1){1'b0}}};
+    if(!bus_rst_n_dly[0]) begin
+        pri_rst_n_dly[C_PER_RESET_WAIT-1:0] <= {1'b1, {(C_PER_RESET_WAIT-1){1'b0}}};
     end
     else begin
-        pri_rst_n_dly[C_PRI_RESET_WAIT-1:0] <= {pri_rst_n_dly[C_PRI_RESET_WAIT-1], pri_rst_n_dly[C_PRI_RESET_WAIT-1:1]};
+        pri_rst_n_dly[C_PER_RESET_WAIT-1:0] <= {pri_rst_n_dly[C_PER_RESET_WAIT-1], pri_rst_n_dly[C_PER_RESET_WAIT-1:1]};
     end
 end
 
 always @(posedge slowest_sync_clk or negedge mb_rst_n_dly[0]) begin
-    if(!rstn) begin
+    if(!mb_rst_n_dly[0]) begin
         mb_rst_n_dly[C_MB_RESET_WAIT-1:0] <= {1'b1, {(C_MB_RESET_WAIT-1){1'b0}}};
     end
     else begin
@@ -238,7 +239,7 @@ assign asr_rst_n = aux_rst_n;
 
 assign exr_sync_rst_n = exr_rst_n_sync[0];
 always @(posedge slowest_sync_clk or negedge exr_rst_n) begin
-    if(!rstn) begin
+    if(!exr_rst_n) begin
         exr_rst_n_sync[C_EXT_RST_WIDTH-1:0] <= {1'b1, {(C_EXT_RST_WIDTH-1){1'b0}}};
     end
     else begin
@@ -248,7 +249,7 @@ end
 
 assign asr_sync_rst_n = asr_rst_n_sync[0];
 always @(posedge slowest_sync_clk or negedge asr_rst_n) begin
-    if(!rstn) begin
+    if(!asr_rst_n) begin
         asr_rst_n_sync[C_AUX_RST_WIDTH-1:0] <= {1'b1, {(C_AUX_RST_WIDTH-1){1'b0}}};
     end
     else begin
