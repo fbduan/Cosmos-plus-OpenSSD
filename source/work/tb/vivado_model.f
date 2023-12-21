@@ -1114,3 +1114,5 @@
 ../tb/model/secureip/in_fifo/in_fifo_002.vp
 ../tb/model/secureip/oserdese2/oserdese2_001.vp
 ../tb/model/secureip/oserdese2/oserdese2_002.vp
+
+../tb/model/c_sub.v
