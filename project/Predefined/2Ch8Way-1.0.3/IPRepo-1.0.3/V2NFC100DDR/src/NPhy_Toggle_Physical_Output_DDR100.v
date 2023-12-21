@@ -159,13 +159,13 @@ module NPhy_Toggle_Physical_Output_DDR100
         .D8         (iPO_DQStrobe[7]        ),
         .OCE        (1'b1                   ),
         .RST        (iModuleReset           ),
-        .SHIFTIN1   (0                      ),
-        .SHIFTIN2   (0                      ),
+        .SHIFTIN1   (1'b0                    ),
+        .SHIFTIN2   (1'b0                    ),
         .T1         (rDQSOut_IOBUF_T        ), // from P.M.
-        .T2         (0                      ),
-        .T3         (0                      ),
-        .T4         (0                      ),
-        .TBYTEIN    (0                      ),
+        .T2         (1'b0                    ),
+        .T3         (1'b0                    ),
+        .T4         (1'b0                    ),
+        .TBYTEIN    (1'b0                    ),
         .TCE        (1'b1                   )
     );
     
@@ -208,13 +208,13 @@ module NPhy_Toggle_Physical_Output_DDR100
             .D8         (iPO_DQ[24 + c]     ),
             .OCE        (1'b1               ),
             .RST        (iModuleReset       ),
-            .SHIFTIN1   (0                  ),
-            .SHIFTIN2   (0                  ),
+            .SHIFTIN1   (1'b0                ),
+            .SHIFTIN2   (1'b0                ),
             .T1         (rDQOut_IOBUF_T     ), // from P.M.
-            .T2         (0                  ),
-            .T3         (0                  ),
-            .T4         (0                  ),
-            .TBYTEIN    (0                  ),
+            .T2         (1'b0                ),
+            .T3         (1'b0                ),
+            .T4         (1'b0                ),
+            .TBYTEIN    (1'b0                ),
             .TCE        (1'b1               )
         );
     end
@@ -271,13 +271,13 @@ module NPhy_Toggle_Physical_Output_DDR100
             .D8         (iPO_ChipEnable[NumberOfWays + d]),
             .OCE        (1'b1                   ),
             .RST        (iModuleReset           ),
-            .SHIFTIN1   (0                      ),
-            .SHIFTIN2   (0                      ),
+            .SHIFTIN1   (1'b0                    ),
+            .SHIFTIN2   (1'b0                    ),
             .T1         (1'b0                   ),
-            .T2         (0                      ),
-            .T3         (0                      ),
-            .T4         (0                      ),
-            .TBYTEIN    (0                      ),
+            .T2         (1'b0                    ),
+            .T3         (1'b0                    ),
+            .T4         (1'b0                    ),
+            .TBYTEIN    (1'b0                    ),
             .TCE        (1'b1                   )
         );
     end
@@ -332,13 +332,13 @@ module NPhy_Toggle_Physical_Output_DDR100
         .D8         (iPO_ReadEnable[3]      ),
         .OCE        (1'b1                   ),
         .RST        (iModuleReset           ),
-        .SHIFTIN1   (0                      ),
-        .SHIFTIN2   (0                      ),
+        .SHIFTIN1   (1'b0                   ),
+        .SHIFTIN2   (1'b0                   ),
         .T1         (1'b0                   ),
-        .T2         (0                      ),
-        .T3         (0                      ),
-        .T4         (0                      ),
-        .TBYTEIN    (0                      ),
+        .T2         (1'b0                   ),
+        .T3         (1'b0                   ),
+        .T4         (1'b0                   ),
+        .TBYTEIN    (1'b0                   ),
         .TCE        (1'b1                   )
     );
     
@@ -389,13 +389,13 @@ module NPhy_Toggle_Physical_Output_DDR100
         .D8         (iPO_WriteEnable[3]     ),
         .OCE        (1'b1                   ),
         .RST        (iModuleReset           ),
-        .SHIFTIN1   (0                      ),
-        .SHIFTIN2   (0                      ),
+        .SHIFTIN1   (1'b0                      ),
+        .SHIFTIN2   (1'b0                      ),
         .T1         (1'b0                   ),
-        .T2         (0                      ),
-        .T3         (0                      ),
-        .T4         (0                      ),
-        .TBYTEIN    (0                      ),
+        .T2         (1'b0                      ),
+        .T3         (1'b0                      ),
+        .T4         (1'b0                      ),
+        .TBYTEIN    (1'b0                      ),
         .TCE        (1'b1                   )
     );
     
@@ -435,13 +435,13 @@ module NPhy_Toggle_Physical_Output_DDR100
         .D8         (iPO_AddressLatchEnable[3]),
         .OCE        (1'b1                   ),
         .RST        (iModuleReset           ),
-        .SHIFTIN1   (0                      ),
-        .SHIFTIN2   (0                      ),
+        .SHIFTIN1   (1'b0                   ),
+        .SHIFTIN2   (1'b0                   ),
         .T1         (1'b0                   ),
-        .T2         (0                      ),
-        .T3         (0                      ),
-        .T4         (0                      ),
-        .TBYTEIN    (0                      ),
+        .T2         (1'b0                   ),
+        .T3         (1'b0                   ),
+        .T4         (1'b0                   ),
+        .TBYTEIN    (1'b0                   ),
         .TCE        (1'b1                   )
     );
 
@@ -481,13 +481,13 @@ module NPhy_Toggle_Physical_Output_DDR100
         .D8         (iPO_CommandLatchEnable[3]),
         .OCE        (1'b1                   ),
         .RST        (iModuleReset           ),
-        .SHIFTIN1   (0                      ),
-        .SHIFTIN2   (0                      ),
+        .SHIFTIN1   (1'b0                      ),
+        .SHIFTIN2   (1'b0                      ),
         .T1         (1'b0                   ),
-        .T2         (0                      ),
-        .T3         (0                      ),
-        .T4         (0                      ),
-        .TBYTEIN    (0                      ),
+        .T2         (1'b0                      ),
+        .T3         (1'b0                      ),
+        .T4         (1'b0                      ),
+        .TBYTEIN    (1'b0                      ),
         .TCE        (1'b1                   )
     );
 

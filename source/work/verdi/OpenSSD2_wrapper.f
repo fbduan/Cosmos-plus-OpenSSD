@@ -21,7 +21,8 @@
     -f ${OPENSSD_HOME}/source/work/rtl/OpenSSD2_Dispatcher_uCode_0_0.f
     -f ${OPENSSD_HOME}/source/work/rtl/OpenSSD2_processing_system7_0_0.f
     -f ${OPENSSD_HOME}/source/work/rtl/processing_system7_bfm_v2_0.f
-    -f ${OPENSSD_HOME}/source/work/rtl/pcie_7x_0_core_top.f
+////    -f ${OPENSSD_HOME}/source/work/rtl/pcie_7x_0_core_top.f
+    -f ${OPENSSD_HOME}/source/work/tb/pcie_7x_0_core_top.f
     -f ${OPENSSD_HOME}/source/work/rtl/axi_protocol_converter_v2_1.f
 ////    -f ${OPENSSD_HOME}/source/work/rtl/model.f
     -f ${OPENSSD_HOME}/source/work/tb/vivado_model.f
