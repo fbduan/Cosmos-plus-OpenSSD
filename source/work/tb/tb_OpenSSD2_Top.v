@@ -129,59 +129,66 @@ wire                   ps_m_axi_gp0_wvalid;
 // End of automatic define
 
 
+assign pcie_perst_n   = 1'b0;
+assign pcie_ref_clk_n = 1'b1;
+assign pcie_ref_clk_p = 1'b0;
+assign pcie_rx_n[7:0] = 8'hFF;
+assign pcie_rx_p[7:0] = 8'h00;
+assign pcie_tx_n[7:0] = 8'hFF;
+assign pcie_tx_p[7:0] = 8'h00;
 
 OpenSSD2_wrapper u_OpenSSD2_wrapper_0( /*AUTOINST*/
-        .DDR_addr          ( DDR_addr[14:0]      ),    //IO [14:0] u_OpenSSD2_wrapper_0    
-        .DDR_ba            ( DDR_ba[2:0]         ),    //IO [2:0]  u_OpenSSD2_wrapper_0    
-        .DDR_cas_n         ( DDR_cas_n           ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_ck_n          ( DDR_ck_n            ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_ck_p          ( DDR_ck_p            ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_cke           ( DDR_cke             ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_cs_n          ( DDR_cs_n            ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_dm            ( DDR_dm[3:0]         ),    //IO [3:0]  u_OpenSSD2_wrapper_0    
-        .DDR_dq            ( DDR_dq[31:0]        ),    //IO [31:0] u_OpenSSD2_wrapper_0    
-        .DDR_dqs_n         ( DDR_dqs_n[3:0]      ),    //IO [3:0]  u_OpenSSD2_wrapper_0    
-        .DDR_dqs_p         ( DDR_dqs_p[3:0]      ),    //IO [3:0]  u_OpenSSD2_wrapper_0    
-        .DDR_odt           ( DDR_odt             ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_ras_n         ( DDR_ras_n           ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_reset_n       ( DDR_reset_n         ),    //IO        u_OpenSSD2_wrapper_0    
-        .DDR_we_n          ( DDR_we_n            ),    //IO        u_OpenSSD2_wrapper_0    
-        .FIXED_IO_ddr_vrn  ( FIXED_IO_ddr_vrn    ),    //IO        u_OpenSSD2_wrapper_0    
-        .FIXED_IO_ddr_vrp  ( FIXED_IO_ddr_vrp    ),    //IO        u_OpenSSD2_wrapper_0    
-        .FIXED_IO_mio      ( FIXED_IO_mio[53:0]  ),    //IO [53:0] u_OpenSSD2_wrapper_0    
-        .FIXED_IO_ps_clk   ( FIXED_IO_ps_clk     ),    //IO        u_OpenSSD2_wrapper_0    
-        .FIXED_IO_ps_porb  ( FIXED_IO_ps_porb    ),    //IO        u_OpenSSD2_wrapper_0    
-        .FIXED_IO_ps_srstb ( FIXED_IO_ps_srstb   ),    //IO        u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH0_DQ    ( IO_NAND_CH0_DQ[7:0] ),    //IO [7:0]  u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH0_DQS_N ( IO_NAND_CH0_DQS_N   ),    //IO        u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH0_DQS_P ( IO_NAND_CH0_DQS_P   ),    //IO        u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH1_DQ    ( IO_NAND_CH1_DQ[7:0] ),    //IO [7:0]  u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH1_DQS_N ( IO_NAND_CH1_DQS_N   ),    //IO        u_OpenSSD2_wrapper_0    
-        .IO_NAND_CH1_DQS_P ( IO_NAND_CH1_DQS_P   ),    //IO        u_OpenSSD2_wrapper_0    
-        .I_NAND_CH0_RB     ( I_NAND_CH0_RB[7:0]  ),    //I  [7:0]  u_OpenSSD2_wrapper_0    
-        .I_NAND_CH1_RB     ( I_NAND_CH1_RB[7:0]  ),    //I  [7:0]  u_OpenSSD2_wrapper_0    
-        .O_DEBUG           ( O_DEBUG[31:0]       ),    //O  [31:0] u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_ALE    ( O_NAND_CH0_ALE      ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_CE     ( O_NAND_CH0_CE[7:0]  ),    //O  [7:0]  u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_CLE    ( O_NAND_CH0_CLE      ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_RE_N   ( O_NAND_CH0_RE_N     ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_RE_P   ( O_NAND_CH0_RE_P     ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_WE     ( O_NAND_CH0_WE       ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH0_WP     ( O_NAND_CH0_WP       ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_ALE    ( O_NAND_CH1_ALE      ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_CE     ( O_NAND_CH1_CE[7:0]  ),    //O  [7:0]  u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_CLE    ( O_NAND_CH1_CLE      ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_RE_N   ( O_NAND_CH1_RE_N     ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_RE_P   ( O_NAND_CH1_RE_P     ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_WE     ( O_NAND_CH1_WE       ),    //O         u_OpenSSD2_wrapper_0    
-        .O_NAND_CH1_WP     ( O_NAND_CH1_WP       ),    //O         u_OpenSSD2_wrapper_0    
-        .pcie_perst_n      ( pcie_perst_n        ),    //I         u_OpenSSD2_wrapper_0    
-        .pcie_ref_clk_n    ( pcie_ref_clk_n      ),    //I         u_OpenSSD2_wrapper_0    
-        .pcie_ref_clk_p    ( pcie_ref_clk_p      ),    //I         u_OpenSSD2_wrapper_0    
-        .pcie_rx_n         ( pcie_rx_n[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0    
-        .pcie_rx_p         ( pcie_rx_p[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0    
-        .pcie_tx_n         ( pcie_tx_n[7:0]      ),    //O  [7:0]  u_OpenSSD2_wrapper_0    
-        .pcie_tx_p         ( pcie_tx_p[7:0]      )     //O  [7:0]  u_OpenSSD2_wrapper_0    
+        .DDR_addr          ( DDR_addr[14:0]      ),    //IO [14:0] u_OpenSSD2_wrapper_0
+        .DDR_ba            ( DDR_ba[2:0]         ),    //IO [2:0]  u_OpenSSD2_wrapper_0
+        .DDR_cas_n         ( DDR_cas_n           ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_ck_n          ( DDR_ck_n            ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_ck_p          ( DDR_ck_p            ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_cke           ( DDR_cke             ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_cs_n          ( DDR_cs_n            ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_dm            ( DDR_dm[3:0]         ),    //IO [3:0]  u_OpenSSD2_wrapper_0
+        .DDR_dq            ( DDR_dq[31:0]        ),    //IO [31:0] u_OpenSSD2_wrapper_0
+        .DDR_dqs_n         ( DDR_dqs_n[3:0]      ),    //IO [3:0]  u_OpenSSD2_wrapper_0
+        .DDR_dqs_p         ( DDR_dqs_p[3:0]      ),    //IO [3:0]  u_OpenSSD2_wrapper_0
+        .DDR_odt           ( DDR_odt             ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_ras_n         ( DDR_ras_n           ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_reset_n       ( DDR_reset_n         ),    //IO        u_OpenSSD2_wrapper_0
+        .DDR_we_n          ( DDR_we_n            ),    //IO        u_OpenSSD2_wrapper_0
+        .FIXED_IO_ddr_vrn  ( FIXED_IO_ddr_vrn    ),    //IO        u_OpenSSD2_wrapper_0   nouse
+        .FIXED_IO_ddr_vrp  ( FIXED_IO_ddr_vrp    ),    //IO        u_OpenSSD2_wrapper_0   nouse
+        .FIXED_IO_mio      ( FIXED_IO_mio[53:0]  ),    //IO [53:0] u_OpenSSD2_wrapper_0   nouse
+        .FIXED_IO_ps_clk   ( FIXED_IO_ps_clk     ),    //IO        u_OpenSSD2_wrapper_0   TODO:
+        .FIXED_IO_ps_porb  ( FIXED_IO_ps_porb    ),    //IO        u_OpenSSD2_wrapper_0   TODO:
+        .FIXED_IO_ps_srstb ( FIXED_IO_ps_srstb   ),    //IO        u_OpenSSD2_wrapper_0   TODO:
+        .IO_NAND_CH0_DQ    ( IO_NAND_CH0_DQ[7:0] ),    //IO [7:0]  u_OpenSSD2_wrapper_0
+        .IO_NAND_CH0_DQS_N ( IO_NAND_CH0_DQS_N   ),    //IO        u_OpenSSD2_wrapper_0
+        .IO_NAND_CH0_DQS_P ( IO_NAND_CH0_DQS_P   ),    //IO        u_OpenSSD2_wrapper_0
+        .IO_NAND_CH1_DQ    ( IO_NAND_CH1_DQ[7:0] ),    //IO [7:0]  u_OpenSSD2_wrapper_0
+        .IO_NAND_CH1_DQS_N ( IO_NAND_CH1_DQS_N   ),    //IO        u_OpenSSD2_wrapper_0
+        .IO_NAND_CH1_DQS_P ( IO_NAND_CH1_DQS_P   ),    //IO        u_OpenSSD2_wrapper_0
+        .I_NAND_CH0_RB     ( I_NAND_CH0_RB[7:0]  ),    //I  [7:0]  u_OpenSSD2_wrapper_0
+        .I_NAND_CH1_RB     ( I_NAND_CH1_RB[7:0]  ),    //I  [7:0]  u_OpenSSD2_wrapper_0
+        .O_DEBUG           ( O_DEBUG[31:0]       ),    //O  [31:0] u_OpenSSD2_wrapper_0   nouse
+        .O_NAND_CH0_ALE    ( O_NAND_CH0_ALE      ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH0_CE     ( O_NAND_CH0_CE[7:0]  ),    //O  [7:0]  u_OpenSSD2_wrapper_0
+        .O_NAND_CH0_CLE    ( O_NAND_CH0_CLE      ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH0_RE_N   ( O_NAND_CH0_RE_N     ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH0_RE_P   ( O_NAND_CH0_RE_P     ),    //O         u_OpenSSD2_wrapper_0   nouse
+        .O_NAND_CH0_WE     ( O_NAND_CH0_WE       ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH0_WP     ( O_NAND_CH0_WP       ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_ALE    ( O_NAND_CH1_ALE      ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_CE     ( O_NAND_CH1_CE[7:0]  ),    //O  [7:0]  u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_CLE    ( O_NAND_CH1_CLE      ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_RE_N   ( O_NAND_CH1_RE_N     ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_RE_P   ( O_NAND_CH1_RE_P     ),    //O         u_OpenSSD2_wrapper_0   nouse
+        .O_NAND_CH1_WE     ( O_NAND_CH1_WE       ),    //O         u_OpenSSD2_wrapper_0
+        .O_NAND_CH1_WP     ( O_NAND_CH1_WP       ),    //O         u_OpenSSD2_wrapper_0
+        .pcie_perst_n      ( pcie_perst_n        ),    //I         u_OpenSSD2_wrapper_0   tie constant
+        .pcie_ref_clk_n    ( pcie_ref_clk_n      ),    //I         u_OpenSSD2_wrapper_0   tie constant
+        .pcie_ref_clk_p    ( pcie_ref_clk_p      ),    //I         u_OpenSSD2_wrapper_0   tie constant
+        .pcie_rx_n         ( pcie_rx_n[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0   tie constant
+        .pcie_rx_p         ( pcie_rx_p[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0   tie constant
+        .pcie_tx_n         ( pcie_tx_n[7:0]      ),    //O  [7:0]  u_OpenSSD2_wrapper_0   tie constant
+        .pcie_tx_p         ( pcie_tx_p[7:0]      )     //O  [7:0]  u_OpenSSD2_wrapper_0   tie constant
 );
 
 genvar gvar_i;
