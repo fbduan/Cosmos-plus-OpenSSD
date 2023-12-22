@@ -152,15 +152,19 @@ endtask
 always@(negedge por_rst_n or negedge sys_rst_n) fabric_rst_n = 32'h01f3_300f;
 
 initial begin
- r_m_axi_gp0_rstn = 1'b0;
- r_m_axi_gp1_rstn = 1'b0;
- r_s_axi_gp0_rstn = 1'b0;
- r_s_axi_gp1_rstn = 1'b0;
- r_s_axi_hp0_rstn = 1'b0;
- r_s_axi_hp1_rstn = 1'b0;
- r_s_axi_hp2_rstn = 1'b0;
- r_s_axi_hp3_rstn = 1'b0;
- r_s_axi_acp_rstn = 1'b0;
+ // Modofied for:
+ // [0] : *ZYNQ_BFM_INFO : M_AXI_GP0 : Port is ENABLED.
+ // [0] : M_AXI_GP0 : *INFO : Setting DISABLE_RESET_VALUE_CHECKS to 1
+ // BFM Xilinx: License failed for Xilinx_AXI_BFM, version 2010.100000
+ r_m_axi_gp0_rstn = 1'b1;   ////modified //     1'b0;
+ r_m_axi_gp1_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_gp0_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_gp1_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_hp0_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_hp1_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_hp2_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_hp3_rstn = 1'b1;   ////modified //     1'b0;
+ r_s_axi_acp_rstn = 1'b1;   ////modified //     1'b0;
 end
 
 
