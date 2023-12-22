@@ -1115,4 +1115,4 @@
 ../tb/model/secureip/oserdese2/oserdese2_001.vp
 ../tb/model/secureip/oserdese2/oserdese2_002.vp
 
-../tb/model/c_sub.v
+../tb/model/vhd2verilog/verilog/c_sub_funcsim.v

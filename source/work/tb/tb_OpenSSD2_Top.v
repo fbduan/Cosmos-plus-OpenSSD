@@ -29,7 +29,7 @@ initial begin
     $fsdbDumpfile(fsdb_name);
     $fsdbDumpvars(0, tb_OpenSSD2_Top);
     $fsdbDumpSVA();
-    $fsdbDumpDMA(0, tb_OpenSSD2_Top);
+    $fsdbDumpMDA(0, tb_OpenSSD2_Top);
 end
 
 /*autodefine*/
@@ -361,7 +361,7 @@ axi_master_bfm_core #(
         ,.rresp   ( ps_m_axi_gp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_psnf    
 );
 
-wire [31:0] tmp_rdata;
+reg [31:0] tmp_rdata;
 initial begin
     @(posedge ps_m_axi_gp0_aresetn);
     repeat(100) @(posedge ps_m_axi_gp0_aclk);

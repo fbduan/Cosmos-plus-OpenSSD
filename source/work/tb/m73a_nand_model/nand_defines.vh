@@ -43,3 +43,6 @@
 `else  // DEFAULT = CLASSB
     `define T1B1C1D1;  // 1 Die, 1 Target, 1 R/B, Common Cmd (1 cmd bus), Common Data (1 data bus)
 `endif `endif `endif `endif `endif `endif
+
+`undef x16
+
