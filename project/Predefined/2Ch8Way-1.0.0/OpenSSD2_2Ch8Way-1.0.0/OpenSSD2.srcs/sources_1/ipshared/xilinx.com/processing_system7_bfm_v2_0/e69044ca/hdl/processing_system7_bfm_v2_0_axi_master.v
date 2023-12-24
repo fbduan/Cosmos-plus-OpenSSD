@@ -143,15 +143,15 @@ module processing_system7_bfm_v2_0_axi_master (
    end
   end
 
-   initial master.set_disable_reset_value_checks(1); 
-   initial begin
-     repeat(2) @(posedge M_ACLK);
-     if(!enable_this_port) begin
-        master.set_channel_level_info(0);
-        master.set_function_level_info(0);
-     end
-     master.RESPONSE_TIMEOUT = 0;
-   end
+   // %%: initial master.set_disable_reset_value_checks(1); 
+   // %%: initial begin
+   // %%:   repeat(2) @(posedge M_ACLK);
+   // %%:   if(!enable_this_port) begin
+   // %%:      master.set_channel_level_info(0);
+   // %%:      master.set_function_level_info(0);
+   // %%:   end
+   // %%:   master.RESPONSE_TIMEOUT = 0;
+   // %%: end
 
 `ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
    cdn_axi3_master_bfm #(master_name,
