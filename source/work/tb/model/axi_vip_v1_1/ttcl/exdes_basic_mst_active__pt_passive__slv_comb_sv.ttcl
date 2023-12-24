@@ -1,0 +1,98 @@
+<: :>
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory [ttcl_string_concat $ComponentName "/simulation"] :>
+<: setFileName [ttcl_string_concat $ComponentName "_exdes_basic_mst_active__pt_passive__slv_comb"] :>
+<: setFileExtension ".sv" :>
+<: :>
+<: set c_protocol [getIntValue C_AXI_PROTOCOL] :>
+<: set c_read_write_mode [get_property PARAM_VALUE.READ_WRITE_MODE] :>
+<: set c_interface_mode [get_property PARAM_VALUE.INTERFACE_MODE] :>
+<: set c_addr_width [get_property PARAM_VALUE.ADDR_WIDTH] :>
+<: set c_wdata_width [getIntValue C_AXI_WDATA_WIDTH] :>
+<: set c_data_width [get_property PARAM_VALUE.DATA_WIDTH] :>
+<: set c_id_width [get_property PARAM_VALUE.ID_WIDTH] :>
+<: set c_awuser_width [get_property PARAM_VALUE.AWUSER_WIDTH] :>
+<: set c_aruser_width [get_property PARAM_VALUE.ARUSER_WIDTH] :>
+<: set c_ruser_width [get_property PARAM_VALUE.RUSER_WIDTH] :>
+<: set c_wuser_width [get_property PARAM_VALUE.WUSER_WIDTH] :>
+<: set c_buser_width [get_property PARAM_VALUE.BUSER_WIDTH] :>
+<: set c_ruser_bits_per_byte [get_property PARAM_VALUE.RUSER_BITS_PER_BYTE] :>
+<: set c_wuser_bits_per_byte [get_property PARAM_VALUE.WUSER_BITS_PER_BYTE] :>
+<: set c_has_user_bits_per_byte [get_property PARAM_VALUE.HAS_USER_BITS_PER_BYTE] :>
+<: set c_supports_narrow [getIntValue C_AXI_SUPPORTS_NARROW] :>
+<: set c_has_size [get_property PARAM_VALUE.HAS_SIZE] :>
+<: set c_has_burst [get_property PARAM_VALUE.HAS_BURST] :>
+<: set c_has_lock [get_property PARAM_VALUE.HAS_LOCK] :>
+<: set c_has_cache [get_property PARAM_VALUE.HAS_CACHE] :>
+<: set c_has_region [get_property PARAM_VALUE.HAS_REGION] :>
+<: set c_has_qos [get_property PARAM_VALUE.HAS_QOS] :>
+<: set c_has_prot [get_property PARAM_VALUE.HAS_PROT] :>
+<: set c_has_wstrb [get_property PARAM_VALUE.HAS_WSTRB] :>
+<: set c_has_bresp [get_property PARAM_VALUE.HAS_BRESP] :>
+<: set c_has_rresp [get_property PARAM_VALUE.HAS_RRESP] :>
+<: set c_has_aclken [get_property PARAM_VALUE.HAS_ACLKEN] :>
+<: set c_has_aresetn [get_property PARAM_VALUE.HAS_ARESETN] :>
+//---------------------------------------------------------------------------------------------------------
+// Description: 
+// This file contains example test which shows how Master VIP generate transaction and how Slave 
+// VIP (without memory model) responds.
+// The example design consists of one AXI VIP in master mode, one AXI VIP in passthrough mode 
+// and one AXI VIP in slave mode.
+// It includes master agent stimulus, slave memory agent stimulus and generic testbench file. 
+// Please refer <=:$ComponentName:>_mst_stimulus.sv for usage of Master VIP generating stimulus
+// Please refer <=:$ComponentName:>_mem_stimulus.sv for usage of Slave VIP agent(with memory model respond
+// Please refer <=:$ComponentName:>_exdes_generic.sv for simple scoreboarding,how to get monitor 
+// transaction from Master VIP monitor and Slave VIP monitor 
+//---------------------------------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+`include "<=:$ComponentName:>_exdes_generic.sv"
+`include "<=:$ComponentName:>_mst_stimulus.sv"
+`include "<=:$ComponentName:>_slv_basic_stimulus.sv"
+
+module <=:$ComponentName:>_exdes_basic_mst_active__pt_passive__slv_comb(
+  );
+ <: if { $c_has_aclken eq 1 } { :>
+  // Clock enable signal
+  bit                                     clocken;
+ <: } :>     
+  // Clock signal
+  bit                                     clock;
+ <: if { $c_has_aresetn eq 1 } { :>
+  // Reset signal
+  bit                                     reset;
+ <: } :>
+
+  // event to stop simulation
+  event                                   done_event;
+
+  <=:$ComponentName:>_exdes_generic  generic_tb();
+  <=:$ComponentName:>_mst_stimulus mst();
+  <=:$ComponentName:>_slv_basic_stimulus slv();
+
+  // instantiate bd
+  chip DUT(
+     <: if { $c_has_aresetn eq 1 } { :>
+      .aresetn(reset),
+     <: }  :>
+     <: if { $c_has_aclken eq 1 } { :>
+      .aclken(clocken),
+     <: } :>  
+    .aclk(clock)
+  );
+
+  <: if { $c_has_aresetn eq 1 } { :>
+  initial begin
+    reset <= 1'b1;
+  end
+  <: } :>
+  <: if { $c_has_aclken eq 1 } { :>
+  initial begin
+    clocken <= 1'b1;
+  end
+  <: } :>  
+  always #10 clock <= ~clock;
+  
+
+endmodule

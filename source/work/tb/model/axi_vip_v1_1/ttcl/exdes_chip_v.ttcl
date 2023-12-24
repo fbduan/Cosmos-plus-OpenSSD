@@ -1,0 +1,50 @@
+<: :>
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory [ttcl_string_concat $ComponentName "/hdl"] :>
+<: setFileName [ttcl_string_concat $ComponentName "_chip"] :>
+<: setFileExtension ".sv" :>
+<: setFileUsedIn [list simulation] :>
+<: :>
+<: set c_has_aclken [get_property PARAM_VALUE.HAS_ACLKEN] :>
+<: set c_has_aresetn [get_property PARAM_VALUE.HAS_ARESETN] :>
+
+`timescale 1 ps / 1 ps
+
+module chip
+   (
+  <: if { $c_has_aresetn  eq 1 } { :>
+    aresetn,
+  <: }  :>
+  <: if { $c_has_aclken  eq 1 } { :>
+    aclken,
+  <: } :>  
+    aclk
+    );
+  input aclk;
+  <: if { $c_has_aresetn eq 1 } { :>
+  input aresetn;
+  <: }  :>
+  <: if { $c_has_aclken eq 1 } { :>
+   input aclken;
+  <: } :>  
+
+  wire aclk;
+  <: if { $c_has_aresetn eq 1 } { :>
+  wire aresetn;
+  <: }  :>
+  <: if { $c_has_aclken eq 1 } { :>
+  wire aclken;
+  <: } :>  
+
+  ex_sim ex_design
+       (
+       <: if { $c_has_aresetn eq 1 } { :>
+        .aresetn(aresetn),
+       <: }  :>
+       <: if { $c_has_aclken eq 1 } { :>
+        .aclken(aclken),
+       <: } :>  
+        .aclk(aclk)
+        );
+endmodule
+

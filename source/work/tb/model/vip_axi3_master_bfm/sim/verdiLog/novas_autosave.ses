@@ -1,0 +1,56 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_O-2018.09-SP2
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = FALSE
+powerDumped = 0
+[hb]
+viewport = 1502 581 1427 1015 0 0 385 1425
+activeNode = "vip_axi3_master_bfm"
+activeScope = "vip_axi3_master_bfm"
+activeFile = "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/tb/model/vip_axi3_master_bfm/sim/vip_axi3_master_bfm.sv"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 55
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+amsAnnot = True
+traceCrossHier = True
+DnDtraceCrossHierOnly = True
+traceIncTopPort = False
+leadingZero = False
+signalPane = False
+Scope1 = "vip_axi3_master_bfm"
+Scope2 = "vip_axi3_slave_bfm"
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-f" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/tb/vip_axi3_bfm.f" "-sv" "+incdir+${XILINX_VIVADO}/data/xilinx_vip/include" 
+workPath = /home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/tb
+invokeDir = /home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/tb/model/vip_axi3_master_bfm/sim
+[hb.sourceTab.1]
+scope = vip_axi3_master_bfm
+File = /home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/tb/model/vip_axi3_master_bfm/sim/vip_axi3_master_bfm.sv
+Line = 56

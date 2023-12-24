@@ -1,2 +1,2 @@
-${OPENSSD_HOME}/source/work/rtl/axi_register_slice_v2_1/353278bf/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v
-${OPENSSD_HOME}/source/work/rtl/axi_register_slice_v2_1/353278bf/hdl/verilog/axi_register_slice_v2_1_axi_register_slice.v
+${OPENSSD_HOME}/project/Predefined/2Ch8Way-1.0.0/OpenSSD2_2Ch8Way-1.0.0/OpenSSD2.srcs/sources_1/ipshared/xilinx.com/axi_register_slice_v2_1/353278bf/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v
+${OPENSSD_HOME}/project/Predefined/2Ch8Way-1.0.0/OpenSSD2_2Ch8Way-1.0.0/OpenSSD2.srcs/sources_1/ipshared/xilinx.com/axi_register_slice_v2_1/353278bf/hdl/verilog/axi_register_slice_v2_1_axi_register_slice.v

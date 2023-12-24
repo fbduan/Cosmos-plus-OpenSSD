@@ -1,0 +1,78 @@
+<: :>
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory [ttcl_string_concat $ComponentName "/simulation"] :>
+<: setFileName [ttcl_string_concat $ComponentName "_mem_basic_stimulus"] :>
+<: setFileExtension ".sv" :>
+<: :>
+<: set c_protocol [getIntValue C_AXI_PROTOCOL] :>
+<: set c_read_write_mode [get_property PARAM_VALUE.READ_WRITE_MODE] :>
+<: set c_interface_mode [get_property PARAM_VALUE.INTERFACE_MODE] :>
+<: set c_addr_width [get_property PARAM_VALUE.ADDR_WIDTH] :>
+<: set c_wdata_width [getIntValue C_AXI_WDATA_WIDTH] :>
+<: set c_data_width [get_property PARAM_VALUE.DATA_WIDTH] :>
+<: set c_id_width [get_property PARAM_VALUE.ID_WIDTH] :>
+<: set c_awuser_width [get_property PARAM_VALUE.AWUSER_WIDTH] :>
+<: set c_aruser_width [get_property PARAM_VALUE.ARUSER_WIDTH] :>
+<: set c_ruser_width [get_property PARAM_VALUE.RUSER_WIDTH] :>
+<: set c_wuser_width [get_property PARAM_VALUE.WUSER_WIDTH] :>
+<: set c_buser_width [get_property PARAM_VALUE.BUSER_WIDTH] :>
+<: set c_ruser_bits_per_byte [get_property PARAM_VALUE.RUSER_BITS_PER_BYTE] :>
+<: set c_wuser_bits_per_byte [get_property PARAM_VALUE.WUSER_BITS_PER_BYTE] :>
+<: set c_has_user_bits_per_byte [get_property PARAM_VALUE.HAS_USER_BITS_PER_BYTE] :>
+<: set c_supports_narrow [getIntValue C_AXI_SUPPORTS_NARROW] :>
+<: set c_has_size [get_property PARAM_VALUE.HAS_SIZE] :>
+<: set c_has_burst [get_property PARAM_VALUE.HAS_BURST] :>
+<: set c_has_lock [get_property PARAM_VALUE.HAS_LOCK] :>
+<: set c_has_cache [get_property PARAM_VALUE.HAS_CACHE] :>
+<: set c_has_region [get_property PARAM_VALUE.HAS_REGION] :>
+<: set c_has_qos [get_property PARAM_VALUE.HAS_QOS] :>
+<: set c_has_prot [get_property PARAM_VALUE.HAS_PROT] :>
+<: set c_has_wstrb [get_property PARAM_VALUE.HAS_WSTRB] :>
+<: set c_has_bresp [get_property PARAM_VALUE.HAS_BRESP] :>
+<: set c_has_rresp [get_property PARAM_VALUE.HAS_RRESP] :>
+<: set c_has_aclken [get_property PARAM_VALUE.HAS_ACLKEN] :>
+<: set c_has_aresetn [get_property PARAM_VALUE.HAS_ARESETN] :>
+/***************************************************************************************************
+* Description:
+* Considering different user cases, Slave VIP has two agents: slv_agent and slv_mem_agent.
+* slv_agent doesn't have memory model and user can build their own memory model and fill in write
+* transaction and/or read transaction responses in their own way.slv_mem_agent has memory model
+* which user can use it directly.
+* This file shows basic features of Slave VIP with memory model 
+* For Slave VIP with memory model to work correctly,the following four things must be done
+*    1. import two packages.(this information also shows at the xgui of the VIP)
+*         import axi_vip_pkg::* 
+*         import <component_name>_pkg::*;
+*    2. delcare <component_name>_slv_mem_t agent
+*    3. new agent (passing instance IF correctly)
+*    4. start_slave
+***************************************************************************************************/
+
+
+import axi_vip_pkg::*;
+import ex_sim_axi_vip_slv_0_pkg::*;
+
+module <=:$ComponentName:>_mem_basic_stimulus(
+  );
+ 
+  /*************************************************************************************************
+  * Declare <component_name>_slv_mem_t for slave mem agent
+  * <component_name> can be easily found in vivado bd design: click on the instance, 
+  * then click CONFIG under Properties window and Component_Name will be shown
+  * more details please refer PG267 for more details
+  *************************************************************************************************/
+  ex_sim_axi_vip_slv_0_slv_mem_t                          agent;
+
+  initial begin
+    /***********************************************************************************************
+    * Before agent is newed, user has to run simulation with an empty testbench(disable below two
+    * lines) to find the hierarchy path of the AXI VIP's instance.Message like
+    * "Xilinx AXI VIP Found at Path: my_ip_exdes_tb.DUT.ex_design.axi_vip_mst.inst" will be printed 
+    * out. Pass this path to the new function. 
+    ***********************************************************************************************/
+    agent = new("slave vip mem agent",DUT.ex_design.axi_vip_slv.inst.IF); // agent is newed
+    agent.start_slave();                                                  //  agent starts to run
+
+  end
+
+endmodule

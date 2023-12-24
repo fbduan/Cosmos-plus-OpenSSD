@@ -1,0 +1,55 @@
+<: :>
+<: set ComponentName [getComponentNameString] :>
+<: setFileName [ttcl_string_concat $ComponentName "_exdes"] :>
+<: setFileExtension ".tcl" :>
+<: :>
+
+# remove imported IP
+remove_files [get_files <=:$ComponentName:>.xci]
+set proj_dir [get_property directory [current_project ]]
+set_property include_dirs $proj_dir/imports [current_fileset]
+create_fileset -simset sim_adv_mst_active__pt_passive__slv_comb
+add_files -fileset sim_adv_mst_active__pt_passive__slv_comb -norecurse imports/<=:$ComponentName:>_exdes_adv_mst_active__pt_passive__slv_comb.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_adv_mst_active__pt_passive__slv_comb]
+create_fileset -simset sim_adv_mst_active__pt_passive__slv_mem
+add_files -fileset sim_adv_mst_active__pt_passive__slv_mem -norecurse imports/<=:$ComponentName:>_exdes_adv_mst_active__pt_passive__slv_mem.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_adv_mst_active__pt_passive__slv_mem]
+create_fileset -simset sim_adv_mst_active_pt_mem__slv_passive
+add_files -fileset sim_adv_mst_active_pt_mem__slv_passive -norecurse imports/<=:$ComponentName:>_exdes_adv_mst_active_pt_mem__slv_passive.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_adv_mst_active_pt_mem__slv_passive]
+create_fileset -simset sim_adv_mst_active__pt_slv__slv_passive
+add_files -fileset sim_adv_mst_active__pt_slv__slv_passive -norecurse imports/<=:$ComponentName:>_exdes_adv_mst_active__pt_slv__slv_passive.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_adv_mst_active__pt_slv__slv_passive]
+create_fileset -simset sim_adv_mst_passive__pt_mst__slv_comb
+add_files -fileset sim_adv_mst_passive__pt_mst__slv_comb -norecurse imports/<=:$ComponentName:>_exdes_adv_mst_passive__pt_mst__slv_comb.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_adv_mst_passive__pt_mst__slv_comb]
+create_fileset -simset sim_basic_mst_active__pt_passive__slv_comb
+add_files -fileset sim_basic_mst_active__pt_passive__slv_comb -norecurse imports/<=:$ComponentName:>_exdes_basic_mst_active__pt_passive__slv_comb.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_basic_mst_active__pt_passive__slv_comb]
+create_fileset -simset sim_basic_mst_active__pt_passive__slv_mem
+add_files -fileset sim_basic_mst_active__pt_passive__slv_mem -norecurse imports/<=:$ComponentName:>_exdes_basic_mst_active__pt_passive__slv_mem.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_basic_mst_active__pt_passive__slv_mem]
+create_fileset -simset sim_basic_mst_active_pt_mem__slv_passive
+add_files -fileset sim_basic_mst_active_pt_mem__slv_passive -norecurse imports/<=:$ComponentName:>_exdes_basic_mst_active_pt_mem__slv_passive.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_basic_mst_active_pt_mem__slv_passive]
+create_fileset -simset sim_basic_mst_active__pt_slv__slv_passive
+add_files -fileset sim_basic_mst_active__pt_slv__slv_passive -norecurse imports/<=:$ComponentName:>_exdes_basic_mst_active__pt_slv__slv_passive.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_basic_mst_active__pt_slv__slv_passive]
+create_fileset -simset sim_basic_mst_passive__pt_mst__slv_comb
+add_files -fileset sim_basic_mst_passive__pt_mst__slv_comb -norecurse imports/<=:$ComponentName:>_exdes_basic_mst_passive__pt_mst__slv_comb.sv
+set_property include_dirs $proj_dir/imports [get_filesets sim_basic_mst_passive__pt_mst__slv_comb]
+create_fileset -simset sim_memory
+add_files -fileset sim_memory -norecurse imports/<=:$ComponentName:>_exdes_memory_tb.sv
+create_fileset -simset sim_ready_gen
+add_files -fileset sim_ready_gen -norecurse imports/<=:$ComponentName:>_exdes_ready_tb.sv
+create_fileset -simset sim_all_config
+add_files -fileset sim_all_config -norecurse imports/<=:$ComponentName:>_exdes_tb.sv
+current_fileset -simset [ get_filesets sim_all_config ]
+set proj_name [get_property name [current_project ]]
+set sim_dir [file join $proj_dir $proj_name]
+append sim_dir ".srcs/sim_1"
+current_fileset -simset [ get_filesets sim_adv_mst_active__pt_passive__slv_comb ]
+delete_fileset sim_1
+file delete -force $sim_dir
+set_property simulator_language Verilog [current_project]
+

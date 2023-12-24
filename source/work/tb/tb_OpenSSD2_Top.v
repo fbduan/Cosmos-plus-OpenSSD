@@ -34,108 +34,133 @@ end
 
 /*autodefine*/
 //auto wires{{{
-wire [14:0]            DDR_addr;
-wire [2:0]             DDR_ba;
-wire                   DDR_cas_n;
-wire                   DDR_ck_n;
-wire                   DDR_ck_p;
-wire                   DDR_cke;
-wire                   DDR_cs_n;
-wire [3:0]             DDR_dm;
-wire [31:0]            DDR_dq;
-wire [3:0]             DDR_dqs_n;
-wire [3:0]             DDR_dqs_p;
-wire                   DDR_odt;
-wire                   DDR_ras_n;
-wire                   DDR_reset_n;
-wire                   DDR_we_n;
-wire                   FIXED_IO_ddr_vrn;
-wire                   FIXED_IO_ddr_vrp;
-wire [53:0]            FIXED_IO_mio;
-wire                   FIXED_IO_ps_clk;
-wire                   FIXED_IO_ps_porb;
-wire                   FIXED_IO_ps_srstb;
-wire [7:0]             IO_NAND_CH0_DQ;
-wire                   IO_NAND_CH0_DQS_N;
-wire                   IO_NAND_CH0_DQS_P;
-wire [7:0]             IO_NAND_CH1_DQ;
-wire                   IO_NAND_CH1_DQS_N;
-wire                   IO_NAND_CH1_DQS_P;
-wire [7:0]             I_NAND_CH0_RB;
-wire [7:0]             I_NAND_CH1_RB;
-wire [31:0]            O_DEBUG;
-wire                   O_NAND_CH0_ALE;
-wire [7:0]             O_NAND_CH0_CE;
-wire                   O_NAND_CH0_CLE;
-wire                   O_NAND_CH0_RE_N;
-wire                   O_NAND_CH0_RE_P;
-wire                   O_NAND_CH0_WE;
-wire                   O_NAND_CH0_WP;
-wire                   O_NAND_CH1_ALE;
-wire [7:0]             O_NAND_CH1_CE;
-wire                   O_NAND_CH1_CLE;
-wire                   O_NAND_CH1_RE_N;
-wire                   O_NAND_CH1_RE_P;
-wire                   O_NAND_CH1_WE;
-wire                   O_NAND_CH1_WP;
-wire                   pcie_perst_n;
-wire                   pcie_ref_clk_n;
-wire                   pcie_ref_clk_p;
-wire [7:0]             pcie_rx_n;
-wire [7:0]             pcie_rx_p;
-wire [7:0]             pcie_tx_n;
-wire [7:0]             pcie_tx_p;
-wire                   ps_m_axi_gp0_aclk;
-wire [31:0]            ps_m_axi_gp0_araddr;
-wire [1:0]             ps_m_axi_gp0_arburst;
-wire [3:0]             ps_m_axi_gp0_arcache;
-wire                   ps_m_axi_gp0_aresetn;
-wire [11:0]            ps_m_axi_gp0_arid;
-wire [3:0]             ps_m_axi_gp0_arlen;
-wire [1:0]             ps_m_axi_gp0_arlock;
-wire [2:0]             ps_m_axi_gp0_arprot;
-wire [3:0]             ps_m_axi_gp0_arqos;
-wire                   ps_m_axi_gp0_arready;
-wire [2:0]             ps_m_axi_gp0_arsize;
-wire                   ps_m_axi_gp0_arvalid;
-wire [31:0]            ps_m_axi_gp0_awaddr;
-wire [1:0]             ps_m_axi_gp0_awburst;
-wire [3:0]             ps_m_axi_gp0_awcache;
-wire [11:0]            ps_m_axi_gp0_awid;
-wire [3:0]             ps_m_axi_gp0_awlen;
-wire [1:0]             ps_m_axi_gp0_awlock;
-wire [2:0]             ps_m_axi_gp0_awprot;
-wire [3:0]             ps_m_axi_gp0_awqos;
-wire                   ps_m_axi_gp0_awready;
-wire [2:0]             ps_m_axi_gp0_awsize;
-wire                   ps_m_axi_gp0_awvalid;
-wire [11:0]            ps_m_axi_gp0_bid;
-wire                   ps_m_axi_gp0_bready;
-wire [1:0]             ps_m_axi_gp0_bresp;
-wire                   ps_m_axi_gp0_bvalid;
-wire [31:0]            ps_m_axi_gp0_rdata;
-wire [11:0]            ps_m_axi_gp0_rid;
-wire                   ps_m_axi_gp0_rlast;
-wire                   ps_m_axi_gp0_rready;
-wire [1:0]             ps_m_axi_gp0_rresp;
-wire                   ps_m_axi_gp0_rvalid;
-wire [31:0]            ps_m_axi_gp0_wdata;
-wire [11:0]            ps_m_axi_gp0_wid;
-wire                   ps_m_axi_gp0_wlast;
-wire                   ps_m_axi_gp0_wready;
-wire [3:0]             ps_m_axi_gp0_wstrb;
-wire                   ps_m_axi_gp0_wvalid;
+wire [14:0]   DDR_addr;
+wire [2:0]    DDR_ba;
+wire          DDR_cas_n;
+wire          DDR_ck_n;
+wire          DDR_ck_p;
+wire          DDR_cke;
+wire          DDR_cs_n;
+wire [3:0]    DDR_dm;
+wire [31:0]   DDR_dq;
+wire [3:0]    DDR_dqs_n;
+wire [3:0]    DDR_dqs_p;
+wire          DDR_odt;
+wire          DDR_ras_n;
+wire          DDR_reset_n;
+wire          DDR_we_n;
+wire          FIXED_IO_ddr_vrn;
+wire          FIXED_IO_ddr_vrp;
+wire [53:0]   FIXED_IO_mio;
+wire          FIXED_IO_ps_clk;
+wire          FIXED_IO_ps_porb;
+wire          FIXED_IO_ps_srstb;
+wire [7:0]    IO_NAND_CH0_DQ;
+wire          IO_NAND_CH0_DQS_N;
+wire          IO_NAND_CH0_DQS_P;
+wire [7:0]    IO_NAND_CH1_DQ;
+wire          IO_NAND_CH1_DQS_N;
+wire          IO_NAND_CH1_DQS_P;
+wire [7:0]    I_NAND_CH0_RB;
+wire [7:0]    I_NAND_CH1_RB;
+wire [31:0]   O_DEBUG;
+wire          O_NAND_CH0_ALE;
+wire [7:0]    O_NAND_CH0_CE;
+wire          O_NAND_CH0_CLE;
+wire          O_NAND_CH0_RE_N;
+wire          O_NAND_CH0_RE_P;
+wire          O_NAND_CH0_WE;
+wire          O_NAND_CH0_WP;
+wire          O_NAND_CH1_ALE;
+wire [7:0]    O_NAND_CH1_CE;
+wire          O_NAND_CH1_CLE;
+wire          O_NAND_CH1_RE_N;
+wire          O_NAND_CH1_RE_P;
+wire          O_NAND_CH1_WE;
+wire          O_NAND_CH1_WP;
+wire          pcie_perst_n;
+wire          pcie_ref_clk_n;
+wire          pcie_ref_clk_p;
+wire [7:0]    pcie_rx_n;
+wire [7:0]    pcie_rx_p;
+wire          ps_m_axi_gp0_aclk;
+wire [31:0]   ps_m_axi_gp0_araddr;
+wire [1:0]    ps_m_axi_gp0_arburst;
+wire [3:0]    ps_m_axi_gp0_arcache;
+wire          ps_m_axi_gp0_aresetn;
+wire [11:0]   ps_m_axi_gp0_arid;
+wire [3:0]    ps_m_axi_gp0_arlen;
+wire [1:0]    ps_m_axi_gp0_arlock;
+wire [2:0]    ps_m_axi_gp0_arprot;
+wire [3:0]    ps_m_axi_gp0_arqos;
+wire          ps_m_axi_gp0_arready;
+wire [2:0]    ps_m_axi_gp0_arsize;
+wire          ps_m_axi_gp0_arvalid;
+wire [31:0]   ps_m_axi_gp0_awaddr;
+wire [1:0]    ps_m_axi_gp0_awburst;
+wire [3:0]    ps_m_axi_gp0_awcache;
+wire [11:0]   ps_m_axi_gp0_awid;
+wire [3:0]    ps_m_axi_gp0_awlen;
+wire [1:0]    ps_m_axi_gp0_awlock;
+wire [2:0]    ps_m_axi_gp0_awprot;
+wire [3:0]    ps_m_axi_gp0_awqos;
+wire          ps_m_axi_gp0_awready;
+wire [2:0]    ps_m_axi_gp0_awsize;
+wire          ps_m_axi_gp0_awvalid;
+wire [11:0]   ps_m_axi_gp0_bid;
+wire          ps_m_axi_gp0_bready;
+wire [1:0]    ps_m_axi_gp0_bresp;
+wire          ps_m_axi_gp0_bvalid;
+wire [31:0]   ps_m_axi_gp0_rdata;
+wire [11:0]   ps_m_axi_gp0_rid;
+wire          ps_m_axi_gp0_rlast;
+wire          ps_m_axi_gp0_rready;
+wire [1:0]    ps_m_axi_gp0_rresp;
+wire          ps_m_axi_gp0_rvalid;
+wire [31:0]   ps_m_axi_gp0_wdata;
+wire [11:0]   ps_m_axi_gp0_wid;
+wire          ps_m_axi_gp0_wlast;
+wire          ps_m_axi_gp0_wready;
+wire [3:0]    ps_m_axi_gp0_wstrb;
+wire          ps_m_axi_gp0_wvalid;
+//}}}
+//auto regs{{{
+reg           tb_ps_clk;
+reg           tb_ps_porb;
+reg           tb_ps_srstb;
 //}}}
 // End of automatic define
 
+// 100 MHz
+initial begin
+    tb_ps_clk   = 1'b0;
+end
+always@* #10 tb_ps_clk = ~tb_ps_clk;
+
+initial begin
+    tb_ps_porb  = 1'b1;
+    tb_ps_srstb = 1'b1;
+
+    @(tb_ps_srstb);
+    #13;
+
+    tb_ps_porb  = 1'b0;
+    tb_ps_srstb = 1'b0;
+    repeat(1000) @(tb_ps_clk);
+    #12;
+    tb_ps_porb  = 1'b1;
+    tb_ps_srstb = 1'b1;
+end
+
+assign FIXED_IO_ps_clk   = tb_ps_clk  ;
+assign FIXED_IO_ps_porb  = tb_ps_porb ;
+assign FIXED_IO_ps_srstb = tb_ps_srstb;
 
 assign pcie_perst_n   = 1'b0;
 assign pcie_ref_clk_n = 1'b1;
 assign pcie_ref_clk_p = 1'b0;
 assign pcie_rx_n[7:0] = 8'hFF;
 assign pcie_rx_p[7:0] = 8'h00;
-assign pcie_tx_n[7:0] = 8'hFF;
-assign pcie_tx_p[7:0] = 8'h00;
 
 OpenSSD2_wrapper u_OpenSSD2_wrapper_0( /*AUTOINST*/
         .DDR_addr          ( DDR_addr[14:0]      ),    //IO [14:0] u_OpenSSD2_wrapper_0
@@ -187,8 +212,8 @@ OpenSSD2_wrapper u_OpenSSD2_wrapper_0( /*AUTOINST*/
         .pcie_ref_clk_p    ( pcie_ref_clk_p      ),    //I         u_OpenSSD2_wrapper_0   tie constant
         .pcie_rx_n         ( pcie_rx_n[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0   tie constant
         .pcie_rx_p         ( pcie_rx_p[7:0]      ),    //I  [7:0]  u_OpenSSD2_wrapper_0   tie constant
-        .pcie_tx_n         ( pcie_tx_n[7:0]      ),    //O  [7:0]  u_OpenSSD2_wrapper_0   tie constant
-        .pcie_tx_p         ( pcie_tx_p[7:0]      )     //O  [7:0]  u_OpenSSD2_wrapper_0   tie constant
+        .pcie_tx_n         (                     ),    //O  [7:0]  u_OpenSSD2_wrapper_0   floating
+        .pcie_tx_p         (                     )     //O  [7:0]  u_OpenSSD2_wrapper_0   floating
 );
 
 genvar gvar_i;

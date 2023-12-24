@@ -16,6 +16,11 @@ ${XILINX_VIVADO}/data/verilog/src/glbl.v
 
 -f ${XILINX_VIVADO}/data/secureip/axi_bfm/axi_bfm_cell.list.f
 
+${OPENSSD_HOME}/source/work/tb/model/vip_axi3_slave_bfm/sim/vip_axi3_slave_bfm.sv
+${OPENSSD_HOME}/source/work/tb/model/vip_axi3_master_bfm/sim/vip_axi3_master_bfm.sv
+-f ${XILINX_VIVADO}/data/xilinx_vip/xilinx_vip_pkg.list.f
+   ${XILINX_VIVADO}/data/ip/xilinx/axi_vip_v1_1/hdl/axi_vip_v1_1_vl_rfs.sv
+
 -f ${XILINX_VIVADO}/data/secureip/in_fifo/in_fifo_cell.list.f
 
 -f ${XILINX_VIVADO}/data/secureip/oserdese2/oserdese2_cell.list.f

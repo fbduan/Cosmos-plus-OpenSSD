@@ -1,0 +1,259 @@
+<: :>
+<: set ComponentName [getComponentNameString] :>
+<: setFileName [ttcl_string_concat $ComponentName "_exdes_bd_sim"] :>
+<: setFileExtension ".tcl" :>
+<: setFileUsedIn [list simulation] :>
+<: :>
+<: set c_protocol [get_property PARAM_VALUE.PROTOCOL] :>
+<: set c_read_write_mode [get_property PARAM_VALUE.READ_WRITE_MODE] :>
+<: set c_interface_mode [get_property PARAM_VALUE.INTERFACE_MODE] :>
+<: set c_addr_width [get_property PARAM_VALUE.ADDR_WIDTH] :>
+<: set c_data_width [get_property PARAM_VALUE.DATA_WIDTH] :>
+<: set c_id_width [get_property PARAM_VALUE.ID_WIDTH] :>
+<: set c_awuser_width [get_property PARAM_VALUE.AWUSER_WIDTH] :>
+<: set c_aruser_width [get_property PARAM_VALUE.ARUSER_WIDTH] :>
+<: set c_ruser_width [get_property PARAM_VALUE.RUSER_WIDTH] :>
+<: set c_wuser_width [get_property PARAM_VALUE.WUSER_WIDTH] :>
+<: set c_buser_width [get_property PARAM_VALUE.BUSER_WIDTH] :>
+<: set c_ruser_bits_per_byte [get_property PARAM_VALUE.RUSER_BITS_PER_BYTE] :>
+<: set c_wuser_bits_per_byte [get_property PARAM_VALUE.WUSER_BITS_PER_BYTE] :>
+<: set c_has_user_bits_per_byte [get_property PARAM_VALUE.HAS_USER_BITS_PER_BYTE] :>
+<: set c_supports_narrow [get_property PARAM_VALUE.SUPPORTS_NARROW] :>
+<: set c_has_size [get_property PARAM_VALUE.HAS_SIZE] :>
+<: set c_has_burst [get_property PARAM_VALUE.HAS_BURST] :>
+<: set c_has_lock [get_property PARAM_VALUE.HAS_LOCK] :>
+<: set c_has_cache [get_property PARAM_VALUE.HAS_CACHE] :>
+<: set c_has_region [get_property PARAM_VALUE.HAS_REGION] :>
+<: set c_has_qos [get_property PARAM_VALUE.HAS_QOS] :>
+<: set c_has_prot [get_property PARAM_VALUE.HAS_PROT] :>
+<: set c_has_wstrb [get_property PARAM_VALUE.HAS_WSTRB] :>
+<: set c_has_bresp [get_property PARAM_VALUE.HAS_BRESP] :>
+<: set c_has_rresp [get_property PARAM_VALUE.HAS_RRESP] :>
+<: set c_has_aclken [get_property PARAM_VALUE.HAS_ACLKEN] :>
+<: set c_has_aresetn [get_property PARAM_VALUE.HAS_ARESETN] :>
+
+################################################################
+# START
+################################################################
+
+# CHANGE DESIGN NAME HERE
+set design_name ex_sim
+
+# If you do not already have an existing IP Integrator design open,
+# you can create a design using the following command:
+#    create_bd_design $design_name
+
+# Creating design if needed
+set errMsg ""
+set nRet 0
+
+set cur_design [current_bd_design -quiet]
+set list_cells [get_bd_cells -quiet]
+
+if { ${design_name} eq "" } {
+   # USE CASES:
+   #    1) Design_name not set
+
+   set errMsg "ERROR: Please set the variable <design_name> to a non-empty value."
+   set nRet 1
+
+} elseif { ${cur_design} ne "" && ${list_cells} eq "" } {
+   # USE CASES:
+   #    2): Current design opened AND is empty AND names same.
+   #    3): Current design opened AND is empty AND names diff; design_name NOT in project.
+   #    4): Current design opened AND is empty AND names diff; design_name exists in project.
+
+   if { $cur_design ne $design_name } {
+      puts "INFO: Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
+      set design_name [get_property NAME $cur_design]
+   }
+   puts "INFO: Constructing design in IPI design <$cur_design>..."
+
+} elseif { ${cur_design} ne "" && $list_cells ne "" && $cur_design eq $design_name } {
+   # USE CASES:
+   #    5) Current design opened AND has components AND same names.
+
+   set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 1
+} elseif { [get_bd_files $design_name] ne "" } {
+   # USE CASES:
+   #    6) Current opened design, has components, but diff names, design_name exists in project.
+   #    7) No opened design, design_name exists in project.
+
+   set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 2
+
+} else {
+   # USE CASES:
+   #    8) No opened design, design_name not in project.
+   #    9) Current opened design, has components, but diff names, design_name not in project.
+
+   puts "INFO: Currently there is no design <$design_name> in project, so creating one..."
+
+   create_bd_design $design_name
+
+   puts "INFO: Making design <$design_name> as current_bd_design."
+   current_bd_design $design_name
+
+}
+
+puts "INFO: Currently the variable <design_name> is equal to \"$design_name\"."
+
+if { $nRet != 0 } {
+   puts $errMsg
+   return $nRet
+}
+
+##################################################################
+# DESIGN PROCs
+##################################################################
+
+
+
+# Procedure to create entire design; Provide argument to make
+# procedure reusable. If parentCell is "", will use root.
+proc create_root_design { parentCell } {
+
+  if { $parentCell eq "" } {
+     set parentCell [get_bd_cells /]
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     puts "ERROR: Unable to find parent cell <$parentCell>!"
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     puts "ERROR: Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+
+  # Create ports
+  set aclk [ create_bd_port -dir I -type clk aclk ]
+  set_property -dict [ list CONFIG.CLK_DOMAIN {design_sim_clk_wiz_0_0_clk_out1} CONFIG.FREQ_HZ {300000000} CONFIG.PHASE {0.0}  ] $aclk
+  # aresetn is on 
+  if { <=:c_has_aresetn:>  eq 1 } {
+    set aresetn [ create_bd_port -dir I -type rst aresetn ]
+    set_property -dict [ list CONFIG.POLARITY {ACTIVE_LOW}  ] $aresetn
+  }
+  # aclken is on
+  if { <=:c_has_aclken:>  eq 1 } {
+    set aclken [ create_bd_port -dir I -type ce aclken ]
+    set_property -dict [ list CONFIG.POLARITY {ACTIVE_LOW}  ] $aclken
+  }
+
+  # Create three instances: axi_vip_v1_1_6, in mst, passthr and slave mode and set other properties
+  # instance in master mode 
+  set axi_mst [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_mst ]
+  set_property -dict [ list CONFIG.PROTOCOL {<=:c_protocol:>} \
+  CONFIG.READ_WRITE_MODE {<=:c_read_write_mode:>} \
+  CONFIG.INTERFACE_MODE {MASTER} \
+  CONFIG.ADDR_WIDTH {<=:c_addr_width:>} \
+  CONFIG.DATA_WIDTH {<=:c_data_width:>} \
+  CONFIG.ID_WIDTH {<=:c_id_width:>} \
+  CONFIG.AWUSER_WIDTH {<=:c_awuser_width:>} \
+  CONFIG.ARUSER_WIDTH {<=:c_aruser_width:>} \
+  CONFIG.RUSER_WIDTH {<=:c_ruser_width:>} \
+  CONFIG.WUSER_WIDTH {<=:c_wuser_width:>} \
+  CONFIG.BUSER_WIDTH {<=:c_buser_width:>} \
+  CONFIG.RUSER_BITS_PER_BYTE {<=:c_ruser_bits_per_byte:>} \
+  CONFIG.WUSER_BITS_PER_BYTE {<=:c_wuser_bits_per_byte:>} \
+  CONFIG.HAS_USER_BITS_PER_BYTE {<=:c_has_user_bits_per_byte:>} \
+  CONFIG.SUPPORTS_NARROW {<=:c_supports_narrow:>} \
+  CONFIG.HAS_SIZE {<=:c_has_size:>} \
+  CONFIG.HAS_BURST {<=:c_has_burst:>} \
+  CONFIG.HAS_LOCK {<=:c_has_lock:>} \
+  CONFIG.HAS_CACHE {<=:c_has_cache:>} \
+  CONFIG.HAS_REGION {<=:c_has_region:>} \
+  CONFIG.HAS_QOS {<=:c_has_qos:>} \
+  CONFIG.HAS_PROT {<=:c_has_prot:>} \
+  CONFIG.HAS_WSTRB {<=:c_has_wstrb:>} \
+  CONFIG.HAS_BRESP {<=:c_has_bresp:>} \
+  CONFIG.HAS_RRESP {<=:c_has_rresp:>} \
+  CONFIG.HAS_ACLKEN {<=:c_has_aclken:>} \
+  CONFIG.HAS_ARESETN {<=:c_has_aresetn:>} ] $axi_mst
+
+  #instance in passthrough mode
+  set axi_passthr [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_passthrough ]
+  set_property -dict [ list CONFIG.HAS_ACLKEN {<=:c_has_aclken:>} \
+  CONFIG.HAS_ARESETN {<=:c_has_aresetn:>} ] $axi_passthr
+  
+  #instance in slave mode
+  set axi_slv [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_slv ]
+  set_property -dict [ list CONFIG.PROTOCOL {<=:c_protocol:>} \
+  CONFIG.READ_WRITE_MODE {<=:c_read_write_mode:>} \
+  CONFIG.INTERFACE_MODE {SLAVE} \
+  CONFIG.ADDR_WIDTH {<=:c_addr_width:>} \
+  CONFIG.DATA_WIDTH {<=:c_data_width:>} \
+  CONFIG.ID_WIDTH {<=:c_id_width:>} \
+  CONFIG.AWUSER_WIDTH {<=:c_awuser_width:>} \
+  CONFIG.ARUSER_WIDTH {<=:c_aruser_width:>} \
+  CONFIG.RUSER_WIDTH {<=:c_ruser_width:>} \
+  CONFIG.WUSER_WIDTH {<=:c_wuser_width:>} \
+  CONFIG.BUSER_WIDTH {<=:c_buser_width:>} \
+  CONFIG.RUSER_BITS_PER_BYTE {<=:c_ruser_bits_per_byte:>} \
+  CONFIG.WUSER_BITS_PER_BYTE {<=:c_wuser_bits_per_byte:>} \
+  CONFIG.HAS_USER_BITS_PER_BYTE {<=:c_has_user_bits_per_byte:>} \
+  CONFIG.SUPPORTS_NARROW {<=:c_supports_narrow:>} \
+  CONFIG.HAS_SIZE {<=:c_has_size:>} \
+  CONFIG.HAS_BURST {<=:c_has_burst:>} \
+  CONFIG.HAS_LOCK {<=:c_has_lock:>} \
+  CONFIG.HAS_CACHE {<=:c_has_cache:>} \
+  CONFIG.HAS_REGION {<=:c_has_region:>} \
+  CONFIG.HAS_QOS {<=:c_has_qos:>} \
+  CONFIG.HAS_PROT {<=:c_has_prot:>} \
+  CONFIG.HAS_WSTRB {<=:c_has_wstrb:>} \
+  CONFIG.HAS_BRESP {<=:c_has_bresp:>} \
+  CONFIG.HAS_RRESP {<=:c_has_rresp:>} \
+  CONFIG.HAS_ACLKEN {<=:c_has_aclken:>} \
+  CONFIG.HAS_ARESETN {<=:c_has_aresetn:>} ] $axi_slv
+
+
+  # Create port connections
+  connect_bd_net [get_bd_pins /axi_vip_mst/aclk] [get_bd_ports aclk]
+  connect_bd_net [get_bd_pins /axi_vip_passthrough/aclk] [get_bd_ports aclk]
+  connect_bd_net [get_bd_pins /axi_vip_slv/aclk] [get_bd_ports aclk]
+  if { <=:c_has_aresetn:>  eq 1 } {
+    connect_bd_net [get_bd_pins /axi_vip_mst/aresetn] [get_bd_ports aresetn]
+    connect_bd_net [get_bd_pins /axi_vip_passthrough/aresetn] [get_bd_ports aresetn]
+    connect_bd_net [get_bd_pins /axi_vip_slv/aresetn] [get_bd_ports aresetn]
+  }
+  if { <=:c_has_aclken:>  eq 1 } {
+    connect_bd_net [get_bd_pins /axi_vip_mst/aclken] [get_bd_ports aclken]
+    connect_bd_net [get_bd_pins /axi_vip_passthrough/aclken] [get_bd_ports aclken]
+    connect_bd_net [get_bd_pins /axi_vip_slv/aclken] [get_bd_ports aclken]
+  }
+
+  #Create interface connections
+  connect_bd_intf_net [get_bd_intf_pins axi_vip_slv/S_AXI] [get_bd_intf_pins axi_vip_passthrough/M_AXI]
+  connect_bd_intf_net [get_bd_intf_pins axi_vip_passthrough/S_AXI] [get_bd_intf_pins axi_vip_mst/M_AXI]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+
+  regenerate_bd_layout
+  save_bd_design
+}
+# End of create_root_design()
+
+
+##################################################################
+# MAIN FLOW
+##################################################################
+
+create_root_design ""
+#set_property -name {questa.compile.vlog.more_options} -value {-L xil_vip_v1_1} -objects [get_filesets sim_1]
+#set_property -name {xsim.compile.xvlog.more_options} -value {-L xil_vip_v1_1} -objects [get_filesets sim_1]
+#set_property -name {xsim.elaborate.xelab.more_options} -value {-beta sv} -objects [get_filesets sim_1]
+assign_bd_address

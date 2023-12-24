@@ -153,6 +153,7 @@ module processing_system7_bfm_v2_0_axi_master (
      master.RESPONSE_TIMEOUT = 0;
    end
 
+`ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
    cdn_axi3_master_bfm #(master_name,
                          data_bus_width,
                          address_bus_width,
@@ -203,6 +204,52 @@ module processing_system7_bfm_v2_0_axi_master (
             .RLAST  (M_RLAST),
             .RVALID (net_RVALID),
             .RREADY (M_RREADY));
+`else  //undef ORIGINAL_CDN_AXI3_MASTER_BFM
+   vip_axi3_master_bfm master  (
+            .aclk    (M_ACLK),
+            .aresetn (net_RESETN), /// confirm this
+            // Write Address Channel
+            .m_axi_awid    (M_AWID),
+            .m_axi_awaddr  (M_AWADDR),
+            .m_axi_awlen   (M_AWLEN),
+            .m_axi_awsize  (M_AWSIZE),
+            .m_axi_awburst (M_AWBURST),
+            .m_axi_awlock  (M_AWLOCK),
+            .m_axi_awcache (M_AWCACHE),
+            .m_axi_awprot  (M_AWPROT),
+            .m_axi_awvalid (M_AWVALID),
+            .m_axi_awready (M_AWREADY),
+            // Write Data Channel Signals.
+            .m_axi_wid    (M_WID),
+            .m_axi_wdata  (M_WDATA),
+            .m_axi_wstrb  (M_WSTRB), 
+            .m_axi_wlast  (M_WLAST), 
+            .m_axi_wvalid (M_WVALID),
+            .m_axi_wready (M_WREADY),
+            // Write Response Channel Signals.
+            .m_axi_bid    (M_BID),
+            .m_axi_bresp  (M_BRESP),
+            .m_axi_bvalid (net_BVALID),
+            .m_axi_bready (M_BREADY),
+            // Read Address Channel Signals.
+            .m_axi_arid    (M_ARID),
+            .m_axi_araddr  (M_ARADDR),
+            .m_axi_arlen   (M_ARLEN),
+            .m_axi_arsize  (M_ARSIZE),
+            .m_axi_arburst (M_ARBURST),
+            .m_axi_arlock  (M_ARLOCK),
+            .m_axi_arcache (M_ARCACHE),
+            .m_axi_arprot  (M_ARPROT),
+            .m_axi_arvalid (M_ARVALID),
+            .m_axi_arready (M_ARREADY),
+            // Read Data Channel Signals.
+            .m_axi_rid    (M_RID),
+            .m_axi_rdata  (M_RDATA),
+            .m_axi_rresp  (M_RRESP),
+            .m_axi_rlast  (M_RLAST),
+            .m_axi_rvalid (net_RVALID),
+            .m_axi_rready (M_RREADY));
+`endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
 
 
 /* Call to BFM APIs */

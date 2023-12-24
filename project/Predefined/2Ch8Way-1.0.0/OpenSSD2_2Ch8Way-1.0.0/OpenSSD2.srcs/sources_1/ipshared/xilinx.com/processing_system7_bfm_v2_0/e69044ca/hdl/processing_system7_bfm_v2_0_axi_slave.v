@@ -168,6 +168,7 @@ module processing_system7_bfm_v2_0_axi_slave (
 
   real s_aclk_period;
 
+`ifdef ORIGINAL_CDN_AXI3_SLAVE_BFM
   cdn_axi3_slave_bfm #(slave_name,
                        data_bus_width,
                        address_bus_width,
@@ -220,6 +221,52 @@ module processing_system7_bfm_v2_0_axi_slave (
            .RLAST  (S_RLAST),
            .RVALID (S_RVALID),
            .RREADY (S_RREADY));
+`else  //undef ORIGINAL_CDN_AXI3_SLAVE_BFM
+  vip_axi3_slave_bfm slave   (
+           .aclk    (S_ACLK),
+           .aresetn (S_RESETN), /// confirm this
+           // Write Address Channel
+           .s_axi_awid    (S_AWID),
+           .s_axi_awaddr  (S_AWADDR),
+           .s_axi_awlen   (S_AWLEN),
+           .s_axi_awsize  (S_AWSIZE),
+           .s_axi_awburst (S_AWBURST),
+           .s_axi_awlock  (S_AWLOCK),
+           .s_axi_awcache (S_AWCACHE),
+           .s_axi_awprot  (S_AWPROT),
+           .s_axi_awvalid (net_AWVALID),
+           .s_axi_awready (S_AWREADY),
+           // Write Data Channel Signals.
+           .s_axi_wid    (S_WID),
+           .s_axi_wdata  (S_WDATA),
+           .s_axi_wstrb  (S_WSTRB), 
+           .s_axi_wlast  (S_WLAST), 
+           .s_axi_wvalid (net_WVALID),
+           .s_axi_wready (S_WREADY),
+           // Write Response Channel Signals.
+           .s_axi_bid    (S_BID),
+           .s_axi_bresp  (S_BRESP),
+           .s_axi_bvalid (S_BVALID),
+           .s_axi_bready (S_BREADY),
+           // Read Address Channel Signals.
+           .s_axi_arid    (S_ARID),
+           .s_axi_araddr  (S_ARADDR),
+           .s_axi_arlen   (S_ARLEN),
+           .s_axi_arsize  (S_ARSIZE),
+           .s_axi_arburst (S_ARBURST),
+           .s_axi_arlock  (S_ARLOCK),
+           .s_axi_arcache (S_ARCACHE),
+           .s_axi_arprot  (S_ARPROT),
+           .s_axi_arvalid (net_ARVALID),
+           .s_axi_arready (S_ARREADY),
+           // Read Data Channel Signals.
+           .s_axi_rid    (S_RID),
+           .s_axi_rdata  (S_RDATA),
+           .s_axi_rresp  (S_RRESP),
+           .s_axi_rlast  (S_RLAST),
+           .s_axi_rvalid (S_RVALID),
+           .s_axi_rready (S_RREADY));
+`endif //endif ORIGINAL_CDN_AXI3_SLAVE_BFM
 
   /* Latency type and Debug/Error Control */
   reg[1:0] latency_type = RANDOM_CASE;
