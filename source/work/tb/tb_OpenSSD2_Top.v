@@ -20,9 +20,77 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+`ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
+`elsif VIP_AXI3_MASTER_BFM
+    import axi_vip_pkg::*;
+    import vip_axi3_slave_bfm_pkg::*;
+    import vip_axi3_master_bfm_pkg::*;
+`else  //undef ORIGINAL_CDN_AXI3_MASTER_BFM
+`endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
+
 module tb_OpenSSD2_Top(/*autoarg*/);
 
+
 glbl glbl();
+
+`ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
+`elsif VIP_AXI3_MASTER_BFM
+    vip_axi3_slave_bfm_slv_t s_axi_gp0_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_gp1_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_acp_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_hp0_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_hp1_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_hp2_agent;
+    vip_axi3_slave_bfm_slv_t s_axi_hp3_agent;
+    
+    vip_axi3_master_bfm_mst_t m_axi_gp0_agent;
+    vip_axi3_master_bfm_mst_t m_axi_gp1_agent;
+    
+    initial begin
+        s_axi_gp0_agent = new("S_AXI_GP0_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_GP0.slave.inst.IF);
+        s_axi_gp1_agent = new("S_AXI_GP1_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_GP1.slave.inst.IF);
+        s_axi_acp_agent = new("S_AXI_ACP_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_ACP.slave.inst.IF);
+        s_axi_hp0_agent = new("S_AXI_HP0_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.slave.inst.IF);
+        s_axi_hp1_agent = new("S_AXI_HP1_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP1.slave.inst.IF);
+        s_axi_hp2_agent = new("S_AXI_HP2_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP2.slave.inst.IF);
+        s_axi_hp3_agent = new("S_AXI_HP3_slave_vip", tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP3.slave.inst.IF);
+        
+        m_axi_gp0_agent = new("M_AXI_GP0_master_vip",tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.M_AXI_GP0.slave.inst.IF);
+        m_axi_gp1_agent = new("M_AXI_GP1_master_vip",tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.M_AXI_GP1.slave.inst.IF);
+    
+        s_axi_gp0_agent.set_agent_tag("S_AXI_GP0_slave_vip" );
+        s_axi_gp1_agent.set_agent_tag("S_AXI_GP1_slave_vip" );
+        s_axi_acp_agent.set_agent_tag("S_AXI_ACP_slave_vip" );
+        s_axi_hp0_agent.set_agent_tag("S_AXI_HP0_slave_vip" );
+        s_axi_hp1_agent.set_agent_tag("S_AXI_HP1_slave_vip" );
+        s_axi_hp2_agent.set_agent_tag("S_AXI_HP2_slave_vip" );
+        s_axi_hp3_agent.set_agent_tag("S_AXI_HP3_slave_vip" );
+        m_axi_gp0_agent.set_agent_tag("M_AXI_GP0_master_vip");
+        m_axi_gp1_agent.set_agent_tag("M_AXI_GP1_master_vip");
+    
+        s_axi_gp0_agent.set_verbosity( 0 );
+        s_axi_gp1_agent.set_verbosity( 0 );
+        s_axi_acp_agent.set_verbosity( 0 );
+        s_axi_hp0_agent.set_verbosity( 0 );
+        s_axi_hp1_agent.set_verbosity( 0 );
+        s_axi_hp2_agent.set_verbosity( 0 );
+        s_axi_hp3_agent.set_verbosity( 0 );
+        m_axi_gp0_agent.set_verbosity( 0 );
+        m_axi_gp1_agent.set_verbosity( 0 );
+    
+        s_axi_gp0_agent.start_slave();
+        s_axi_gp1_agent.start_slave();
+        s_axi_acp_agent.start_slave();
+        s_axi_hp0_agent.start_slave();
+        s_axi_hp1_agent.start_slave();
+        s_axi_hp2_agent.start_slave();
+        s_axi_hp3_agent.start_slave();
+        m_axi_gp0_agent.start_master();
+        m_axi_gp1_agent.start_master();
+    end
+`else  //undef ORIGINAL_CDN_AXI3_MASTER_BFM
+`endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
+
 
 initial begin
     string fsdb_name = "tb_openssd2_top.fsdb";

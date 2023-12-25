@@ -221,7 +221,7 @@ module processing_system7_bfm_v2_0_axi_slave (
            .RLAST  (S_RLAST),
            .RVALID (S_RVALID),
            .RREADY (S_RREADY));
-`else  //undef ORIGINAL_CDN_AXI3_SLAVE_BFM
+`elsif VIP_AXI3_MASTER_BFM
   vip_axi3_slave_bfm slave   (
            .aclk    (S_ACLK),
            .aresetn (S_RESETN), /// confirm this
@@ -266,6 +266,66 @@ module processing_system7_bfm_v2_0_axi_slave (
            .s_axi_rlast  (S_RLAST),
            .s_axi_rvalid (S_RVALID),
            .s_axi_rready (S_RREADY));
+`else  //undef ORIGINAL_CDN_AXI3_SLAVE_BFM
+  axi_slave_bfm_core #(
+           .VERBOSE         ( 1                                    ),
+           .ADDR_WIDTH      ( address_bus_width                    ),
+           .BASE_ADDR       ( slave_base_address                   ),
+           .ADDR_SPACE      ( slave_high_address-slave_high_address),
+           .MEM_ADDR_WIDTH  ( 8                                    ),   //max 31 
+           .DATA_WIDTH      ( data_bus_width                       ), 
+           .ID_WIDTH        ( id_bus_width                         ),
+           .SIZE_WIDTH      ( 3                                    ),
+           .QOS_WIDTH       ( 3                                    ),
+           .MAX_CMDNUM      ( max_outstanding_transactions         ),
+           .MAX_MEM_ADDR    ( 4095                                 ),
+           .MAX_BURSTLEN    ( 16                                   ), // when change this you must change
+           .BYTEEN_WIDTH    ( data_bus_width/8                     ),
+           .AXI_VERSION     ( 3                                    )
+          ) slave   (
+           .aclk    (S_ACLK),
+           .aresetn (S_RESETN), /// confirm this
+           // Write Address Channel
+           .awid    (S_AWID),
+           .awaddr  (S_AWADDR),
+           .awlen   (S_AWLEN),
+           .awsize  (S_AWSIZE),
+           .awburst (S_AWBURST),
+           .awlock  (S_AWLOCK),
+           .awcache (S_AWCACHE),
+           .awprot  (S_AWPROT),
+           .awvalid (net_AWVALID),
+           .awready (S_AWREADY),
+           // Write Data Channel Signals.
+           .wid    (S_WID),
+           .wdata  (S_WDATA),
+           .wstrb  (S_WSTRB), 
+           .wlast  (S_WLAST), 
+           .wvalid (net_WVALID),
+           .wready (S_WREADY),
+           // Write Response Channel Signals.
+           .bid    (S_BID),
+           .bresp  (S_BRESP),
+           .bvalid (S_BVALID),
+           .bready (S_BREADY),
+           // Read Address Channel Signals.
+           .arid    (S_ARID),
+           .araddr  (S_ARADDR),
+           .arlen   (S_ARLEN),
+           .arsize  (S_ARSIZE),
+           .arburst (S_ARBURST),
+           .arlock  (S_ARLOCK),
+           .arcache (S_ARCACHE),
+           .arprot  (S_ARPROT),
+           .arvalid (net_ARVALID),
+           .arready (S_ARREADY),
+           // Read Data Channel Signals.
+           .rid    (S_RID),
+           .rdata  (S_RDATA),
+           .rresp  (S_RRESP),
+           .rlast  (S_RLAST),
+           .rvalid (S_RVALID),
+           .rready (S_RREADY));
 `endif //endif ORIGINAL_CDN_AXI3_SLAVE_BFM
 
   /* Latency type and Debug/Error Control */
@@ -335,6 +395,7 @@ module processing_system7_bfm_v2_0_axi_slave (
    end
   end
 
+`ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
   initial slave.set_disable_reset_value_checks(1); 
   initial begin
      repeat(2) @(posedge S_ACLK);
@@ -344,6 +405,7 @@ module processing_system7_bfm_v2_0_axi_slave (
      end 
      slave.RESPONSE_TIMEOUT = 0;
   end
+`endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
   /*--------------------------------------------------------------------------------*/
 
   /* Set Latency type to be used */

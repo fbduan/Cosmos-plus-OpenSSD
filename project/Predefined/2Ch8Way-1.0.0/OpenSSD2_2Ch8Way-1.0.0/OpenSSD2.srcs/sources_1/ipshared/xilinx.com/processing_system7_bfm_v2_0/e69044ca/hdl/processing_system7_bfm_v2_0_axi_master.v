@@ -143,15 +143,17 @@ module processing_system7_bfm_v2_0_axi_master (
    end
   end
 
-   // %%: initial master.set_disable_reset_value_checks(1); 
-   // %%: initial begin
-   // %%:   repeat(2) @(posedge M_ACLK);
-   // %%:   if(!enable_this_port) begin
-   // %%:      master.set_channel_level_info(0);
-   // %%:      master.set_function_level_info(0);
-   // %%:   end
-   // %%:   master.RESPONSE_TIMEOUT = 0;
-   // %%: end
+`ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
+   initial master.set_disable_reset_value_checks(1); 
+   initial begin
+     repeat(2) @(posedge M_ACLK);
+     if(!enable_this_port) begin
+        master.set_channel_level_info(0);
+        master.set_function_level_info(0);
+     end
+     master.RESPONSE_TIMEOUT = 0;
+   end
+`endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
 
 `ifdef ORIGINAL_CDN_AXI3_MASTER_BFM
    cdn_axi3_master_bfm #(master_name,
@@ -204,7 +206,7 @@ module processing_system7_bfm_v2_0_axi_master (
             .RLAST  (M_RLAST),
             .RVALID (net_RVALID),
             .RREADY (M_RREADY));
-`else  //undef ORIGINAL_CDN_AXI3_MASTER_BFM
+`elsif VIP_AXI3_MASTER_BFM
    vip_axi3_master_bfm master  (
             .aclk    (M_ACLK),
             .aresetn (net_RESETN), /// confirm this
@@ -249,6 +251,67 @@ module processing_system7_bfm_v2_0_axi_master (
             .m_axi_rlast  (M_RLAST),
             .m_axi_rvalid (net_RVALID),
             .m_axi_rready (M_RREADY));
+`else  //undef ORIGINAL_CDN_AXI3_MASTER_BFM
+   axi_master_bfm_core #(
+            .VERBOSE            ( 0                      ),
+            .ERROR_RESP_FINISH  ( 0                      ),
+            .ADDR_WIDTH         ( address_bus_width      ),
+            .DATA_WIDTH         ( data_bus_width         ),
+            .ID_WIDTH           ( id_bus_width           ),
+            .SIZE_WIDTH         ( 3                      ),
+            .QOS_WIDTH          ( 3                      ),
+            .MAX_CMDNUM         ( max_outstanding_transactions ),
+            .MAX_ID             ( 31                     ),
+            .MAX_BURSTLEN       ( 16                     ),
+            .WLOG_NAME          ( "axi_master_write.ps.log" ),
+            .RLOG_NAME          ( "axi_master_read.ps.log"  ),
+            .CFG_W_MAX_LATENCY  ( 200                    ),  //ns
+            .CFG_R_MAX_LATENCY  ( 200                    ),  //ns
+            .AXI_VERSION        ( 3                      )
+           ) master  (
+            .aclk    (M_ACLK),
+            .aresetn (net_RESETN), /// confirm this
+            // Write Address Channel
+            .awid    (M_AWID),
+            .awaddr  (M_AWADDR),
+            .awlen   (M_AWLEN),
+            .awsize  (M_AWSIZE),
+            .awburst (M_AWBURST),
+            .awlock  (M_AWLOCK),
+            .awcache (M_AWCACHE),
+            .awprot  (M_AWPROT),
+            .awvalid (M_AWVALID),
+            .awready (M_AWREADY),
+            // Write Data Channel Signals.
+            .wid    (M_WID),
+            .wdata  (M_WDATA),
+            .wstrb  (M_WSTRB), 
+            .wlast  (M_WLAST), 
+            .wvalid (M_WVALID),
+            .wready (M_WREADY),
+            // Write Response Channel Signals.
+            .bid    (M_BID),
+            .bresp  (M_BRESP),
+            .bvalid (net_BVALID),
+            .bready (M_BREADY),
+            // Read Address Channel Signals.
+            .arid    (M_ARID),
+            .araddr  (M_ARADDR),
+            .arlen   (M_ARLEN),
+            .arsize  (M_ARSIZE),
+            .arburst (M_ARBURST),
+            .arlock  (M_ARLOCK),
+            .arcache (M_ARCACHE),
+            .arprot  (M_ARPROT),
+            .arvalid (M_ARVALID),
+            .arready (M_ARREADY),
+            // Read Data Channel Signals.
+            .rid    (M_RID),
+            .rdata  (M_RDATA),
+            .rresp  (M_RRESP),
+            .rlast  (M_RLAST),
+            .rvalid (net_RVALID),
+            .rready (M_RREADY));
 `endif //endif ORIGINAL_CDN_AXI3_MASTER_BFM
 
 
