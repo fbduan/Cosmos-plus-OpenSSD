@@ -120,7 +120,7 @@ module proc_sys_reset(/*AUTOARG*/
 parameter [31:0] C_EXT_RST_WIDTH=4;
 parameter [31:0] C_AUX_RST_WIDTH=4;
 parameter        C_EXT_RESET_HIGH=1'b0;
-parameter        C_AUX_RESET_HIGH=1'b1;
+parameter        C_AUX_RESET_HIGH=1'b0;
 parameter [31:0] C_NUM_BUS_RST=1;
 parameter [31:0] C_NUM_PERP_RST=1;
 parameter [31:0] C_NUM_INTERCONNECT_ARESETN=1;
@@ -187,7 +187,10 @@ wire srl_time_out;
 // Design Logic                                                             //
 //////////////////////////////////////////////////////////////////////////////
 
-
+initial begin
+    asr_rst_n_sync[C_AUX_RST_WIDTH-1:0] = {C_AUX_RST_WIDTH{1'b1}};
+    exr_rst_n_sync[C_EXT_RST_WIDTH-1:0] = {C_EXT_RST_WIDTH{1'b1}};
+end
 
 assign mb_reset                                               = ~mb_rst_n_dly[0];
 assign bus_struct_reset[0:C_NUM_BUS_RST - 1]                  = {C_NUM_BUS_RST{~bus_rst_n_dly[0]}};
@@ -213,8 +216,8 @@ always @(posedge slowest_sync_clk or negedge bus_rst_n_dly[0]) begin
     end
 end
 
-always @(posedge slowest_sync_clk or negedge mb_rst_n_dly[0]) begin
-    if(!mb_rst_n_dly[0]) begin
+always @(posedge slowest_sync_clk or negedge pri_rst_n_dly[0]) begin
+    if(!pri_rst_n_dly[0]) begin
         mb_rst_n_dly[C_MB_RESET_WAIT-1:0] <= {1'b1, {(C_MB_RESET_WAIT-1){1'b0}}};
     end
     else begin

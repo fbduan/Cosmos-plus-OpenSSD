@@ -1725,4 +1725,91 @@ assign  w_stime_dbg01[31:0] = w_stime[1];
 assign  r_stime_dbg00[31:0] = r_stime[0];
 assign  r_stime_dbg01[31:0] = r_stime[1];
 
+task READ_BURST;
+    input   [ID_WIDTH-1:0]      i_arid;
+    input   [ADDR_WIDTH-1:0]    i_araddr;
+    input   [LEN_WIDTH-1:0]     i_arlen;
+    input   [SIZE_WIDTH-1:0]    i_arsize;
+    input   [BURST_WIDTH-1:0]   i_arbrst;
+    input   [LOCK_WIDTH-1:0]    i_arlock;
+    input   [CACHE_WIDTH-1:0]   i_arcache;
+    input   [PROT_WIDTH-1:0]    i_arprot;
+    output  [DATA_WIDTH*MAX_BURSTLEN-1:0] temp_rd_data;
+    output  [RESP_WIDTH*MAX_BURSTLEN-1:0] temp_rd_resp;
+    begin
+        temp_rd_resp = {RESP_WIDTH*MAX_BURSTLEN{1'b0}};
+        incr_read(i_arid, i_arsize, i_araddr, temp_rd_data);
+    end
+endtask
+
+task WRITE_BURST;
+    input   [ID_WIDTH-1:0]      i_awid;
+    input   [ADDR_WIDTH-1:0]    i_awaddr;
+    input   [LEN_WIDTH-1:0]     i_awlen;
+    input   [SIZE_WIDTH-1:0]    i_awsize;
+    input   [BURST_WIDTH-1:0]   i_awbrst;
+    input   [LOCK_WIDTH-1:0]    i_awlock;
+    input   [CACHE_WIDTH-1:0]   i_awcache;
+    input   [PROT_WIDTH-1:0]    i_awprot;
+    input   [DATA_WIDTH*MAX_BURSTLEN-1:0] temp_wr_data;
+    input   [31:0]                        temp_wr_datasize;
+    output  [RESP_WIDTH*MAX_BURSTLEN-1:0] temp_wr_resp;
+    begin
+        temp_wr_resp = {RESP_WIDTH*MAX_BURSTLEN{1'b0}};
+        awid = i_awid;
+        incr_write(i_awlen, 2**i_awsize, i_awaddr, temp_wr_data);
+    end
+endtask
+
+task WRITE_BURST_CONCURRENT;
+    input   [ID_WIDTH-1:0]      i_awid;
+    input   [ADDR_WIDTH-1:0]    i_awaddr;
+    input   [LEN_WIDTH-1:0]     i_awlen;
+    input   [SIZE_WIDTH-1:0]    i_awsize;
+    input   [BURST_WIDTH-1:0]   i_awbrst;
+    input   [LOCK_WIDTH-1:0]    i_awlock;
+    input   [CACHE_WIDTH-1:0]   i_awcache;
+    input   [PROT_WIDTH-1:0]    i_awprot;
+    input   [DATA_WIDTH*MAX_BURSTLEN-1:0] temp_wr_data;
+    input   [31:0]                        temp_wr_datasize;
+    output  [RESP_WIDTH*MAX_BURSTLEN-1:0] temp_wr_resp;
+    begin
+        temp_wr_resp = {RESP_WIDTH*MAX_BURSTLEN{1'b0}};
+        awid = i_awid;
+        incr_write(i_awlen, 2**i_awsize, i_awaddr, temp_wr_data);
+    end
+endtask
+
+function set_disable_reset_value_checks;
+    input LEVEL;
+    begin
+        set_disable_reset_value_checks = LEVEL;
+        $display("[%0d] : %0s : Currently not support set_disable_reset_value_checks(%0b)",$time, "axi_master_bfm_core", LEVEL);
+    end
+endfunction
+
+function set_stop_on_error;
+    input LEVEL;
+    begin
+        set_stop_on_error = LEVEL;
+        $display("[%0d] : %0s : Currently not support set_stop_on_error(%0b)",$time, "axi_master_bfm_core", LEVEL);
+    end
+endfunction
+
+function set_channel_level_info;
+    input LEVEL;
+    begin
+        set_channel_level_info = LEVEL;
+        $display("[%0d] : %0s : Currently not support set_channel_level_info(%0b)",$time, "axi_master_bfm_core", LEVEL);
+    end
+endfunction
+
+function set_function_level_info;
+    input LEVEL;
+    begin
+        set_function_level_info = LEVEL;
+        $display("[%0d] : %0s : Currently not support set_function_level_info(%0b)",$time, "axi_master_bfm_core", LEVEL);
+    end
+endfunction
+
 endmodule

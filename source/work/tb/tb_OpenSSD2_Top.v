@@ -1,4 +1,4 @@
-`timescale 1ps / 1ps
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -202,14 +202,18 @@ reg           tb_ps_srstb;
 // 100 MHz
 initial begin
     tb_ps_clk   = 1'b0;
+    forever begin
+        #10;
+        tb_ps_clk = ~tb_ps_clk;
+    end
 end
-always@* #10 tb_ps_clk = ~tb_ps_clk;
+////always@* #10 tb_ps_clk = ~tb_ps_clk;
 
 initial begin
     tb_ps_porb  = 1'b1;
     tb_ps_srstb = 1'b1;
 
-    @(tb_ps_srstb);
+    @(tb_ps_clk);
     #13;
 
     tb_ps_porb  = 1'b0;
@@ -463,6 +467,12 @@ axi_master_bfm_core #(
 
 reg [31:0] tmp_rdata;
 initial begin
+    @(posedge tb_ps_porb);
+    #100;
+    tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.fpga_soft_reset(32'hFFFF_FFFF);
+    #100;
+    tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.fpga_soft_reset(32'h0000_0000);
+    #100;
     @(posedge ps_m_axi_gp0_aresetn);
     repeat(100) @(posedge ps_m_axi_gp0_aclk);
     u_psnf.single_read(4, 32'h43C0_0000, tmp_rdata[31:0]);

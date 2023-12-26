@@ -28,7 +28,8 @@ ${OPENSSD_HOME}/source/work/tb/model/vip_axi3_master_bfm/sim/vip_axi3_master_bfm
 -f ${XILINX_VIVADO}/data/secureip/oserdese2/oserdese2_cell.list.f
 
 //////../tb/model/fifo_generator_v12_0/hdl/fifo_generator_v12_0_rfs.v
-${XILINX_VIVADO}/data/ip/xilinx/fifo_generator_v12_0/hdl/fifo_generator_v12_0_top.v
+${XILINX_VIVADO}/data/ip/xilinx/fifo_generator_v12_0/hdl/fifo_generator_v12_0_rfs.v
+////${XILINX_VIVADO}/data/ip/xilinx/fifo_generator_v12_0/hdl/fifo_generator_v12_0_top.v
 ${XILINX_VIVADO}/data/ip/xilinx/fifo_generator_v12_0/simulation/fifo_generator_vlog_beh.v
 
 ${XILINX_VIVADO}/data/verilog/src/retarget/AND2B1.v
@@ -1032,9 +1033,9 @@ ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFDS_GTE3.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFDS.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFT_DCIEN.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTDS_DCIEN.v
-${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTDSE3.v
+//missed in 2015.4: ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTDSE3.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTDS.v
-${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTE3.v
+//missed in 2015.4: ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFTE3.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUFT.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/OBUF.v
 ${XILINX_VIVADO}/data/verilog/src/unisims/ODDRE1.v

@@ -1,5 +1,6 @@
 
-    /////+define+ORIGINAL_CDN_AXI3_MASTER_BFM
+////    +define+ORIGINAL_CDN_AXI3_SLAVE_BFM
+////    +define+ORIGINAL_CDN_AXI3_MASTER_BFM
     /////+define+VIP_AXI3_MASTER_BFM
     -f ${OPENSSD_HOME}/source/work/tb/OpenSSD2_wrapper.f
     -f ${OPENSSD_HOME}/source/work/tb/ddr3_model.f

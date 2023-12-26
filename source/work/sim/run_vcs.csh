@@ -14,4 +14,4 @@ vcs -full64 \
     +error+1000 \
     -top tb_OpenSSD2_Top \
     -f ../tb/tb_OpenSSD2_Top.f \
-    -l tb_OpenSSD2_Top.log
+    -l tb_OpenSSD2_Top.vcs.log
