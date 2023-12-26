@@ -475,11 +475,8 @@ initial begin
     #100;
     @(posedge ps_m_axi_gp0_aresetn);
     repeat(100) @(posedge ps_m_axi_gp0_aclk);
-    u_psnf.single_read(4, 32'h43C0_0000, tmp_rdata[31:0]);
-    u_psnf.single_read(4, 32'h43C0_0004, tmp_rdata[31:0]);
-    u_psnf.single_read(4, 32'h43C0_0008, tmp_rdata[31:0]);
-    u_psnf.single_read(4, 32'h43C0_000C, tmp_rdata[31:0]);
 
+    `include "tc_nfc_csr_rw.vh"
 
     #10000;
     $finish();
