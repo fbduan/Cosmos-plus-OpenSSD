@@ -1,0 +1,298 @@
+Magic 271485
+Revision Verdi_O-2018.09-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 27 2149 855 361 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 22629080.300000
+cursor 11555000.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 203
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "PS-M-GP0" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+activeDirFile "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_ARQOS[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARLOCK[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARCACHE[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_ARID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARBURST[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARSIZE[2:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARLEN[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARADDR[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_RID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RDATA[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RRESP[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RLAST
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_AWQOS[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWLOCK[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWCACHE[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_AWID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWBURST[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWSIZE[2:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWLEN[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWADDR[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_WID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WDATA[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WSTRB[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WLAST
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_BID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BRESP[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BREADY
+endSubGroup "b"
+addGroup "Tiger4NSC-0" -e FALSE
+addSubGroup "C-AXI"
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_ARADDR[31:0]
+addSignal -h 15 -holdScope C_ARVALID
+addSignal -h 15 -holdScope C_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_RDATA[31:0]
+addSignal -h 15 -holdScope C_RRESP[1:0]
+addSignal -h 15 -holdScope C_RVALID
+addSignal -h 15 -holdScope C_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_AWADDR[31:0]
+addSignal -h 15 -holdScope C_AWVALID
+addSignal -h 15 -holdScope C_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_WDATA[31:0]
+addSignal -h 15 -holdScope C_WSTRB[3:0]
+addSignal -h 15 -holdScope C_WVALID
+addSignal -h 15 -holdScope C_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_BRESP[1:0]
+addSignal -h 15 -holdScope C_BVALID
+addSignal -h 15 -holdScope C_BREADY
+endSubGroup "b"
+endSubGroup "C-AXI"
+addSubGroup "D-AXI" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_ARCACHE[3:0]
+addSignal -h 15 -holdScope D_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_ARBURST[1:0]
+addSignal -h 15 -holdScope D_ARSIZE[2:0]
+addSignal -h 15 -holdScope D_ARLEN[3:0]
+addSignal -h 15 -holdScope D_ARADDR[31:0]
+addSignal -h 15 -holdScope D_ARVALID
+addSignal -h 15 -holdScope D_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_RDATA[31:0]
+addSignal -h 15 -holdScope D_RRESP[1:0]
+addSignal -h 15 -holdScope D_RLAST
+addSignal -h 15 -holdScope D_RVALID
+addSignal -h 15 -holdScope D_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_AWCACHE[3:0]
+addSignal -h 15 -holdScope D_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_AWBURST[1:0]
+addSignal -h 15 -holdScope D_AWSIZE[2:0]
+addSignal -h 15 -holdScope D_AWLEN[3:0]
+addSignal -h 15 -holdScope D_AWADDR[31:0]
+addSignal -h 15 -holdScope D_AWVALID
+addSignal -h 15 -holdScope D_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_WDATA[31:0]
+addSignal -h 15 -holdScope D_WSTRB[3:0]
+addSignal -h 15 -holdScope D_WLAST
+addSignal -h 15 -holdScope D_WVALID
+addSignal -h 15 -holdScope D_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_BRESP[1:0]
+addSignal -h 15 -holdScope D_BVALID
+addSignal -h 15 -holdScope D_BREADY
+endSubGroup "b"
+endSubGroup "D-AXI"
+addSubGroup "G3"
+endSubGroup "G3"
+addSignal -h 15 /BLANK
+addGroup "Tiger4NSC-1" -e FALSE
+addSubGroup "C-AXI"
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_ARADDR[31:0]
+addSignal -h 15 -holdScope C_ARVALID
+addSignal -h 15 -holdScope C_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_RDATA[31:0]
+addSignal -h 15 -holdScope C_RRESP[1:0]
+addSignal -h 15 -holdScope C_RVALID
+addSignal -h 15 -holdScope C_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_AWADDR[31:0]
+addSignal -h 15 -holdScope C_AWVALID
+addSignal -h 15 -holdScope C_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_WDATA[31:0]
+addSignal -h 15 -holdScope C_WSTRB[3:0]
+addSignal -h 15 -holdScope C_WVALID
+addSignal -h 15 -holdScope C_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_BRESP[1:0]
+addSignal -h 15 -holdScope C_BVALID
+addSignal -h 15 -holdScope C_BREADY
+endSubGroup "b"
+endSubGroup "C-AXI"
+addSubGroup "D-AXI" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_ARCACHE[3:0]
+addSignal -h 15 -holdScope D_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_ARBURST[1:0]
+addSignal -h 15 -holdScope D_ARSIZE[2:0]
+addSignal -h 15 -holdScope D_ARLEN[3:0]
+addSignal -h 15 -holdScope D_ARADDR[31:0]
+addSignal -h 15 -holdScope D_ARVALID
+addSignal -h 15 -holdScope D_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_RDATA[31:0]
+addSignal -h 15 -holdScope D_RRESP[1:0]
+addSignal -h 15 -holdScope D_RLAST
+addSignal -h 15 -holdScope D_RVALID
+addSignal -h 15 -holdScope D_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_AWCACHE[3:0]
+addSignal -h 15 -holdScope D_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_AWBURST[1:0]
+addSignal -h 15 -holdScope D_AWSIZE[2:0]
+addSignal -h 15 -holdScope D_AWLEN[3:0]
+addSignal -h 15 -holdScope D_AWADDR[31:0]
+addSignal -h 15 -holdScope D_AWVALID
+addSignal -h 15 -holdScope D_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_WDATA[31:0]
+addSignal -h 15 -holdScope D_WSTRB[3:0]
+addSignal -h 15 -holdScope D_WLAST
+addSignal -h 15 -holdScope D_WVALID
+addSignal -h 15 -holdScope D_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_BRESP[1:0]
+addSignal -h 15 -holdScope D_BVALID
+addSignal -h 15 -holdScope D_BREADY
+endSubGroup "b"
+endSubGroup "D-AXI"
+addSubGroup "G3"
+endSubGroup "G3"
+addSignal -h 15 /BLANK
+addGroup "NAND-CH0"
+addSignal -h 15 /tb_OpenSSD2_Top/O_NAND_CH0_CE[7:0]
+addSignal -h 15 -holdScope O_NAND_CH0_CLE
+addSignal -h 15 -holdScope O_NAND_CH0_ALE
+addSignal -h 15 -holdScope O_NAND_CH0_WE
+addSignal -h 15 -holdScope O_NAND_CH0_RE_N
+addSignal -h 15 -holdScope O_NAND_CH0_RE_P
+addSignal -h 15 -holdScope IO_NAND_CH0_DQS_N
+addSignal -h 15 -holdScope IO_NAND_CH0_DQS_P
+addSignal -h 15 -holdScope IO_NAND_CH0_DQ[7:0]
+addSignal -h 15 -holdScope I_NAND_CH0_RB[7:0]
+addSignal -h 15 -holdScope O_NAND_CH0_WP
+addGroup "NAND-CH1"
+addSignal -h 15 /tb_OpenSSD2_Top/O_NAND_CH1_CE[7:0]
+addSignal -h 15 -holdScope O_NAND_CH1_CLE
+addSignal -h 15 -holdScope O_NAND_CH1_ALE
+addSignal -h 15 -holdScope O_NAND_CH1_WE
+addSignal -h 15 -holdScope O_NAND_CH1_RE_N
+addSignal -h 15 -holdScope O_NAND_CH1_RE_P
+addSignal -h 15 -holdScope IO_NAND_CH1_DQS_N
+addSignal -h 15 -holdScope IO_NAND_CH1_DQS_P
+addSignal -h 15 -holdScope IO_NAND_CH1_DQ[7:0]
+addSignal -h 15 -holdScope I_NAND_CH1_RB[7:0]
+addSignal -h 15 -holdScope O_NAND_CH1_WP
+addGroup "G6"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+
