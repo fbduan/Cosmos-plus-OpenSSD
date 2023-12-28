@@ -36,25 +36,27 @@
 
     $display("[%0d], Tiger4NSC_0 Erase preparation...", $time);
     // Wait Channel busy:
-    //%%: forever begin:wait_Tiger4NSC_0_busy
-    //%%:     // get ChStatus, check if the status is 1'b0
-    //%%:     u_psnf.single_read(4, 32'h43C0_0020, tmp_rdata[31:0]);
-    //%%:     if(tmp_rdata[0] == 1) begin
-    //%%:         disable wait_Tiger4NSC_0_busy;
-    //%%:     end
-        repeat(600) @(posedge ps_m_axi_gp0_aclk);
-    //%%: end
+    wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] != 8'hFF);
+    //%->//%%: forever begin:wait_Tiger4NSC_0_busy
+    //%->//%%:     // get ChStatus, check if the status is 1'b0
+    //%->//%%:     u_psnf.single_read(4, 32'h43C0_0020, tmp_rdata[31:0]);
+    //%->//%%:     if(tmp_rdata[0] == 1) begin
+    //%->//%%:         disable wait_Tiger4NSC_0_busy;
+    //%->//%%:     end
+    //%->    repeat(600) @(posedge ps_m_axi_gp0_aclk);
+    //%->//%%: end
 
     $display("[%0d], Tiger4NSC_0 Erase start...", $time);
     // Wait Channel idle:
-    forever begin:wait_Tiger4NSC_0_Erase_idle
-        // get ChStatus, check if the status is 1'b0
-        u_psnf.single_read(4, 32'h43C0_0024, tmp_rdata[31:0]);
-        if(&tmp_rdata[7:0] == 0) begin
-            disable wait_Tiger4NSC_0_Erase_idle;
-        end
-        repeat(600) @(posedge ps_m_axi_gp0_aclk);
-    end
+    wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] == 8'hFF);
+    //%-> forever begin:wait_Tiger4NSC_0_Erase_idle
+    //%->     // get ChStatus, check if the status is 1'b0
+    //%->     u_psnf.single_read(4, 32'h43C0_0024, tmp_rdata[31:0]);
+    //%->     if(tmp_rdata[7:0] == 8'hFF) begin
+    //%->         disable wait_Tiger4NSC_0_Erase_idle;
+    //%->     end
+    //%->     repeat(600) @(posedge ps_m_axi_gp0_aclk);
+    //%-> end
     $display("[%0d], Tiger4NSC_0 Erase finished...", $time);
 
     //getFT: Way-8'h03
@@ -69,18 +71,20 @@
     u_psnf.single_write(4, 32'h43C0_0000, 32'h8000_002E);
     $display("[%0d], Tiger4NSC_0 Erase preparation...", $time);
     // Wait Channel busy:
-    repeat(600) @(posedge ps_m_axi_gp0_aclk);
+    wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] != 8'hFF);
+    //->: repeat(600) @(posedge ps_m_axi_gp0_aclk);
 
     $display("[%0d], Tiger4NSC_0 getFT start...", $time);
     // Wait Channel idle:
-    forever begin:wait_Tiger4NSC_0_getFT_idle
-        // get ChStatus, check if the status is 1'b0
-        u_psnf.single_read(4, 32'h43C0_0024, tmp_rdata[31:0]);
-        if(&tmp_rdata[7:0] == 0) begin
-            disable wait_Tiger4NSC_0_getFT_idle;
-        end
-        repeat(600) @(posedge ps_m_axi_gp0_aclk);
-    end
+    wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] == 8'hFF);
+    //->: forever begin:wait_Tiger4NSC_0_getFT_idle
+    //->:     // get ChStatus, check if the status is 1'b0
+    //->:     u_psnf.single_read(4, 32'h43C0_0024, tmp_rdata[31:0]);
+    //->:     if(tmp_rdata[7:0] == 8'hFF) begin
+    //->:         disable wait_Tiger4NSC_0_getFT_idle;
+    //->:     end
+    //->:     repeat(600) @(posedge ps_m_axi_gp0_aclk);
+    //->: end
     $display("[%0d], Tiger4NSC_0 getFT finished...", $time);
 
 
