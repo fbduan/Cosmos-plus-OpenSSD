@@ -95,6 +95,31 @@ real  tREA_cache_max; // RE# access time
 real  tCHZ_cache_max; // CE# HIGH to output High-Z
 
 //PROGRAM/ERASE Characteristics
+`ifdef USER_SIMULATION_SPEEDUP
+parameter  tBERS_min            =      700000/400 ; // BLOCK ERASE operation time
+parameter  tBERS_max            =     3500000/1000; // BLOCK ERASE operation time
+parameter  tCBSY_min            =        3000/20  ; // Busy time for PROGRAM CACHE operation
+parameter  tCBSY_max            =      500000/400 ; // Busy time for PROGRAM CACHE operation
+parameter  tDBSY_min            =         500/20  ; // Busy time for TWO-PLANE PROGRAM PAGE operation
+parameter  tDBSY_max            =        1000/20  ; // Busy time for TWO-PLANE PROGRAM PAGE operation
+parameter  tFEAT                =        1000/20  ; // Busy time for SET FEATURES and GET FEATURES operations
+parameter  tITC_max             =        1000/20  ; // Busy time for sync interface switch
+parameter  tLBSY_min            =        2000/20  ; // Busy time for PROGRAM/ERASE on locked block
+parameter  tLBSY_max            =        3000/100 ; // Busy time for PROGRAM/ERASE on locked block
+parameter  tOBSY_max            =       30000/100 ; // Busy time for OTP DATA PROGRAM if OTP is protected
+parameter  tPROG_typ            =      230000/1000; // Busy time for PAGE PROGRAM operation
+parameter  tPROG_max            =      500000/1000; // Busy time for PAGE PROGRAM operation
+integer    tLPROG_cache_typ                  ;
+parameter  NPP                  =           4; // Number of partial page programs
+parameter  tDCBSYR1_max         =        9000/100 ; // Cache busy in page read cache mode (first 31h) (tRCBSY)
+parameter  tR_max               =       25000/100 ; // Data transfer from Flash array to data register
+parameter  tR_mp_max            =      tR_max; // Data transfer from Flash array to data register (multi-plane) // ???
+parameter  tRST_read            =        5000/100 ; // RESET time issued during READ
+parameter  tRST_prog            =       10000/100 ; // RESET time issued during PROGRAM
+parameter  tRST_erase           =      500000/1000; // RESET time issued during ERASE
+parameter  tRST_powerup         =     1000000/1000; // RESET time issued after power-up
+parameter  tRST_ready           =        5000/20  ; // RESET time issued during idle
+`else
 parameter  tBERS_min            =      700000; // BLOCK ERASE operation time
 parameter  tBERS_max            =     3500000; // BLOCK ERASE operation time
 parameter  tCBSY_min            =        3000; // Busy time for PROGRAM CACHE operation
@@ -118,6 +143,8 @@ parameter  tRST_prog            =       10000; // RESET time issued during PROGR
 parameter  tRST_erase           =      500000; // RESET time issued during ERASE
 parameter  tRST_powerup         =     1000000; // RESET time issued after power-up
 parameter  tRST_ready           =        5000; // RESET time issued during idle
+`endif // USER_SIMULATION_SPEEDUP
+
 `ifdef SHORT_RESET
 parameter  tVCC_delay           =         100; // VCC valid to R/B# low valid
 parameter  tRB_PU_max           =        1000; // R/B# Power up delay.  

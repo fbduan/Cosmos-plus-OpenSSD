@@ -49,7 +49,7 @@ print(f"{mif_file=}")
 
 mif = []
 mif_tab = prettytable.PrettyTable()
-mif_tab.field_names = ['Index', 'uPChSelect', 'uPAddrSrcRegSel', 'uPOpcode', 'uPSourceID', 'uPTargetID', 'uPLength', 'uPFunc', 'Comments']
+mif_tab.field_names = ['Index', 'uPChSelect', 'uPAddrSrcRegSel', 'uPOpcode', 'uPSourceID', 'uPTargetID', 'uPLength', 'uPFunc', 'Hex', 'Comments']
 with open(mif_file, "r") as fp:
     for l in fp:
         l = l.strip()
@@ -62,6 +62,7 @@ with open(mif_file, "r") as fp:
                  'opcode': int(l[-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits+uPOpcode_bits                                     ):-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits                                   )], 2),
                  'regsel': int(l[-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits+uPOpcode_bits+uPAddrSrcRegSel_bits                ):-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits+uPOpcode_bits                     )], 2),
                  'chsel' : int(l[-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits+uPOpcode_bits+uPAddrSrcRegSel_bits+uPChSelect_bits):-1*(uPFunc_bits+uPLength_bits+uPTargetID_bits+uPSourceID_bits+uPOpcode_bits+uPAddrSrcRegSel_bits)], 2),
+                 'hex'   : int(l, 2)
                 }
         )
 
@@ -113,7 +114,7 @@ with open(mif_file, "r") as fp:
                     
 
         mif_tab.add_row( [
-                "%03x"%(len(mif)),
+                "%03x"%(len(mif)-1),
                 "-" if uPFunc[mif[-1]['func']] == "*" else "%01x-%s"%(mif[-1]['chsel'],  uPChSelect[mif[-1]['chsel']]),
                 "-" if uPFunc[mif[-1]['func']] == "*" else "%01x-%s"%(mif[-1]['regsel'], uPAddrSrcRegSel[mif[-1]['regsel']]),
                 "-" if uPFunc[mif[-1]['func']] == "*" else "%02x"%mif[-1]['opcode'],
@@ -121,6 +122,7 @@ with open(mif_file, "r") as fp:
                 "-" if uPFunc[mif[-1]['func']] == "*" else "%02x"%mif[-1]['tgtid'],
                 "-" if uPFunc[mif[-1]['func']] == "*" else "%04x"%mif[-1]['len'],
                 "%01x"%(mif[-1]['func']) if uPFunc[mif[-1]['func']] == "*" else "%01x-%s"%(mif[-1]['func'], uPFunc[mif[-1]['func']]),
+                "%011x"%(mif[-1]['hex']),
                 desc_msg
         ])
 

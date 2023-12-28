@@ -203,7 +203,7 @@ reg           tb_ps_srstb;
 initial begin
     tb_ps_clk   = 1'b0;
     forever begin
-        #10;
+        #20;
         tb_ps_clk = ~tb_ps_clk;
     end
 end
@@ -406,7 +406,7 @@ initial begin
 end
 
 axi_master_bfm_core #(
-        .VERBOSE            ( 0             ),
+        .VERBOSE            ( 1             ),
         .ERROR_RESP_FINISH  ( 1             ),
 
         .ADDR_WIDTH         ( 32            ),
@@ -474,11 +474,24 @@ initial begin
     tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.fpga_soft_reset(32'h0000_0000);
     #100;
     @(posedge ps_m_axi_gp0_aresetn);
+    wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.CH0MMCMC1H200.inst.locked_int == 1);
+    repeat(100) @(posedge tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.CH0MMCMC1H200.clk_out1);
     repeat(100) @(posedge ps_m_axi_gp0_aclk);
 
     `include "tc_nfc_csr_rw.vh"
 
+    $display("************************************************************");
+    $display("* [%0d], test completed", $time);
+    $display("************************************************************");
     #10000;
+    $finish();
+end
+
+initial begin
+    #1000000;
+    $display("************************************************************");
+    $display("* [%0d], test Aborted", $time);
+    $display("************************************************************");
     $finish();
 end
 

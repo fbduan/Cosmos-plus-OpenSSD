@@ -286,7 +286,11 @@ module NPCG_Toggle_MNC_N_init
                     
                     rPM_PCommand[7:0]               <= 8'b0000_0001;
                     rPM_PCommandOption[2:0]         <= 3'b001; // CE on
+                `ifdef USER_SIMULATION_SPEEDUP
+                    rPM_NumOfData[15:0]             <= 16'd500; // real condition
+                `else
                     rPM_NumOfData[15:0]             <= 16'd50000; // real condition
+                `endif // USER_SIMULATION_SPEEDUP
                     //rPM_NumOfData[15:0]             <= 16'd5; // test condition
                     
                     rPM_CASelect                    <= 0;

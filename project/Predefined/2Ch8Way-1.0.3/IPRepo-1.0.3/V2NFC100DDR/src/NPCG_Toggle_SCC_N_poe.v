@@ -121,6 +121,10 @@ module NPCG_Toggle_SCC_N_poe
     
     assign oPM_PCommand[7:0]        = {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, wTimerTrig};
     assign oPM_PCommandOption[2:0]  = 3'b000;
+`ifdef USER_SIMULATION_SPEEDUP
+    assign oPM_NumOfData[15:0]      = 16'd110;
+`else
     assign oPM_NumOfData[15:0]      = 16'd11000;
+`endif //USER_SIMULATION_SPEEDUP
     
 endmodule
