@@ -345,7 +345,11 @@ module NPCG_Toggle_MNC_getFT
                     
                     rPM_PCommand[7:0]               <= 8'b0000_0001;
                     rPM_PCommandOption[2:0]         <= 3'b001; // CE on
+                `ifdef USER_SIMULATION_SPEEDUP
+                    rPM_NumOfData[15:0]             <= 16'd50; // 1100 ns
+                `else
                     rPM_NumOfData[15:0]             <= 16'd109; // 1100 ns
+                `endif
                     
                     rPM_CASelect                    <= 0;
                     rPM_CAData[7:0]                 <= 0;

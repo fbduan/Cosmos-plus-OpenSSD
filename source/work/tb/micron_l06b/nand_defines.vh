@@ -25,24 +25,40 @@
 *
 ****************************************************************************************/
 
-`define CLASS
-`define CLASSB ////CLASSF
+`define CLASSB
+
+//`define CLASSU
+//`define CLASSM
+//`define T4B4C2D2
+`define NAND_SYNC
+`define SHORT_RESET
+`define DIES2
+`define x8
+`undef  x16
+
+`define NAND_PAGE_SIZE  (16384 + 2208)
+`define NAND_SECTOR_START  8'd0
+`define NAND_SECTOR_END    8'd15
+`define NAND_PAGE_START    8'd16
+`define NAND_PAGE_END      8'd25
+`define NAND_BLOCK_START   8'd26
+`define NAND_BLOCK_END     8'd37
+`define NAND_LUN_START     8'd38
+`define NAND_LUN_END       8'd39
+
 
 `ifdef CLASSE
     `define T2B2C2D2;  // 2 Die, 2 Target, 2 R/B, Separate Cmd (2 cmd buses), Separate Data (2 data buses)
 `else `ifdef CLASSF
     `define T2B2C1D1;  // 2 Die, 2 Target, 2 R/B, Common Cmd (1 cmd bus), Common Data (1 data bus)
-`else `ifdef CLASSJ
-    `define T2B2C1D1;  // 4 Die, 2 Target, 2 R/B, Common Cmd (1 cmd bus), Common Data (1 data bus)
 `else `ifdef CLASSK
     `define T2B2C2D2;  // 4 Die, 2 Target, 2 R/B, Separate Cmd (2 cmd buses), Separate Data (2 data buses)
 `else `ifdef CLASSM
     `define T4B4C2D2;  // 4 Die, 4 Target, 4 R/B, Separate Cmd (2 cmd buses), Separate Data (2 data buses)
 `else `ifdef CLASSU
     `define T4B4C2D2;  // 8 Die, 4 Target, 4 R/B, Separate Cmd (2 cmd buses), Separate Data (2 data buses)
+`else `ifdef CLASST
+    `define T8B4C2D2;  //16 Die, 8 Target, 4 R/B, Separate Cmd (2 cmd buses), Separate Data (2 data buses)
 `else  // DEFAULT = CLASSB
     `define T1B1C1D1;  // 1 Die, 1 Target, 1 R/B, Common Cmd (1 cmd bus), Common Data (1 data bus)
 `endif `endif `endif `endif `endif `endif
-
-`undef x16
-

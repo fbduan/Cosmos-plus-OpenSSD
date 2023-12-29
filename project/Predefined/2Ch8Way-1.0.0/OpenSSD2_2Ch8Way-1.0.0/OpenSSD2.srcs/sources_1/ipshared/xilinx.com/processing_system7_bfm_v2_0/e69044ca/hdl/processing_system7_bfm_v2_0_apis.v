@@ -13,15 +13,15 @@
     begin
       $display("[%0d] : %0s : Setting Stop On Error as %0b",$time, DISP_INFO, LEVEL);
       STOP_ON_ERROR = LEVEL;
-      M_AXI_GP0.master.set_stop_on_error(LEVEL);
-      M_AXI_GP1.master.set_stop_on_error(LEVEL);
-      S_AXI_GP0.slave.set_stop_on_error(LEVEL);
-      S_AXI_GP1.slave.set_stop_on_error(LEVEL);
-      S_AXI_HP0.slave.set_stop_on_error(LEVEL);
-      S_AXI_HP1.slave.set_stop_on_error(LEVEL);
-      S_AXI_HP2.slave.set_stop_on_error(LEVEL);
-      S_AXI_HP3.slave.set_stop_on_error(LEVEL);
-      S_AXI_ACP.slave.set_stop_on_error(LEVEL);
+      //%%: M_AXI_GP0.master.set_stop_on_error(LEVEL);
+      //%%: M_AXI_GP1.master.set_stop_on_error(LEVEL);
+      //%%: S_AXI_GP0.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_GP1.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_HP0.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_HP1.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_HP2.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_HP3.slave.set_stop_on_error(LEVEL);
+      //%%: S_AXI_ACP.slave.set_stop_on_error(LEVEL);
       M_AXI_GP0.STOP_ON_ERROR = LEVEL;
       M_AXI_GP1.STOP_ON_ERROR = LEVEL;
       S_AXI_GP0.STOP_ON_ERROR = LEVEL;
@@ -41,29 +41,29 @@
     input LEVEL;
     begin
      $display("[%0d] : [%0s] : %0s Port/s : Setting Channel Level Info as %0b",$time, DISP_INFO,  name , LEVEL);
-     case(name)
-      "M_AXI_GP0" : M_AXI_GP0.master.set_channel_level_info(LEVEL);
-      "M_AXI_GP1" : M_AXI_GP1.master.set_channel_level_info(LEVEL);
-      "S_AXI_GP0" : S_AXI_GP0.slave.set_channel_level_info(LEVEL);
-      "S_AXI_GP1" : S_AXI_GP1.slave.set_channel_level_info(LEVEL);
-      "S_AXI_HP0" : S_AXI_HP0.slave.set_channel_level_info(LEVEL);
-      "S_AXI_HP1" : S_AXI_HP1.slave.set_channel_level_info(LEVEL);
-      "S_AXI_HP2" : S_AXI_HP2.slave.set_channel_level_info(LEVEL);
-      "S_AXI_HP3" : S_AXI_HP3.slave.set_channel_level_info(LEVEL);
-      "S_AXI_ACP" : S_AXI_ACP.slave.set_channel_level_info(LEVEL);
-      "ALL"       : begin
-                      M_AXI_GP0.master.set_channel_level_info(LEVEL);
-                      M_AXI_GP1.master.set_channel_level_info(LEVEL);
-                      S_AXI_GP0.slave.set_channel_level_info(LEVEL);
-                      S_AXI_GP1.slave.set_channel_level_info(LEVEL);
-                      S_AXI_HP0.slave.set_channel_level_info(LEVEL);
-                      S_AXI_HP1.slave.set_channel_level_info(LEVEL);
-                      S_AXI_HP2.slave.set_channel_level_info(LEVEL);
-                      S_AXI_HP3.slave.set_channel_level_info(LEVEL);
-                      S_AXI_ACP.slave.set_channel_level_info(LEVEL);
-                    end
-      default     : $display("[%0d] : %0s : Invalid Port name (%0s)",$time, DISP_ERR, name);
-     endcase
+     //%%: case(name)
+     //%%:  "M_AXI_GP0" : M_AXI_GP0.master.set_channel_level_info(LEVEL);
+     //%%:  "M_AXI_GP1" : M_AXI_GP1.master.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_GP0" : S_AXI_GP0.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_GP1" : S_AXI_GP1.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_HP0" : S_AXI_HP0.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_HP1" : S_AXI_HP1.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_HP2" : S_AXI_HP2.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_HP3" : S_AXI_HP3.slave.set_channel_level_info(LEVEL);
+     //%%:  "S_AXI_ACP" : S_AXI_ACP.slave.set_channel_level_info(LEVEL);
+     //%%:  "ALL"       : begin
+     //%%:                  M_AXI_GP0.master.set_channel_level_info(LEVEL);
+     //%%:                  M_AXI_GP1.master.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_GP0.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_GP1.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_HP0.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_HP1.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_HP2.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_HP3.slave.set_channel_level_info(LEVEL);
+     //%%:                  S_AXI_ACP.slave.set_channel_level_info(LEVEL);
+     //%%:                end
+     //%%:  default     : $display("[%0d] : %0s : Invalid Port name (%0s)",$time, DISP_ERR, name);
+     //%%: endcase
     end
   endtask
 
@@ -73,29 +73,29 @@
     input LEVEL;
     begin
      $display("[%0d] : [%0s] : %0s Port/s : Setting Function Level Info as %0b",$time, DISP_INFO,  name , LEVEL);
-     case(name)
-      "M_AXI_GP0" : M_AXI_GP0.master.set_function_level_info(LEVEL);
-      "M_AXI_GP1" : M_AXI_GP1.master.set_function_level_info(LEVEL);
-      "S_AXI_GP0" : S_AXI_GP0.slave.set_function_level_info(LEVEL);
-      "S_AXI_GP1" : S_AXI_GP1.slave.set_function_level_info(LEVEL);
-      "S_AXI_HP0" : S_AXI_HP0.slave.set_function_level_info(LEVEL);
-      "S_AXI_HP1" : S_AXI_HP1.slave.set_function_level_info(LEVEL);
-      "S_AXI_HP2" : S_AXI_HP2.slave.set_function_level_info(LEVEL);
-      "S_AXI_HP3" : S_AXI_HP3.slave.set_function_level_info(LEVEL);
-      "S_AXI_ACP" : S_AXI_ACP.slave.set_function_level_info(LEVEL);
-      "ALL"       : begin
-                      M_AXI_GP0.master.set_function_level_info(LEVEL);
-                      M_AXI_GP1.master.set_function_level_info(LEVEL);
-                      S_AXI_GP0.slave.set_function_level_info(LEVEL);
-                      S_AXI_GP1.slave.set_function_level_info(LEVEL);
-                      S_AXI_HP0.slave.set_function_level_info(LEVEL);
-                      S_AXI_HP1.slave.set_function_level_info(LEVEL);
-                      S_AXI_HP2.slave.set_function_level_info(LEVEL);
-                      S_AXI_HP3.slave.set_function_level_info(LEVEL);
-                      S_AXI_ACP.slave.set_function_level_info(LEVEL);
-                    end
-      default     : $display("[%0d] : %0s : Invalid Port name (%0s)",$time, DISP_ERR, name);
-     endcase
+     //%%: case(name)
+     //%%:  "M_AXI_GP0" : M_AXI_GP0.master.set_function_level_info(LEVEL);
+     //%%:  "M_AXI_GP1" : M_AXI_GP1.master.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_GP0" : S_AXI_GP0.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_GP1" : S_AXI_GP1.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_HP0" : S_AXI_HP0.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_HP1" : S_AXI_HP1.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_HP2" : S_AXI_HP2.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_HP3" : S_AXI_HP3.slave.set_function_level_info(LEVEL);
+     //%%:  "S_AXI_ACP" : S_AXI_ACP.slave.set_function_level_info(LEVEL);
+     //%%:  "ALL"       : begin
+     //%%:                  M_AXI_GP0.master.set_function_level_info(LEVEL);
+     //%%:                  M_AXI_GP1.master.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_GP0.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_GP1.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_HP0.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_HP1.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_HP2.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_HP3.slave.set_function_level_info(LEVEL);
+     //%%:                  S_AXI_ACP.slave.set_function_level_info(LEVEL);
+     //%%:                end
+     //%%:  default     : $display("[%0d] : %0s : Invalid Port name (%0s)",$time, DISP_ERR, name);
+     //%%: endcase
     end
   endtask
 

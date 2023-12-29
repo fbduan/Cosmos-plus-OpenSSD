@@ -164,12 +164,12 @@ output  [RESP_WIDTH-1:0]            rresp;
 //////////////////////////////////////////////////////////////////////////////
 // Signal Declaration                                                       //
 //////////////////////////////////////////////////////////////////////////////
+reg                     arready;
 
 /*autodefine*/
 //auto wires{{{
 wire [ID_WIDTH-1:0]     arq_id_dbg00;
 wire [ID_WIDTH-1:0]     arq_id_dbg01;
-wire                    arready;
 wire [ID_WIDTH-1:0]     awq_id_dbg00;
 wire [ID_WIDTH-1:0]     awq_id_dbg01;
 wire [ID_WIDTH-1:0]     awq_id_dbg02;
@@ -1275,7 +1275,7 @@ end
 //ÕâÀï±ØÐëµÈ£º
 //1£ºqÃ»Âú
 //2£ºÉÏÒ»´ÎpushÍê³É
-assign  arready = ar_en & (arq_cnt<MAX_CMDNUM) & (push_ar.busy == 0);
+// %%: assign  arready = ar_en & (arq_cnt<MAX_CMDNUM) & (push_ar.busy == 0);
 
 //--------------------------------------------------------------------------------------------------
 // r
@@ -2267,19 +2267,33 @@ task RECEIVE_READ_ADDRESS;
     output  [ID_WIDTH-1:0]      o_rcv_arid;
 
     begin
+        //%%:///@(accept_ar && (i_id_invalid || (i_arid == arid)));
+        //%%:forever begin: check_acc_ar
+        //%%:    @(accept_ar);
+        //%%:    if(AXI_VERSION==4 || (i_id_invalid || (i_arid == arid))) disable check_acc_ar;
+        //%%:end
+        //%%:o_rcv_araddr  = araddr ;
+        //%%:o_rcv_arlen   = arlen  ;
+        //%%:o_rcv_arsize  = arsize ;
+        //%%:o_rcv_arburst = arburst;
+        //%%:o_rcv_arlock  = arlock ;
+        //%%:o_rcv_arcache = arcache;
+        //%%:o_rcv_arprot  = arprot ;
+        //%%:o_rcv_arid    = arid   ;
         ///@(accept_ar && (i_id_invalid || (i_arid == arid)));
-        forever begin: check_acc_ar
-            @(accept_ar);
-            if(AXI_VERSION==4 || (i_id_invalid || (i_arid == arid))) disable check_acc_ar;
+        if(AXI_VERSION==4 || (i_id_invalid || (i_arid == arid))) begin
+            arready        = 1'b1   ;
+          @(posedge aclk);
+            o_rcv_araddr  = araddr ;
+            o_rcv_arlen   = arlen  ;
+            o_rcv_arsize  = arsize ;
+            o_rcv_arburst = arburst;
+            o_rcv_arlock  = arlock ;
+            o_rcv_arcache = arcache;
+            o_rcv_arprot  = arprot ;
+            o_rcv_arid    = arid   ;
+            arready        = 1'b0   ;
         end
-        o_rcv_araddr  = araddr ;
-        o_rcv_arlen   = arlen  ;
-        o_rcv_arsize  = arsize ;
-        o_rcv_arburst = arburst;
-        o_rcv_arlock  = arlock ;
-        o_rcv_arcache = arcache;
-        o_rcv_arprot  = arprot ;
-        o_rcv_arid    = arid   ;
     end
 endtask
 

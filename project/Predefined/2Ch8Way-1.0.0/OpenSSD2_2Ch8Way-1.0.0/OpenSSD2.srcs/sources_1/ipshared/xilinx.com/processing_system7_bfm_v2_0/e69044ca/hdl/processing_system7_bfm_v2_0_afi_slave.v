@@ -276,7 +276,7 @@ module processing_system7_bfm_v2_0_afi_slave (
            .s_axi_rlast  (S_RLAST),
            .s_axi_rvalid (S_RVALID),
            .s_axi_rready (S_RREADY));
-`else  //undef ORIGINAL_CDN_AXI3_SLAVE_BFM
+`elsif USE_AXI_BFM_CORE
   axi_slave_bfm_core #(
            .VERBOSE         ( 1                                    ),
            .ADDR_WIDTH      ( address_bus_width                    ),
@@ -336,6 +336,26 @@ module processing_system7_bfm_v2_0_afi_slave (
            .rlast  (S_RLAST),
            .rvalid (S_RVALID),
            .rready (S_RREADY));
+`else
+    reg     S_AWREADY;
+    reg     S_WREADY;
+    reg     S_BVALID;
+    reg     S_ARREADY;
+    reg     S_RVALID;
+    reg     S_RLAST; 
+    reg  [id_bus_width-1:0] S_BID;
+    reg  [axi_rsp_width-1:0] S_BRESP;
+    reg  [id_bus_width-1:0] S_RID;
+    reg  [axi_rsp_width-1:0] S_RRESP;
+    reg  [data_bus_width-1:0] S_RDATA;
+    initial begin
+        S_AWREADY = 1'b0;
+        S_WREADY  = 1'b0;
+        S_BVALID  = 1'b0;
+        S_ARREADY = 1'b0;
+        S_RVALID  = 1'b0;
+        S_RLAST   = 1'b0;
+    end
 `endif //endif ORIGINAL_CDN_AXI3_SLAVE_BFM
 
 
@@ -592,6 +612,7 @@ module processing_system7_bfm_v2_0_afi_slave (
    wacount <= 0;
  end else begin
    if(S_AWVALID && !wrfifo_full(S_AWLEN+1)) begin 
+      `ifdef USE_AXI_BFM_CORE
        slave.RECEIVE_WRITE_ADDRESS(0,
                                    id_invalid,
                                    awaddr[aw_cnt[int_cntr_width-2:0]],
@@ -602,6 +623,23 @@ module processing_system7_bfm_v2_0_afi_slave (
                                    awcache[aw_cnt[int_cntr_width-2:0]],
                                    awprot[aw_cnt[int_cntr_width-2:0]],
                                    awid[aw_cnt[int_cntr_width-2:0]]); /// sampled valid ID.
+      `else
+        #1;
+        if(id_invalid || (0 == S_AWID)) begin
+            S_AWREADY        = 1'b1   ;
+          @(posedge S_ACLK);
+            #1;
+            awaddr[aw_cnt[int_cntr_width-2:0]]  = S_AWADDR ;
+            awlen[aw_cnt[int_cntr_width-2:0]]   = S_AWLEN  ;
+            awsize[aw_cnt[int_cntr_width-2:0]]  = S_AWSIZE ;
+            awbrst[aw_cnt[int_cntr_width-2:0]]  = S_AWBURST;
+            awlock[aw_cnt[int_cntr_width-2:0]]  = S_AWLOCK ;
+            awcache[aw_cnt[int_cntr_width-2:0]] = S_AWCACHE;
+            awprot[aw_cnt[int_cntr_width-2:0]]  = S_AWPROT ;
+            awid[aw_cnt[int_cntr_width-2:0]]    = S_AWID   ;
+            S_AWREADY        = 1'b0   ;
+        end
+      `endif //USE_AXI_BFM_CORE
        aw_flag[aw_cnt[int_cntr_width-2:0]] <= 1'b1;
        aw_cnt                              <= aw_cnt + 1;
        wacount                             <= wacount + 1;
@@ -618,13 +656,35 @@ module processing_system7_bfm_v2_0_afi_slave (
  end else begin
   if(aw_flag[wd_cnt[int_cntr_width-2:0]]) begin
     if(S_WVALID && !wrfifo_full(awlen[wd_cnt[int_cntr_width-2:0]] + 1)) begin
+   `ifdef USE_AXI_BFM_CORE
      slave.RECEIVE_WRITE_BURST_NO_CHECKS(S_WID, burst_data[wd_cnt[int_cntr_width-2:0]], burst_valid_bytes[wd_cnt[int_cntr_width-2:0]]); 
+   `else
+     #1;
+     if(S_WID == S_WID) begin
+        S_WREADY = 1'b1;
+        burst_data[wd_cnt[int_cntr_width-2:0]]        = S_WDATA;
+        burst_valid_bytes[wd_cnt[int_cntr_width-2:0]] = S_WSTRB;
+     end else begin
+        S_WREADY = 1'b0;
+     end
+   `endif //USE_AXI_BFM_CORE
      wlast_flag[wd_cnt[int_cntr_width-2:0]] <= 1'b1;
      wd_cnt   <= wd_cnt + 1;
     end  
   end else begin
     if(!wrfifo_full(axi_burst_len) && S_WVALID) begin
+   `ifdef USE_AXI_BFM_CORE
       slave.RECEIVE_WRITE_BURST_NO_CHECKS(S_WID, burst_data[wd_cnt[int_cntr_width-2:0]], burst_valid_bytes[wd_cnt[int_cntr_width-2:0]]); 
+   `else
+      #1;
+      if(S_WID == S_WID) begin
+        S_WREADY = 1'b1;
+        burst_data[wd_cnt[int_cntr_width-2:0]]        = S_WDATA;
+        burst_valid_bytes[wd_cnt[int_cntr_width-2:0]] = S_WSTRB;
+      end else begin
+         S_WREADY = 1'b0;
+      end
+   `endif //USE_AXI_BFM_CORE
       wlast_flag[wd_cnt[int_cntr_width-2:0]] <= 1'b1;
       wd_cnt   <= wd_cnt + 1;
     end
@@ -733,9 +793,22 @@ module processing_system7_bfm_v2_0_afi_slave (
   if(awvalid_flag[bresp_time_cnt] && (($time - awvalid_receive_time[bresp_time_cnt])/s_aclk_period >= wr_latency_count))
     wr_delayed = 1;
   if(!bresp_fifo_empty && wr_delayed) begin
+   `ifdef USE_AXI_BFM_CORE
     slave.SEND_WRITE_RESPONSE(fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_id_msb : rsp_id_lsb],  // ID
                               fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_msb : rsp_lsb]   // Response
                              );
+   `else
+     #1;
+        S_BID    = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_id_msb : rsp_id_lsb];
+        S_BRESP  = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_msb : rsp_lsb];
+        S_BVALID = 1'b1;
+        forever begin: send_write_response
+            @(S_ACLK);
+            #1;
+            if(S_BREADY && S_BVALID) disable send_write_response;
+        end
+        S_BVALID = 1'b0;
+   `endif //USE_AXI_BFM_CORE
     wr_delayed = 0;
     awvalid_flag[bresp_time_cnt] = 1'b0;
     bresp_time_cnt <= bresp_time_cnt+1;
@@ -888,6 +961,7 @@ module processing_system7_bfm_v2_0_afi_slave (
     racount <= 0;
   end else begin
     if(S_ARVALID && !rdfifo_full(S_ARLEN+1)) begin /// if AFI read fifo is not full
+      `ifdef USE_AXI_BFM_CORE
         slave.RECEIVE_READ_ADDRESS(0,
                                    id_invalid,
                                    araddr[ar_cnt[int_cntr_width-2:0]],
@@ -898,6 +972,23 @@ module processing_system7_bfm_v2_0_afi_slave (
                                    arcache[ar_cnt[int_cntr_width-2:0]],
                                    arprot[ar_cnt[int_cntr_width-2:0]],
                                    arid[ar_cnt[int_cntr_width-2:0]]); /// sampled valid ID.
+      `else
+        #1;
+        if(id_invalid || (0 == S_ARID)) begin
+            S_ARREADY        = 1'b1   ;
+          @(posedge S_ACLK);
+            #1;
+            araddr[ar_cnt[int_cntr_width-2:0]]  = S_ARADDR ;
+            arlen[ar_cnt[int_cntr_width-2:0]]   = S_ARLEN  ;
+            arsize[ar_cnt[int_cntr_width-2:0]]  = S_ARSIZE ;
+            arbrst[ar_cnt[int_cntr_width-2:0]]  = S_ARBURST;
+            arlock[ar_cnt[int_cntr_width-2:0]]  = S_ARLOCK ;
+            arcache[ar_cnt[int_cntr_width-2:0]] = S_ARCACHE;
+            arprot[ar_cnt[int_cntr_width-2:0]]  = S_ARPROT ;
+            arid[ar_cnt[int_cntr_width-2:0]]    = S_ARID   ;
+            S_ARREADY        = 1'b0   ;
+        end
+      `endif //USE_AXI_BFM_CORE
         ar_flag[ar_cnt[int_cntr_width-2:0]] <= 1'b1;
         ar_cnt    <= ar_cnt+1;
         racount   <= racount + 1;
@@ -1040,6 +1131,7 @@ module processing_system7_bfm_v2_0_afi_slave (
   reg[rd_afi_fifo_bits-1:0] tmp_fifo_rd;  /// Data, addr, size, burst, len, RID, RRESP,valid_bytes
   reg[(data_bus_width*axi_burst_len)-1:0] temp_read_data;
   reg[(axi_rsp_width*axi_burst_len)-1:0] temp_read_rsp;
+  integer temp_read_burst_i;
 
   /* Read Data Channel handshake */
   always@(negedge S_RESETN or posedge S_ACLK)
@@ -1069,6 +1161,7 @@ module processing_system7_bfm_v2_0_afi_slave (
          temp_read_rsp = temp_read_rsp >> axi_rsp_width;
          temp_read_rsp[(axi_rsp_width*axi_burst_len)-1:(axi_rsp_width*axi_burst_len)-axi_rsp_width] = tmp_fifo_rd[rd_afi_rsp_msb : rd_afi_rsp_lsb];
        end 
+     `ifdef USE_AXI_BFM_CORE
        slave.SEND_READ_BURST_RESP_CTRL(tmp_fifo_rd[rd_afi_id_msb : rd_afi_id_lsb],
                                        tmp_fifo_rd[rd_afi_addr_msb : rd_afi_addr_lsb], 
                                        tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb], 
@@ -1076,6 +1169,27 @@ module processing_system7_bfm_v2_0_afi_slave (
                                        tmp_fifo_rd[rd_afi_brst_msb : rd_afi_brst_lsb], 
                                        temp_read_data,
                                        temp_read_rsp);   
+     `else
+        #1;
+        for(temp_read_burst_i=0; temp_read_burst_i<tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]; ) begin
+            S_RVALID = 1'b1;
+            if(temp_read_burst_i == tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]-1) begin
+                S_RLAST = 1'b1;
+            end else begin
+                S_RLAST = 1'b0;
+            end
+            S_RID   = tmp_fifo_rd[rd_afi_id_msb : rd_afi_id_lsb];
+            S_RRESP = temp_read_rsp [axi_rsp_width *temp_read_burst_i +: axi_rsp_width ];
+            S_RDATA = temp_read_data[data_bus_width*temp_read_burst_i +: data_bus_width];
+            @(posedge S_ACLK);
+            #1;
+            if(S_RREADY && S_RVALID) begin
+                temp_read_burst_i = temp_read_burst_i+1;
+            end
+        end
+        S_RLAST  = 1'b0;
+        S_RVALID = 1'b0;
+     `endif //USE_AXI_BFM_CORE
        rcount <= rcount -  (tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]+ 1) ;
        rresp_time_cnt <= rresp_time_cnt+1;
        rd_latency_count <= get_rd_lat_number(1);
