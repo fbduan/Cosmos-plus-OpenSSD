@@ -461,11 +461,11 @@ axi_master_bfm_core #(
 
         .ADDR_WIDTH         ( 32            ),
         .DATA_WIDTH         ( 32            ),
-        .ID_WIDTH           ( 12            ),
+        .ID_WIDTH           ( 5             ),
         .SIZE_WIDTH         ( 3             ),
         .QOS_WIDTH          ( 4             ),
         .MAX_CMDNUM         ( 16            ),
-        .MAX_ID             ( 31            ),
+        .MAX_ID             ( 0             ),
         .MAX_BURSTLEN       ( 16            ),   // when change this you must change
         .WLOG_NAME          ( "axi_master_write.log"),
         .RLOG_NAME          ( "axi_master_read.log" ),
@@ -624,11 +624,11 @@ axi_master_bfm_core #(
 
         .ADDR_WIDTH         ( 32            ),
         .DATA_WIDTH         ( 32            ),
-        .ID_WIDTH           ( 12            ),
+        .ID_WIDTH           ( 6             ),
         .SIZE_WIDTH         ( 3             ),
         .QOS_WIDTH          ( 4             ),
         .MAX_CMDNUM         ( 16            ),
-        .MAX_ID             ( 31            ),
+        .MAX_ID             ( 0             ),
         .MAX_BURSTLEN       ( 16            ),   // when change this you must change
         .WLOG_NAME          ( "axi_master_write.log"),
         .RLOG_NAME          ( "axi_master_read.log" ),

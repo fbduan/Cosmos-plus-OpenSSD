@@ -348,6 +348,8 @@ module processing_system7_bfm_v2_0_afi_slave (
     reg  [id_bus_width-1:0] S_RID;
     reg  [axi_rsp_width-1:0] S_RRESP;
     reg  [data_bus_width-1:0] S_RDATA;
+    integer temp_write_resp_i;
+    integer temp_read_burst_i;
     initial begin
         S_AWREADY = 1'b0;
         S_WREADY  = 1'b0;
@@ -798,16 +800,18 @@ module processing_system7_bfm_v2_0_afi_slave (
                               fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_msb : rsp_lsb]   // Response
                              );
    `else
-     #1;
-        S_BID    = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_id_msb : rsp_id_lsb];
-        S_BRESP  = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_msb : rsp_lsb];
-        S_BVALID = 1'b1;
-        forever begin: send_write_response
-            @(S_ACLK);
-            #1;
-            if(S_BREADY && S_BVALID) disable send_write_response;
-        end
-        S_BVALID = 1'b0;
+     begin
+       #1;
+          S_BID    = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_id_msb : rsp_id_lsb];
+          S_BRESP  = fifo_bresp[rd_bresp_cnt[int_cntr_width-2:0]][rsp_msb : rsp_lsb];
+          S_BVALID = 1'b1;
+          for(temp_write_resp_i=0; temp_write_resp_i<1;) begin
+              @(posedge S_ACLK);
+              #1;
+              if(S_BREADY && S_BVALID) temp_write_resp_i = temp_write_resp_i + 1;
+          end
+          S_BVALID = 1'b0;
+     end
    `endif //USE_AXI_BFM_CORE
     wr_delayed = 0;
     awvalid_flag[bresp_time_cnt] = 1'b0;
@@ -1131,7 +1135,6 @@ module processing_system7_bfm_v2_0_afi_slave (
   reg[rd_afi_fifo_bits-1:0] tmp_fifo_rd;  /// Data, addr, size, burst, len, RID, RRESP,valid_bytes
   reg[(data_bus_width*axi_burst_len)-1:0] temp_read_data;
   reg[(axi_rsp_width*axi_burst_len)-1:0] temp_read_rsp;
-  integer temp_read_burst_i;
 
   /* Read Data Channel handshake */
   always@(negedge S_RESETN or posedge S_ACLK)
@@ -1170,8 +1173,9 @@ module processing_system7_bfm_v2_0_afi_slave (
                                        temp_read_data,
                                        temp_read_rsp);   
      `else
+       begin
         #1;
-        for(temp_read_burst_i=0; temp_read_burst_i<tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]; ) begin
+        for(temp_read_burst_i=0; temp_read_burst_i<=tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]; ) begin
             S_RVALID = 1'b1;
             if(temp_read_burst_i == tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]-1) begin
                 S_RLAST = 1'b1;
@@ -1189,6 +1193,7 @@ module processing_system7_bfm_v2_0_afi_slave (
         end
         S_RLAST  = 1'b0;
         S_RVALID = 1'b0;
+      end
      `endif //USE_AXI_BFM_CORE
        rcount <= rcount -  (tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]+ 1) ;
        rresp_time_cnt <= rresp_time_cnt+1;

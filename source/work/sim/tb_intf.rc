@@ -280,6 +280,57 @@ addSignal -h 15 -holdScope PS_M_AXI_GP0_BRESP[1:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_BVALID
 addSignal -h 15 -holdScope PS_M_AXI_GP0_BREADY
 endSubGroup "b"
+addGroup "PS-S-HP0"
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARLOCK[1:0]
+addSignal -h 15 -holdScope S_ARCACHE[3:0]
+addSignal -h 15 -holdScope S_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARID[11:0]
+addSignal -h 15 -holdScope S_ARBURST[1:0]
+addSignal -h 15 -holdScope S_ARSIZE[2:0]
+addSignal -h 15 -holdScope S_ARLEN[3:0]
+addSignal -h 15 -holdScope S_ARADDR[31:0]
+addSignal -h 15 -holdScope S_ARVALID
+addSignal -h 15 -holdScope S_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_RID[11:0]
+addSignal -h 15 -holdScope S_RDATA[31:0]
+addSignal -h 15 -holdScope S_RRESP[1:0]
+addSignal -h 15 -holdScope S_RLAST
+addSignal -h 15 -holdScope S_RVALID
+addSignal -h 15 -holdScope S_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWLOCK[1:0]
+addSignal -h 15 -holdScope S_AWCACHE[3:0]
+addSignal -h 15 -holdScope S_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWID[11:0]
+addSignal -h 15 -holdScope S_AWBURST[1:0]
+addSignal -h 15 -holdScope S_AWSIZE[2:0]
+addSignal -h 15 -holdScope S_AWLEN[3:0]
+addSignal -h 15 -holdScope S_AWADDR[31:0]
+addSignal -h 15 -holdScope S_AWVALID
+addSignal -h 15 -holdScope S_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_WID[11:0]
+addSignal -h 15 -holdScope S_WDATA[31:0]
+addSignal -h 15 -holdScope S_WSTRB[3:0]
+addSignal -h 15 -holdScope S_WLAST
+addSignal -h 15 -holdScope S_WVALID
+addSignal -h 15 -holdScope S_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_BID[11:0]
+addSignal -h 15 -holdScope S_BRESP[1:0]
+addSignal -h 15 -holdScope S_BVALID
+addSignal -h 15 -holdScope S_BREADY
+endSubGroup "b"
 addGroup "Tiger4NSC-0"
 addSubGroup "C-AXI"
 addSubGroup "ar" -e FALSE

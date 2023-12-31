@@ -59,7 +59,7 @@ parameter   SIZE_WIDTH  = 3;
 parameter   QOS_WIDTH   = 3;
 
 parameter   MAX_CMDNUM      = 16;
-parameter   MAX_ID          = 31;
+parameter   MAX_ID          = 0;  //%%: 31;
 
 parameter   MAX_BURSTLEN    = 16;   // when change this you must change
                                     // the width of AWLEN/ARLEN
@@ -1244,7 +1244,7 @@ task incr_write;
         repeat(1) @(posedge aclk); #(`DLYU);
         debug_proc  = "aw";
         awid    = (AXI_VERSION == 4) ? 0 :
-                  (awid == MAX_ID) ? 0 : awid + 1;
+                  (awid == MAX_ID) ? 0 : 0; //%%: awid + 1;
         awlen   = len-1;
         awsize  = get_asize(size);
         awburst = ABURST_INCR;
@@ -1403,7 +1403,7 @@ task incr_read;
         //1st
         repeat(1) @(posedge aclk); #(`DLYU);
         debug_proc  = "ar";
-        arid    = (arid == MAX_ID) ? 0 : arid + 1;
+        arid    = (arid == MAX_ID) ? 0 : 0; //%%: arid + 1;
         arlen   = len-1;
         arsize  = get_asize(size);
         arburst = ABURST_INCR;
