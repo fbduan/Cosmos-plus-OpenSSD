@@ -94,7 +94,11 @@ module NPCG_Toggle_bCMD_IDLE
     assign oPM_PCommand[7:0] = 8'b0000_0000;
     assign oPM_PCommandOption[2:0] = 3'b000;
     assign oPM_TargetWay[NumberOfWays - 1:0] = 4'b0000;
+`ifdef USER_SIMULATION_SPEEDUP
+    assign oPM_NumOfData[15:0] = 16'h0123;
+`else
     assign oPM_NumOfData[15:0] = 16'h1234;
+`endif
     
     assign oPM_CASelect = 1'b0;
     assign oPM_CAData[7:0] = 8'hCC;

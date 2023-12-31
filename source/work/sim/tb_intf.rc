@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_O-2018.09-SP2
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 27 2560 468 379 225
+viewPort 0 27 2149 850 379 225
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -18,16 +18,16 @@ signalSpacing 5
 windowTimeUnit 1ns
 
 ; waveform viewport range
-zoom 0.000000 323250.601000 1n
-cursor 311325.100000
-marker 312562.500000
+zoom 177029.936980 177772.876722 1n
+cursor 177205.001000
+marker 181925.099000
 
 ; user define markers
 ; userMarker time_pos marker_name color linestyle
 ; visible top row signal index
-top 287
+top 15
 ; marker line index
-markerPos 293
+markerPos 79
 
 ; logical expression list
 ; addExprSig expr_name expression_string
@@ -70,31 +70,31 @@ nalias ReqQState_Push		1'b1		NULL
 
 aliasmapname Dispatcher.rCurState
 nalias State_WritecmdToModule		3'b010		NULL
-nalias State_ReadcmdToModule		3'b110		NULL
 nalias State_Decode		3'b011		NULL
+nalias State_ReadcmdToModule		3'b110		NULL
 nalias State_UpTransfer		3'b111		NULL
 nalias State_Halt		3'b000		NULL
-nalias State_NextRequest		3'b100		NULL
 nalias State_FirstFetch		3'b001		NULL
+nalias State_NextRequest		3'b100		NULL
 nalias State_DownTransfer		3'b101		NULL
 
 aliasmapname NPCG_Toggle_BNC_B_erase.rCurState
 nalias State_Idle		4'b0000		NULL
-nalias State_NTMIssue		4'b0100		NULL
 nalias State_NCALIssue		4'b0001		NULL
+nalias State_NTMIssue		4'b0100		NULL
 nalias State_NCmdWrite1		4'b0101		NULL
 nalias State_NAddrWrite0		4'b0010		NULL
-nalias State_WaitDone		4'b1100		NULL
-nalias State_NAddrWrite1		4'b0110		NULL
 nalias State_NCmdWrite0		4'b0011		NULL
+nalias State_NAddrWrite1		4'b0110		NULL
+nalias State_WaitDone		4'b1100		NULL
 nalias State_NAddrWrite2		4'b0111		NULL
 
 aliasmapname NPCG_Toggle_bCMD_manager.rMNG_cur_state
-nalias MNG_RUNNG		5'b01000		NULL
 nalias MNG_READY		5'b00010		NULL
-nalias MNG_bH_Zd		5'b10000		NULL
-nalias MNG_START		5'b00100		NULL
+nalias MNG_RUNNG		5'b01000		NULL
 nalias MNG_RESET		5'b00001		NULL
+nalias MNG_START		5'b00100		NULL
+nalias MNG_bH_Zd		5'b10000		NULL
 
 aliasmapname NPCG_Toggle_SCC_N_poe.rCurState
 nalias State_POEWait		3'b011		NULL
@@ -112,96 +112,96 @@ nalias State_Idle		3'b000		NULL
 nalias State_PIResetIssue		3'b001		NULL
 
 aliasmapname NPCG_Toggle_MNC_N_init.r_N_i_cur_state
-nalias N_i_READY		6'b000010		NULL
-nalias N_i_00002		6'b001000		NULL
 nalias N_i_00004		6'b100000		NULL
-nalias N_i_RESET		6'b000001		NULL
-nalias N_i_00001		6'b000100		NULL
+nalias N_i_00002		6'b001000		NULL
+nalias N_i_READY		6'b000010		NULL
 nalias N_i_00003		6'b010000		NULL
+nalias N_i_00001		6'b000100		NULL
+nalias N_i_RESET		6'b000001		NULL
 
 aliasmapname NPM_Toggle_TIMER.rTIM_cur_state
-nalias TIM_RESET		4'b0001		NULL
 nalias TIM_T10ns		4'b0100		NULL
-nalias TIM_READY		4'b0010		NULL
+nalias TIM_RESET		4'b0001		NULL
 nalias TIM_TLOOP		4'b1000		NULL
+nalias TIM_READY		4'b0010		NULL
 
 aliasmapname NPCG_Toggle_MNC_getFT.r_gFT_cur_state
-nalias gFT_WAITD		10'b1000000000		NULL
-nalias gFT_TM2ST		10'b0010000000		NULL
-nalias gFT_TM1ST		10'b0000100000		NULL
-nalias gFT_CALD0		10'b0000001000		NULL
 nalias gFT_READY		10'b0000000010		NULL
-nalias gFT_WTMDN		10'b0100000000		NULL
-nalias gFT_DI_ST		10'b0001000000		NULL
-nalias gFT_CALD1		10'b0000010000		NULL
-nalias gFT_CALST		10'b0000000100		NULL
+nalias gFT_CALD0		10'b0000001000		NULL
+nalias gFT_TM1ST		10'b0000100000		NULL
+nalias gFT_TM2ST		10'b0010000000		NULL
+nalias gFT_WAITD		10'b1000000000		NULL
 nalias gFT_RESET		10'b0000000001		NULL
+nalias gFT_CALST		10'b0000000100		NULL
+nalias gFT_CALD1		10'b0000010000		NULL
+nalias gFT_DI_ST		10'b0001000000		NULL
+nalias gFT_WTMDN		10'b0100000000		NULL
 
 aliasmapname NPCG_Toggle_MNC_getFT.r_pTF_cur_state
-nalias pTF_WAITD		8'b10000000		NULL
-nalias pTF_CPTP1		8'b00100000		NULL
-nalias pTF_CPTP0		8'b00001000		NULL
 nalias pTF_READY		8'b00000010		NULL
-nalias pTF_PTRSF		8'b01000000		NULL
-nalias pTF_STDB1		8'b00010000		NULL
-nalias pTF_STDB0		8'b00000100		NULL
+nalias pTF_CPTP0		8'b00001000		NULL
+nalias pTF_CPTP1		8'b00100000		NULL
+nalias pTF_WAITD		8'b10000000		NULL
 nalias pTF_RESET		8'b00000001		NULL
+nalias pTF_STDB0		8'b00000100		NULL
+nalias pTF_STDB1		8'b00010000		NULL
+nalias pTF_PTRSF		8'b01000000		NULL
 
 aliasmapname NPM_Toggle_POR.rPOR_cur_state
-nalias POR_RFRST		4'b0100		NULL
 nalias POR_RESET		4'b0001		NULL
-nalias POR_RLOOP		4'b1000		NULL
+nalias POR_RFRST		4'b0100		NULL
 nalias POR_READY		4'b0010		NULL
+nalias POR_RLOOP		4'b1000		NULL
 
 aliasmapname NPM_Toggle_PIR.rPIR_cur_state
-nalias PIR_RDRDL		6'b100000		NULL
-nalias PIR_RLOOP		6'b001000		NULL
 nalias PIR_READY		6'b000010		NULL
-nalias PIR_RDRDF		6'b010000		NULL
-nalias PIR_RFRST		6'b000100		NULL
+nalias PIR_RLOOP		6'b001000		NULL
+nalias PIR_RDRDL		6'b100000		NULL
 nalias PIR_RESET		6'b000001		NULL
+nalias PIR_RFRST		6'b000100		NULL
+nalias PIR_RDRDF		6'b010000		NULL
 
 aliasmapname NPM_Toggle_DO_tADL_DDR100.rDTO_cur_state
-nalias DTO_WPSAM		9'b100000000		NULL
-nalias DTO_PAUSE		9'b001000000		NULL
-nalias DTO_WPRAM		9'b000010000		NULL
-nalias DTO_DQS01		9'b000000100		NULL
 nalias DTO_RESET		9'b000000001		NULL
-nalias DTO_DQLST		9'b010000000		NULL
-nalias DTO_DQOUT		9'b000100000		NULL
-nalias DTO_DQS02		9'b000001000		NULL
+nalias DTO_DQS01		9'b000000100		NULL
+nalias DTO_WPRAM		9'b000010000		NULL
+nalias DTO_PAUSE		9'b001000000		NULL
+nalias DTO_WPSAM		9'b100000000		NULL
 nalias DTO_READY		9'b000000010		NULL
+nalias DTO_DQS02		9'b000001000		NULL
+nalias DTO_DQOUT		9'b000100000		NULL
+nalias DTO_DQLST		9'b010000000		NULL
 nalias DTO_WPSA2		9'b110000000		NULL
 
 aliasmapname NPM_Toggle_DI_DDR100.rREC_cur_state
-nalias REC_WAITS		8'b10000000		NULL
-nalias REC_RELST		8'b00100000		NULL
-nalias REC_RPRAM		8'b00001000		NULL
 nalias REC_READY		8'b00000010		NULL
-nalias REC_RPSAM		8'b01000000		NULL
-nalias REC_RE808		8'b00010000		NULL
-nalias REC_RESTU		8'b00000100		NULL
+nalias REC_RPRAM		8'b00001000		NULL
+nalias REC_RELST		8'b00100000		NULL
+nalias REC_WAITS		8'b10000000		NULL
 nalias REC_RESET		8'b00000001		NULL
+nalias REC_RESTU		8'b00000100		NULL
+nalias REC_RE808		8'b00010000		NULL
+nalias REC_RPSAM		8'b01000000		NULL
 
 aliasmapname NPM_Toggle_DI_DDR100.rDQI_cur_state
-nalias DQI_WAITS		9'b100000000		NULL
-nalias DQI_INm21		9'b001000000		NULL
-nalias DQI_INm43		9'b000010000		NULL
-nalias DQI_WTVIN		9'b000000100		NULL
 nalias DQI_RESET		9'b000000001		NULL
-nalias DQI_INm1Z		9'b010000000		NULL
-nalias DQI_INm32		9'b000100000		NULL
-nalias DQI_IFIFO		9'b000001000		NULL
+nalias DQI_WTVIN		9'b000000100		NULL
+nalias DQI_INm43		9'b000010000		NULL
+nalias DQI_INm21		9'b001000000		NULL
+nalias DQI_WAITS		9'b100000000		NULL
 nalias DQI_READY		9'b000000010		NULL
+nalias DQI_IFIFO		9'b000001000		NULL
+nalias DQI_INm32		9'b000100000		NULL
+nalias DQI_INm1Z		9'b010000000		NULL
 
 aliasmapname NPM_Toggle_DI_DDR100.rDQO_cur_state
-nalias DQO_P_BUS		7'b0100000		NULL
-nalias DQO_P_PHY		7'b0001000		NULL
 nalias DQO_READY		7'b0000010		NULL
-nalias DQO_WAITS		7'b1000000		NULL
-nalias DQO_OLOOP		7'b0010000		NULL
-nalias DQO_WTVIN		7'b0000100		NULL
+nalias DQO_P_PHY		7'b0001000		NULL
+nalias DQO_P_BUS		7'b0100000		NULL
 nalias DQO_RESET		7'b0000001		NULL
+nalias DQO_WTVIN		7'b0000100		NULL
+nalias DQO_OLOOP		7'b0010000		NULL
+nalias DQO_WAITS		7'b1000000		NULL
 
 aliasmapname NPM_Toggle_CAL_DDR100.rCPT_cur_state
 nalias CPT_SLOOP		5'b01000		NULL
@@ -221,10 +221,10 @@ nalias LCH_PREST		8'b00000100		NULL
 nalias LCH_RESET		8'b00000001		NULL
 
 aliasmapname NPM_Toggle_PHY_B_Reset.rPBR_cur_state
-nalias PBR_RFRST		4'b0100		NULL
 nalias PBR_RESET		4'b0001		NULL
-nalias PBR_RLOOP		4'b1000		NULL
+nalias PBR_RFRST		4'b0100		NULL
 nalias PBR_READY		4'b0010		NULL
+nalias PBR_RLOOP		4'b1000		NULL
 
 addGroup "PS-M-GP0"
 addSubGroup "ar"
@@ -251,7 +251,7 @@ addSignal -h 15 -holdScope PS_M_AXI_GP0_RLAST
 addSignal -h 15 -holdScope PS_M_AXI_GP0_RVALID
 addSignal -h 15 -holdScope PS_M_AXI_GP0_RREADY
 endSubGroup "r"
-addSubGroup "aw"
+addSubGroup "aw" -e FALSE
 addSubGroup "tmp" -e FALSE
 addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_AWQOS[3:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_AWLOCK[1:0]
@@ -266,7 +266,7 @@ addSignal -h 15 -holdScope PS_M_AXI_GP0_AWADDR[31:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_AWVALID
 addSignal -h 15 -holdScope PS_M_AXI_GP0_AWREADY
 endSubGroup "aw"
-addSubGroup "w"
+addSubGroup "w" -e FALSE
 addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_WID[11:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_WDATA[31:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_WSTRB[3:0]
@@ -274,7 +274,7 @@ addSignal -h 15 -holdScope PS_M_AXI_GP0_WLAST
 addSignal -h 15 -holdScope PS_M_AXI_GP0_WVALID
 addSignal -h 15 -holdScope PS_M_AXI_GP0_WREADY
 endSubGroup "w"
-addSubGroup "b"
+addSubGroup "b" -e FALSE
 addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_BID[11:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_BRESP[1:0]
 addSignal -h 15 -holdScope PS_M_AXI_GP0_BVALID
@@ -287,8 +287,7 @@ addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_H
 addSignal -h 15 -holdScope S_ARCACHE[3:0]
 addSignal -h 15 -holdScope S_ARPROT[2:0]
 endSubGroup "tmp"
-addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARID[11:0]
-addSignal -h 15 -holdScope S_ARBURST[1:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARBURST[1:0]
 addSignal -h 15 -holdScope S_ARSIZE[2:0]
 addSignal -h 15 -holdScope S_ARLEN[3:0]
 addSignal -h 15 -holdScope S_ARADDR[31:0]
@@ -296,20 +295,19 @@ addSignal -h 15 -holdScope S_ARVALID
 addSignal -h 15 -holdScope S_ARREADY
 endSubGroup "ar"
 addSubGroup "r"
-addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_RID[11:0]
-addSignal -h 15 -holdScope S_RDATA[31:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_RDATA[63:0]
 addSignal -h 15 -holdScope S_RRESP[1:0]
 addSignal -h 15 -holdScope S_RLAST
 addSignal -h 15 -holdScope S_RVALID
 addSignal -h 15 -holdScope S_RREADY
 endSubGroup "r"
-addSubGroup "aw"
+addSubGroup "aw" -e FALSE
 addSubGroup "tmp" -e FALSE
 addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWLOCK[1:0]
 addSignal -h 15 -holdScope S_AWCACHE[3:0]
 addSignal -h 15 -holdScope S_AWPROT[2:0]
 endSubGroup "tmp"
-addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWID[11:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWID[5:0]
 addSignal -h 15 -holdScope S_AWBURST[1:0]
 addSignal -h 15 -holdScope S_AWSIZE[2:0]
 addSignal -h 15 -holdScope S_AWLEN[3:0]
@@ -318,20 +316,19 @@ addSignal -h 15 -holdScope S_AWVALID
 addSignal -h 15 -holdScope S_AWREADY
 endSubGroup "aw"
 addSubGroup "w"
-addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_WID[11:0]
-addSignal -h 15 -holdScope S_WDATA[31:0]
-addSignal -h 15 -holdScope S_WSTRB[3:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ACLK
+addSignal -h 15 -holdScope S_WDATA[63:0]
+addSignal -h 15 -holdScope S_WSTRB[7:0]
 addSignal -h 15 -holdScope S_WLAST
 addSignal -h 15 -holdScope S_WVALID
 addSignal -h 15 -holdScope S_WREADY
 endSubGroup "w"
-addSubGroup "b"
-addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_BID[11:0]
-addSignal -h 15 -holdScope S_BRESP[1:0]
+addSubGroup "b" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_BRESP[1:0]
 addSignal -h 15 -holdScope S_BVALID
 addSignal -h 15 -holdScope S_BREADY
 endSubGroup "b"
-addGroup "Tiger4NSC-0"
+addGroup "Tiger4NSC-0" -e FALSE
 addSubGroup "C-AXI"
 addSubGroup "ar" -e FALSE
 addSubGroup "tmp" -e FALSE
@@ -565,7 +562,7 @@ addSubGroup "BNC_B_Erase" -e FALSE
 aliasname NPCG_Toggle_BNC_B_erase.rCurState
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_BNC_B_erase/rCurState[3:0]
 endSubGroup "BNC_B_Erase"
-addSubGroup "MNC_getFT"
+addSubGroup "MNC_getFT" -e FALSE
 aliasname NPCG_Toggle_MNC_getFT.r_gFT_cur_state
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_MNC_getFT/r_gFT_cur_state[9:0]
 addSignal -h 15 -holdScope oPM_NumOfData[15:0]
@@ -599,8 +596,13 @@ addSubGroup "NPM_Toggle_Top"
 addSubGroup "NPM_Toggle_CAL"
 aliasname NPM_Toggle_CAL_DDR100.rCPT_cur_state
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_CAL/rCPT_cur_state[4:0]
+aliasname NPM_Toggle_CAL_DDR100.rLCH_cur_state
+addSignal -h 15 -UNSIGNED -HEX -holdScope rLCH_nxt_state[7:0]
+addSignal -h 15 -holdScope wtWPSTHDone
+addSignal -h 15 -holdScope iSystemClock
+addSignal -h 15 -holdScope rPO_WriteEnable[3:0]
 endSubGroup "NPM_Toggle_CAL"
-addSubGroup "NPM_Toggle_DI"
+addSubGroup "NPM_Toggle_DI" -e FALSE
 aliasname NPM_Toggle_DI_DDR100.rREC_cur_state
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_DI/rREC_cur_state[7:0]
 addSignal -h 15 -holdScope rRECSubCounter[3:0]
@@ -634,6 +636,7 @@ endSubGroup "NPM_Toggle_DI"
 addSubGroup "NPM_Toggle_DO"
 aliasname NPM_Toggle_DO_tADL_DDR100.rDTO_cur_state
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_DO/rDTO_cur_state[8:0]
+addSignal -h 15 -holdScope rPO_WriteEnable[3:0]
 endSubGroup "NPM_Toggle_DO"
 addSubGroup "NPM_Toggle_IDLE"
 endSubGroup "NPM_Toggle_IDLE"
@@ -653,6 +656,10 @@ addSubGroup "NPM_Toggle_POR" -e FALSE
 aliasname NPM_Toggle_POR.rPOR_cur_state
 addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_POR/rPOR_cur_state[3:0]
 endSubGroup "NPM_Toggle_POR"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/iReadReady
+addSignal -h 15 -holdScope oReadValid
+addSignal -h 15 -holdScope iWriteValid
+addSignal -h 15 -holdScope oWriteReady
 addSignal -h 15 /BLANK
 endSubGroup "NPM_Toggle_Top"
 addSubGroup "NPhy_Toggle_Top" -e FALSE

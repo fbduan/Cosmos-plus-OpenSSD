@@ -196,7 +196,7 @@ wire [31:0]   ps_s_axi_hp0_araddr;
 wire [1:0]    ps_s_axi_hp0_arburst;
 wire [3:0]    ps_s_axi_hp0_arcache;
 wire          ps_s_axi_hp0_aresetn;
-wire [11:0]   ps_s_axi_hp0_arid;
+wire [5:0]    ps_s_axi_hp0_arid;
 wire [3:0]    ps_s_axi_hp0_arlen;
 wire [1:0]    ps_s_axi_hp0_arlock;
 wire [2:0]    ps_s_axi_hp0_arprot;
@@ -207,7 +207,7 @@ wire          ps_s_axi_hp0_arvalid;
 wire [31:0]   ps_s_axi_hp0_awaddr;
 wire [1:0]    ps_s_axi_hp0_awburst;
 wire [3:0]    ps_s_axi_hp0_awcache;
-wire [11:0]   ps_s_axi_hp0_awid;
+wire [5:0]    ps_s_axi_hp0_awid;
 wire [3:0]    ps_s_axi_hp0_awlen;
 wire [1:0]    ps_s_axi_hp0_awlock;
 wire [2:0]    ps_s_axi_hp0_awprot;
@@ -215,21 +215,21 @@ wire [3:0]    ps_s_axi_hp0_awqos;
 wire          ps_s_axi_hp0_awready;
 wire [2:0]    ps_s_axi_hp0_awsize;
 wire          ps_s_axi_hp0_awvalid;
-wire [11:0]   ps_s_axi_hp0_bid;
+wire [5:0]    ps_s_axi_hp0_bid;
 wire          ps_s_axi_hp0_bready;
 wire [1:0]    ps_s_axi_hp0_bresp;
 wire          ps_s_axi_hp0_bvalid;
-wire [31:0]   ps_s_axi_hp0_rdata;
-wire [11:0]   ps_s_axi_hp0_rid;
+wire [63:0]   ps_s_axi_hp0_rdata;
+wire [5:0]    ps_s_axi_hp0_rid;
 wire          ps_s_axi_hp0_rlast;
 wire          ps_s_axi_hp0_rready;
 wire [1:0]    ps_s_axi_hp0_rresp;
 wire          ps_s_axi_hp0_rvalid;
-wire [31:0]   ps_s_axi_hp0_wdata;
-wire [11:0]   ps_s_axi_hp0_wid;
+wire [63:0]   ps_s_axi_hp0_wdata;
+wire [5:0]    ps_s_axi_hp0_wid;
 wire          ps_s_axi_hp0_wlast;
 wire          ps_s_axi_hp0_wready;
-wire [3:0]    ps_s_axi_hp0_wstrb;
+wire [7:0]    ps_s_axi_hp0_wstrb;
 wire          ps_s_axi_hp0_wvalid;
 //}}}
 //auto regs{{{
@@ -524,14 +524,14 @@ assign ps_s_axi_hp0_aresetn     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_
 assign ps_s_axi_hp0_awready     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWREADY   ;
 assign ps_s_axi_hp0_wready      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WREADY    ;
 assign ps_s_axi_hp0_bvalid      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BVALID    ;
-assign ps_s_axi_hp0_bid[11:0]   = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BID[11:0] ;
-assign ps_s_axi_hp0_bresp[1:0]  = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BRESP[1:0];
+assign ps_s_axi_hp0_bid         = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BID ;
+assign ps_s_axi_hp0_bresp       = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BRESP;
 assign ps_s_axi_hp0_arready     = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARREADY   ;
 assign ps_s_axi_hp0_rvalid      = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RVALID    ;
-assign ps_s_axi_hp0_rid[11:0]   = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RID[11:0] ;
-assign ps_s_axi_hp0_rdata[31:0] = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RDATA[31:0];
+assign ps_s_axi_hp0_rid         = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RID ;
+assign ps_s_axi_hp0_rdata       = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RDATA;
 assign ps_s_axi_hp0_rlast       = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RLAST     ;
-assign ps_s_axi_hp0_rresp[1:0]  = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RRESP[1:0];
+assign ps_s_axi_hp0_rresp       = tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RRESP;
 initial begin
     forever begin
 
@@ -543,32 +543,32 @@ initial begin
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.axi_interconnect_0.M00_AXI_arready= 1'b0;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.axi_interconnect_0.M00_AXI_rvalid = 1'b0;
 
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARADDR[31:0]  = ps_s_axi_hp0_araddr[31:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARBURST[1:0]  = ps_s_axi_hp0_arburst[1:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARCACHE[3:0]  = ps_s_axi_hp0_arcache[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARID[11:0]    = ps_s_axi_hp0_arid[11:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLEN[3:0]    = ps_s_axi_hp0_arlen[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLOCK[1:0]   = ps_s_axi_hp0_arlock[1:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARPROT[2:0]   = ps_s_axi_hp0_arprot[2:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARQOS[3:0]    = ps_s_axi_hp0_arqos[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARSIZE[2:0]   = ps_s_axi_hp0_arsize[2:0];
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARADDR  = ps_s_axi_hp0_araddr;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARBURST  = ps_s_axi_hp0_arburst;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARCACHE  = ps_s_axi_hp0_arcache;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARID    = ps_s_axi_hp0_arid;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLEN    = ps_s_axi_hp0_arlen;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLOCK   = ps_s_axi_hp0_arlock;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARPROT   = ps_s_axi_hp0_arprot;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARQOS    = ps_s_axi_hp0_arqos;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARSIZE   = ps_s_axi_hp0_arsize;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARVALID       = ps_s_axi_hp0_arvalid;
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWADDR[31:0]  = ps_s_axi_hp0_awaddr[31:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWBURST[1:0]  = ps_s_axi_hp0_awburst[1:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWCACHE[3:0]  = ps_s_axi_hp0_awcache[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWID[11:0]    = ps_s_axi_hp0_awid[11:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLEN[3:0]    = ps_s_axi_hp0_awlen[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLOCK[1:0]   = ps_s_axi_hp0_awlock[1:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWPROT[2:0]   = ps_s_axi_hp0_awprot[2:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWQOS[3:0]    = ps_s_axi_hp0_awqos[3:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWSIZE[2:0]   = ps_s_axi_hp0_awsize[2:0];
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWADDR  = ps_s_axi_hp0_awaddr;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWBURST  = ps_s_axi_hp0_awburst;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWCACHE  = ps_s_axi_hp0_awcache;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWID    = ps_s_axi_hp0_awid;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLEN    = ps_s_axi_hp0_awlen;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLOCK   = ps_s_axi_hp0_awlock;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWPROT   = ps_s_axi_hp0_awprot;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWQOS    = ps_s_axi_hp0_awqos;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWSIZE   = ps_s_axi_hp0_awsize;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWVALID       = ps_s_axi_hp0_awvalid;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BREADY        = ps_s_axi_hp0_bready;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RREADY        = ps_s_axi_hp0_rready;
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WDATA[31:0]   = ps_s_axi_hp0_wdata[31:0];
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WID[11:0]     = ps_s_axi_hp0_wid[11:0];
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WDATA   = ps_s_axi_hp0_wdata;
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WID     = ps_s_axi_hp0_wid;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WLAST         = ps_s_axi_hp0_wlast;
-        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WSTRB[3:0]    = ps_s_axi_hp0_wstrb[3:0];
+        force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WSTRB    = ps_s_axi_hp0_wstrb;
         force tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WVALID        = ps_s_axi_hp0_wvalid;
 
         @(event_nfps_bfm_release);
@@ -579,43 +579,82 @@ initial begin
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.axi_interconnect_0.M00_AXI_arready   ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.axi_interconnect_0.M00_AXI_rvalid    ;
 
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARADDR[31:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARBURST[1:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARCACHE[3:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARID[11:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLEN[3:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLOCK[1:0] ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARPROT[2:0] ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARQOS[3:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARSIZE[2:0] ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARADDR      ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARBURST     ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARCACHE     ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARID       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLEN       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARLOCK      ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARPROT      ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARQOS       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARSIZE      ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_ARVALID     ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWADDR[31:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWBURST[1:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWCACHE[3:0];
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWID[11:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLEN[3:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLOCK[1:0] ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWPROT[2:0] ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWQOS[3:0]  ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWSIZE[2:0] ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWADDR     ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWBURST     ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWCACHE     ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWID       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLEN       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWLOCK      ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWPROT      ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWQOS       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWSIZE      ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_AWVALID     ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_BREADY      ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_RREADY      ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WDATA[31:0] ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WID[11:0]   ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WDATA       ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WID        ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WLAST       ;
-        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WSTRB[3:0]  ;
+        release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WSTRB       ;
         release tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.PS.inst.S_AXI_HP0.S_WVALID      ;
     end
 end
 
 task trigger_nfps_bfm_force;
-    $display("[%0d], Force   PS.inst.S_AXI_HP0.S-AXI (    connected to u_nfps BFM model)...", $time);
+    $display("[%0d], Force   PS.inst.S_AXI_HP0.S-AXI (    connected to u_nfps64 BFM model)...", $time);
     ->event_nfps_bfm_force;
 endtask
 task trigger_nfps_bfm_release;
     ->event_nfps_bfm_release;
-    $display("[%0d], Release PS.inst.S_AXI_HP0.S-AXI (dis-connected to u_nfps BFM model)...", $time);
+    $display("[%0d], Release PS.inst.S_AXI_HP0.S-AXI (dis-connected to u_nfps64 BFM model)...", $time);
+endtask
+
+task wait_V2NFC100DDR_to_idle;
+    input ch;
+    begin
+        $display("[%0d], Wait V2NFC100DDR %d to idle start...", $time, ch);
+        if(ch == 0) begin
+            // NAND_OP Start
+            wait( tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iCMDValid   ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oCMDReady   ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oReadValid  ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iReadReady  ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iWriteValid ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oWriteReady  );
+            // NAND_OP Completed
+            wait((tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iCMDValid   == 1'b0) && 
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oCMDReady   == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oReadValid  == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iReadReady  == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.iWriteValid == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_0.oWriteReady == 1'b0)  );
+        end else begin
+            // NAND_OP Start
+            wait( tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iCMDValid   ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oCMDReady   ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oReadValid  ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iReadReady  ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iWriteValid ||
+                  tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oWriteReady  );
+            // NAND_OP Completed
+            wait((tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iCMDValid   == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oCMDReady   == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oReadValid  == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iReadReady  == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.iWriteValid == 1'b0) &&
+                 (tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.V2NFC100DDR_1.oWriteReady == 1'b0)  );
+        end
+        $display("[%0d], Wait V2NFC100DDR %d to idle completed...", $time, ch);
+    end
 endtask
 
 axi_master_bfm_core #(
@@ -623,7 +662,7 @@ axi_master_bfm_core #(
         .ERROR_RESP_FINISH  ( 1             ),
 
         .ADDR_WIDTH         ( 32            ),
-        .DATA_WIDTH         ( 32            ),
+        .DATA_WIDTH         ( 64            ),
         .ID_WIDTH           ( 6             ),
         .SIZE_WIDTH         ( 3             ),
         .QOS_WIDTH          ( 4             ),
@@ -635,51 +674,51 @@ axi_master_bfm_core #(
         .CFG_W_MAX_LATENCY  ( 200           ),  //ns
         .CFG_R_MAX_LATENCY  ( 200           ),  //ns
         .AXI_VERSION        ( 3             ) 
-        ) u_nfps( /*AUTOINST*/
-         .aclk    ( ps_s_axi_hp0_aclk                     )    //I                    u_nfps    
-        ,.aresetn ( ps_s_axi_hp0_aresetn                  )    //I                    u_nfps    
-        ,.awaddr  ( ps_s_axi_hp0_awaddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_nfps    
-        ,.awburst ( ps_s_axi_hp0_awburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_nfps    
-        ,.awid    ( ps_s_axi_hp0_awid[11:0]               )    //O  [ID_WIDTH-1:0]    u_nfps    
-        ,.awlen   ( ps_s_axi_hp0_awlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_nfps    
-        ,.awsize  ( ps_s_axi_hp0_awsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_nfps    
-        ,.awprot  ( ps_s_axi_hp0_awprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_nfps    
-        ,.awcache ( ps_s_axi_hp0_awcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_nfps    
-        ,.awlock  ( ps_s_axi_hp0_awlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_nfps    
-        ,.awqos   ( ps_s_axi_hp0_awqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_nfps    
-        ,.awvalid ( ps_s_axi_hp0_awvalid                  )    //O                    u_nfps    
-        ,.awready ( ps_s_axi_hp0_awready                  )    //I                    u_nfps    
-        ,.wvalid  ( ps_s_axi_hp0_wvalid                   )    //O                    u_nfps    
-        ,.wready  ( ps_s_axi_hp0_wready                   )    //I                    u_nfps    
-        ,.wid     ( ps_s_axi_hp0_wid[11:0]                )    //O  [ID_WIDTH-1:0]    u_nfps    
-        ,.wdata   ( ps_s_axi_hp0_wdata[31:0]              )    //O  [DATA_WIDTH-1:0]  u_nfps    
-        ,.wstrb   ( ps_s_axi_hp0_wstrb[3:0]               )    //O  [STRB_WIDTH-1:0]  u_nfps    
-        ,.wlast   ( ps_s_axi_hp0_wlast                    )    //O                    u_nfps    
-        ,.bvalid  ( ps_s_axi_hp0_bvalid                   )    //I                    u_nfps    
-        ,.bready  ( ps_s_axi_hp0_bready                   )    //O                    u_nfps    
-        ,.bid     ( ps_s_axi_hp0_bid[11:0]                )    //I  [ID_WIDTH-1:0]    u_nfps    
-        ,.bresp   ( ps_s_axi_hp0_bresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_nfps    
-        ,.arvalid ( ps_s_axi_hp0_arvalid                  )    //O                    u_nfps    
-        ,.arready ( ps_s_axi_hp0_arready                  )    //I                    u_nfps    
-        ,.arid    ( ps_s_axi_hp0_arid[11:0]               )    //O  [ID_WIDTH-1:0]    u_nfps    
-        ,.araddr  ( ps_s_axi_hp0_araddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_nfps    
-        ,.arburst ( ps_s_axi_hp0_arburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_nfps    
-        ,.arlen   ( ps_s_axi_hp0_arlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_nfps    
-        ,.arsize  ( ps_s_axi_hp0_arsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_nfps    
-        ,.arprot  ( ps_s_axi_hp0_arprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_nfps    
-        ,.arcache ( ps_s_axi_hp0_arcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_nfps    
-        ,.arlock  ( ps_s_axi_hp0_arlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_nfps    
-        ,.arqos   ( ps_s_axi_hp0_arqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_nfps    
-        ,.rvalid  ( ps_s_axi_hp0_rvalid                   )    //I                    u_nfps    
-        ,.rready  ( ps_s_axi_hp0_rready                   )    //O                    u_nfps    
-        ,.rid     ( ps_s_axi_hp0_rid[11:0]                )    //I  [ID_WIDTH-1:0]    u_nfps    
-        ,.rdata   ( ps_s_axi_hp0_rdata[31:0]              )    //I  [DATA_WIDTH-1:0]  u_nfps    
-        ,.rlast   ( ps_s_axi_hp0_rlast                    )    //I                    u_nfps    
-        ,.rresp   ( ps_s_axi_hp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_nfps    
+        ) u_nfps64( /*AUTOINST*/
+         .aclk    ( ps_s_axi_hp0_aclk                     )    //I                    u_nfps64    
+        ,.aresetn ( ps_s_axi_hp0_aresetn                  )    //I                    u_nfps64    
+        ,.awaddr  ( ps_s_axi_hp0_awaddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_nfps64    
+        ,.awburst ( ps_s_axi_hp0_awburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_nfps64    
+        ,.awid    ( ps_s_axi_hp0_awid[5:0]                )    //O  [ID_WIDTH-1:0]    u_nfps64    
+        ,.awlen   ( ps_s_axi_hp0_awlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_nfps64    
+        ,.awsize  ( ps_s_axi_hp0_awsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_nfps64    
+        ,.awprot  ( ps_s_axi_hp0_awprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_nfps64    
+        ,.awcache ( ps_s_axi_hp0_awcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_nfps64    
+        ,.awlock  ( ps_s_axi_hp0_awlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_nfps64    
+        ,.awqos   ( ps_s_axi_hp0_awqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_nfps64    
+        ,.awvalid ( ps_s_axi_hp0_awvalid                  )    //O                    u_nfps64    
+        ,.awready ( ps_s_axi_hp0_awready                  )    //I                    u_nfps64    
+        ,.wvalid  ( ps_s_axi_hp0_wvalid                   )    //O                    u_nfps64    
+        ,.wready  ( ps_s_axi_hp0_wready                   )    //I                    u_nfps64    
+        ,.wid     ( ps_s_axi_hp0_wid[5:0]                 )    //O  [ID_WIDTH-1:0]    u_nfps64    
+        ,.wdata   ( ps_s_axi_hp0_wdata[63:0]              )    //O  [DATA_WIDTH-1:0]  u_nfps64    
+        ,.wstrb   ( ps_s_axi_hp0_wstrb[7:0]               )    //O  [STRB_WIDTH-1:0]  u_nfps64    
+        ,.wlast   ( ps_s_axi_hp0_wlast                    )    //O                    u_nfps64    
+        ,.bvalid  ( ps_s_axi_hp0_bvalid                   )    //I                    u_nfps64    
+        ,.bready  ( ps_s_axi_hp0_bready                   )    //O                    u_nfps64    
+        ,.bid     ( ps_s_axi_hp0_bid[5:0]                 )    //I  [ID_WIDTH-1:0]    u_nfps64    
+        ,.bresp   ( ps_s_axi_hp0_bresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_nfps64    
+        ,.arvalid ( ps_s_axi_hp0_arvalid                  )    //O                    u_nfps64    
+        ,.arready ( ps_s_axi_hp0_arready                  )    //I                    u_nfps64    
+        ,.arid    ( ps_s_axi_hp0_arid[5:0]                )    //O  [ID_WIDTH-1:0]    u_nfps64    
+        ,.araddr  ( ps_s_axi_hp0_araddr[31:0]             )    //O  [ADDR_WIDTH-1:0]  u_nfps64    
+        ,.arburst ( ps_s_axi_hp0_arburst[1:0]             )    //O  [BURST_WIDTH-1:0] u_nfps64    
+        ,.arlen   ( ps_s_axi_hp0_arlen[3:0]               )    //O  [LEN_WIDTH-1:0]   u_nfps64    
+        ,.arsize  ( ps_s_axi_hp0_arsize[2:0]              )    //O  [SIZE_WIDTH-1:0]  u_nfps64    
+        ,.arprot  ( ps_s_axi_hp0_arprot[2:0]              )    //O  [PROT_WIDTH-1:0]  u_nfps64    
+        ,.arcache ( ps_s_axi_hp0_arcache[3:0]             )    //O  [CACHE_WIDTH-1:0] u_nfps64    
+        ,.arlock  ( ps_s_axi_hp0_arlock[1:0]              )    //O  [LOCK_WIDTH-1:0]  u_nfps64    
+        ,.arqos   ( ps_s_axi_hp0_arqos[3:0]               )    //O  [QOS_WIDTH-1:0]   u_nfps64    
+        ,.rvalid  ( ps_s_axi_hp0_rvalid                   )    //I                    u_nfps64    
+        ,.rready  ( ps_s_axi_hp0_rready                   )    //O                    u_nfps64    
+        ,.rid     ( ps_s_axi_hp0_rid[5:0]                 )    //I  [ID_WIDTH-1:0]    u_nfps64    
+        ,.rdata   ( ps_s_axi_hp0_rdata[63:0]              )    //I  [DATA_WIDTH-1:0]  u_nfps64    
+        ,.rlast   ( ps_s_axi_hp0_rlast                    )    //I                    u_nfps64    
+        ,.rresp   ( ps_s_axi_hp0_rresp[1:0]               )    //I  [RESP_WIDTH-1:0]  u_nfps64    
 );
 
 
-reg [31:0] tmp_rdata;
+reg [63:0] tmp_rdata;
 initial begin
     @(posedge tb_ps_porb);
     #100;
