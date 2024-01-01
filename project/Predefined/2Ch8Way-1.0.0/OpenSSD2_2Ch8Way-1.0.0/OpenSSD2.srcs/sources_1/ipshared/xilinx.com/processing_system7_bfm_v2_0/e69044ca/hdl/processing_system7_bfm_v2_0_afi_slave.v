@@ -666,6 +666,9 @@ module processing_system7_bfm_v2_0_afi_slave (
         S_WREADY = 1'b1;
         burst_data[wd_cnt[int_cntr_width-2:0]]        = S_WDATA;
         burst_valid_bytes[wd_cnt[int_cntr_width-2:0]] = S_WSTRB;
+        @(posedge S_ACLK);
+        #1
+        S_WREADY = 1'b0;
      end else begin
         S_WREADY = 1'b0;
      end
@@ -1177,7 +1180,7 @@ module processing_system7_bfm_v2_0_afi_slave (
         #1;
         for(temp_read_burst_i=0; temp_read_burst_i<=tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]; ) begin
             S_RVALID = 1'b1;
-            if(temp_read_burst_i == tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]-1) begin
+            if(temp_read_burst_i == tmp_fifo_rd[rd_afi_ln_msb : rd_afi_ln_lsb]) begin
                 S_RLAST = 1'b1;
             end else begin
                 S_RLAST = 1'b0;

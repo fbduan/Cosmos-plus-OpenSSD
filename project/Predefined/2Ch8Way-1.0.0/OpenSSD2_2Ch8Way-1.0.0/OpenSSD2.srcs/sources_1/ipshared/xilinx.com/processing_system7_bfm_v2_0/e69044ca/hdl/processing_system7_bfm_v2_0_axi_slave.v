@@ -1119,7 +1119,7 @@ module processing_system7_bfm_v2_0_axi_slave (
         #1;
         for(temp_read_burst_i=0; temp_read_burst_i<=arlen[rd_cnt[int_rd_cntr_width-2:0]]; ) begin
             S_RVALID = 1'b1;
-            if(temp_read_burst_i == arlen[rd_cnt[int_rd_cntr_width-2:0]]-1) begin
+            if(temp_read_burst_i == arlen[rd_cnt[int_rd_cntr_width-2:0]]) begin
                 S_RLAST = 1'b1;
             end else begin
                 S_RLAST = 1'b0;

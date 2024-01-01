@@ -18,8 +18,10 @@
     // set Feature-10h (0x0000_0003) to OCM(0x0001_0004)
     u_nfps64.single_write(8, 32'h0001_0000, 64'h0000_0003_0000_0000);
     ////u_nfps64.single_write(4, 32'h0001_0004, 32'h0000_0003);
-    // set Feature-01h (0x0000_0000) to OCM(0x0001_0008)
-    u_nfps64.single_write(8, 32'h0001_0008, 64'h0000_0000_0000_0000);
+    // set Feature-01h (0x0000_0004) to OCM(0x0001_0008) -> mode-SDR-M4
+    // u_nfps64.single_write(8, 32'h0001_0008, 64'h0000_0000_0000_0004);
+    // set Feature-01h (0x0000_0011) to OCM(0x0001_0008) -> mode-DDR2-M1
+    u_nfps64.single_write(8, 32'h0001_0008, 64'h0000_0000_0000_0011);
 
     u_nfps64.single_read(8, 32'h0001_0000, tmp_rdata[63:0]);
     ////u_nfps64.single_read(4, 32'h0001_0004, tmp_rdata[31:0]);
@@ -41,14 +43,16 @@
     //:: wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] == 8'hFF);
     //:: $display("[%0d], V2NFC100DDR-0 reset (Way-0) end.....", $time);
 
+if(1) begin: V2NFC100DDR_reset_way3
     $display("[%0d], V2NFC100DDR-0 reset (Way-3) start...", $time);
-    // set WaySelection to 3'h0
+    // set WaySelection to 3'h3
     u_psnf.single_write(4, 32'h43C0_001C, 32'h0000_0003);
     // set UProgramSelect to 8'h01 and HPQ
     u_psnf.single_write(4, 32'h43C0_0000, 32'h8000_0001);
     wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] != 8'hFF);
     wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] == 8'hFF);
     $display("[%0d], V2NFC100DDR-0 reset (Way-3) end.....", $time);
+end
 
 if(0) begin: erase_way3_rowA5A5A5
     //Erase: Way-8'h03, Row-24'hA5_A5A5
@@ -74,7 +78,7 @@ end
     $display("[%0d], setFT: Way-3'h3 start...", $time);
     // set WaySelection to 8'h03
     u_psnf.single_write(4, 32'h43C0_001C, 32'h0000_0003);
-    // set UserData to 32'hFFFC_0000
+    // set UserData to 32'h0001_0000
     u_psnf.single_write(4, 32'h43C0_0008, 32'h0001_0000);
     // set UProgramSelect to 8'h06 and HPQ
     u_psnf.single_write(4, 32'h43C0_0000, 32'h8000_0006);
@@ -87,6 +91,20 @@ end
     //>: wait(tb_OpenSSD2_Top.u_OpenSSD2_wrapper_0.OpenSSD2_i.I_NAND_CH0_RB[7:0] == 8'hFF);
     wait_V2NFC100DDR_to_idle(0);
     $display("[%0d], Tiger4NSC_0 SetFeature finished...", $time);
+
+    //readStatus: Way-8'h03
+    $display("[%0d], MNC_N_readST: Way-3'h3 start...", $time);
+    // set WaySelection to 8'h03
+    u_psnf.single_write(4, 32'h43C0_001C, 32'h0000_0003);
+    // set CmpltAddress to 32'h0003_0000
+    u_psnf.single_write(4, 32'h43C0_0018, 32'h0003_0000);
+    // set UProgramSelect to 8'h06 and HPQ
+    u_psnf.single_write(4, 32'h43C0_0000, 32'h8000_0029);
+
+    // Wait Channel idle:
+    $display("[%0d], Tiger4NSC_0 ReadStatus start...", $time);
+    wait_V2NFC100DDR_to_idle(0);
+    $display("[%0d], Tiger4NSC_0 ReadStatus finished...", $time);
 
 
     //getFT: Way-8'h03

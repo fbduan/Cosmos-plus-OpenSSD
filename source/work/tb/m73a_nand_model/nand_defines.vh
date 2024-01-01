@@ -45,4 +45,5 @@
 `endif `endif `endif `endif `endif `endif
 
 `undef x16
+`define NAND_SYNC
 

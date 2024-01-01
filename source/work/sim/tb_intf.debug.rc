@@ -1,0 +1,879 @@
+Magic 271485
+Revision Verdi_O-2018.09-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 27 2149 871 379 225
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+windowTimeUnit 1ns
+
+; waveform viewport range
+zoom 56188.357997 64854.276481 1n
+cursor 60445.000000
+marker 60555.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 314
+; marker line index
+markerPos 359
+
+; logical expression list
+; addExprSig expr_name expression_string
+activeDirFile "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+
+addExprSig -b 1 -n UUU Tiger4NSC_0_CSR_2C_ChBusy (!"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_D\
+ispatcher/rChStatus")& "/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2\
+_i/Tiger4NSC_0/Inst_Dispatcher/wReqQEmpty"& "/tb_OpenSSD2_Top/u_OpenSS\
+D2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/iPCGWCmdReady"
+
+; logical expression list
+; addExprSig expr_name expression_string
+
+addExprSig -b 1 -n UUU Tiger4NSC_1_CSR_2C_ChBusy (!"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/Inst_D\
+ispatcher/rChStatus")& "/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2\
+_i/Tiger4NSC_1/Inst_Dispatcher/wReqQEmpty"& "/tb_OpenSSD2_Top/u_OpenSS\
+D2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/Inst_Dispatcher/iPCGWCmdReady"
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+aliasmapname Dispatcher.rReqQCurState
+nalias ReqQState_Idle		1'b0		NULL
+nalias ReqQState_Push		1'b1		NULL
+
+aliasmapname Dispatcher.rCurState
+nalias State_WritecmdToModule		3'b010		NULL
+nalias State_Decode		3'b011		NULL
+nalias State_ReadcmdToModule		3'b110		NULL
+nalias State_UpTransfer		3'b111		NULL
+nalias State_Halt		3'b000		NULL
+nalias State_FirstFetch		3'b001		NULL
+nalias State_NextRequest		3'b100		NULL
+nalias State_DownTransfer		3'b101		NULL
+
+aliasmapname NPCG_Toggle_BNC_B_erase.rCurState
+nalias State_Idle		4'b0000		NULL
+nalias State_NTMIssue		4'b0100		NULL
+nalias State_NCALIssue		4'b0001		NULL
+nalias State_NCmdWrite1		4'b0101		NULL
+nalias State_NAddrWrite0		4'b0010		NULL
+nalias State_WaitDone		4'b1100		NULL
+nalias State_NAddrWrite1		4'b0110		NULL
+nalias State_NCmdWrite0		4'b0011		NULL
+nalias State_NAddrWrite2		4'b0111		NULL
+
+aliasmapname NPCG_Toggle_bCMD_manager.rMNG_cur_state
+nalias MNG_RUNNG		5'b01000		NULL
+nalias MNG_READY		5'b00010		NULL
+nalias MNG_bH_Zd		5'b10000		NULL
+nalias MNG_START		5'b00100		NULL
+nalias MNG_RESET		5'b00001		NULL
+
+aliasmapname NPCG_Toggle_SCC_N_poe.rCurState
+nalias State_POEWait		3'b011		NULL
+nalias State_Idle		3'b000		NULL
+nalias State_POECmdIssue		3'b001		NULL
+
+aliasmapname NPCG_Toggle_SCC_PO_reset.rCurState
+nalias State_Idle		2'b00		NULL
+nalias State_POResetIssue		2'b01		NULL
+nalias State_POWait		2'b11		NULL
+
+aliasmapname NPCG_Toggle_SCC_PI_reset.rCurState
+nalias State_PIWait		3'b011		NULL
+nalias State_Idle		3'b000		NULL
+nalias State_PIResetIssue		3'b001		NULL
+
+aliasmapname NPCG_Toggle_MNC_N_init.r_N_i_cur_state
+nalias N_i_READY		6'b000010		NULL
+nalias N_i_00002		6'b001000		NULL
+nalias N_i_00004		6'b100000		NULL
+nalias N_i_RESET		6'b000001		NULL
+nalias N_i_00001		6'b000100		NULL
+nalias N_i_00003		6'b010000		NULL
+
+aliasmapname NPM_Toggle_TIMER.rTIM_cur_state
+nalias TIM_RESET		4'b0001		NULL
+nalias TIM_T10ns		4'b0100		NULL
+nalias TIM_READY		4'b0010		NULL
+nalias TIM_TLOOP		4'b1000		NULL
+
+aliasmapname NPCG_Toggle_MNC_getFT.r_gFT_cur_state
+nalias gFT_WAITD		10'b1000000000		NULL
+nalias gFT_TM2ST		10'b0010000000		NULL
+nalias gFT_TM1ST		10'b0000100000		NULL
+nalias gFT_CALD0		10'b0000001000		NULL
+nalias gFT_READY		10'b0000000010		NULL
+nalias gFT_WTMDN		10'b0100000000		NULL
+nalias gFT_DI_ST		10'b0001000000		NULL
+nalias gFT_CALD1		10'b0000010000		NULL
+nalias gFT_CALST		10'b0000000100		NULL
+nalias gFT_RESET		10'b0000000001		NULL
+
+aliasmapname NPCG_Toggle_MNC_getFT.r_pTF_cur_state
+nalias pTF_WAITD		8'b10000000		NULL
+nalias pTF_CPTP1		8'b00100000		NULL
+nalias pTF_CPTP0		8'b00001000		NULL
+nalias pTF_READY		8'b00000010		NULL
+nalias pTF_PTRSF		8'b01000000		NULL
+nalias pTF_STDB1		8'b00010000		NULL
+nalias pTF_STDB0		8'b00000100		NULL
+nalias pTF_RESET		8'b00000001		NULL
+
+aliasmapname NPM_Toggle_POR.rPOR_cur_state
+nalias POR_RFRST		4'b0100		NULL
+nalias POR_RESET		4'b0001		NULL
+nalias POR_RLOOP		4'b1000		NULL
+nalias POR_READY		4'b0010		NULL
+
+aliasmapname NPM_Toggle_PIR.rPIR_cur_state
+nalias PIR_RDRDL		6'b100000		NULL
+nalias PIR_RLOOP		6'b001000		NULL
+nalias PIR_READY		6'b000010		NULL
+nalias PIR_RDRDF		6'b010000		NULL
+nalias PIR_RFRST		6'b000100		NULL
+nalias PIR_RESET		6'b000001		NULL
+
+aliasmapname NPM_Toggle_DO_tADL_DDR100.rDTO_cur_state
+nalias DTO_WPSAM		9'b100000000		NULL
+nalias DTO_PAUSE		9'b001000000		NULL
+nalias DTO_WPRAM		9'b000010000		NULL
+nalias DTO_DQS01		9'b000000100		NULL
+nalias DTO_RESET		9'b000000001		NULL
+nalias DTO_DQLST		9'b010000000		NULL
+nalias DTO_DQOUT		9'b000100000		NULL
+nalias DTO_DQS02		9'b000001000		NULL
+nalias DTO_READY		9'b000000010		NULL
+nalias DTO_WPSA2		9'b110000000		NULL
+
+aliasmapname NPM_Toggle_DI_DDR100.rREC_cur_state
+nalias REC_WAITS		8'b10000000		NULL
+nalias REC_RELST		8'b00100000		NULL
+nalias REC_RPRAM		8'b00001000		NULL
+nalias REC_READY		8'b00000010		NULL
+nalias REC_RPSAM		8'b01000000		NULL
+nalias REC_RE808		8'b00010000		NULL
+nalias REC_RESTU		8'b00000100		NULL
+nalias REC_RESET		8'b00000001		NULL
+
+aliasmapname NPM_Toggle_DI_DDR100.rDQI_cur_state
+nalias DQI_WAITS		9'b100000000		NULL
+nalias DQI_INm21		9'b001000000		NULL
+nalias DQI_INm43		9'b000010000		NULL
+nalias DQI_WTVIN		9'b000000100		NULL
+nalias DQI_RESET		9'b000000001		NULL
+nalias DQI_INm1Z		9'b010000000		NULL
+nalias DQI_INm32		9'b000100000		NULL
+nalias DQI_IFIFO		9'b000001000		NULL
+nalias DQI_READY		9'b000000010		NULL
+
+aliasmapname NPM_Toggle_DI_DDR100.rDQO_cur_state
+nalias DQO_P_BUS		7'b0100000		NULL
+nalias DQO_P_PHY		7'b0001000		NULL
+nalias DQO_READY		7'b0000010		NULL
+nalias DQO_WAITS		7'b1000000		NULL
+nalias DQO_OLOOP		7'b0010000		NULL
+nalias DQO_WTVIN		7'b0000100		NULL
+nalias DQO_RESET		7'b0000001		NULL
+
+aliasmapname NPM_Toggle_CAL_DDR100.rCPT_cur_state
+nalias CPT_READY		5'b00010		NULL
+nalias CPT_SLOOP		5'b01000		NULL
+nalias CPT_RESET		5'b00001		NULL
+nalias CPT_SFRST		5'b00100		NULL
+nalias CPT_WAITS		5'b10000		NULL
+
+aliasmapname NPM_Toggle_CAL_DDR100.rLCH_cur_state
+nalias LCH_READY		8'b00000010		NULL
+nalias LCH_WDQSH		8'b00001000		NULL
+nalias LCH_ST002		8'b00100000		NULL
+nalias LCH_ST004		8'b10000000		NULL
+nalias LCH_RESET		8'b00000001		NULL
+nalias LCH_PREST		8'b00000100		NULL
+nalias LCH_ST001		8'b00010000		NULL
+nalias LCH_ST003		8'b01000000		NULL
+
+aliasmapname NPM_Toggle_PHY_B_Reset.rPBR_cur_state
+nalias PBR_RFRST		4'b0100		NULL
+nalias PBR_RESET		4'b0001		NULL
+nalias PBR_RLOOP		4'b1000		NULL
+nalias PBR_READY		4'b0010		NULL
+
+addGroup "PS-M-GP0" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+activeDirFile "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_ARQOS[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARLOCK[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARCACHE[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_ARID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARBURST[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARSIZE[2:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARLEN[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARADDR[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_RID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RDATA[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RRESP[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RLAST
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_RREADY
+endSubGroup "r"
+addSubGroup "aw" -e FALSE
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_AWQOS[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWLOCK[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWCACHE[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_AWID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWBURST[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWSIZE[2:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWLEN[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWADDR[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_AWREADY
+endSubGroup "aw"
+addSubGroup "w" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_WID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WDATA[31:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WSTRB[3:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WLAST
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_WREADY
+endSubGroup "w"
+addSubGroup "b" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS_M_AXI_GP0_BID[11:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BRESP[1:0]
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BVALID
+addSignal -h 15 -holdScope PS_M_AXI_GP0_BREADY
+endSubGroup "b"
+addGroup "PS-S-HP0" -e FALSE
+addSubGroup "ar" -e FALSE
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARLOCK[1:0]
+addSignal -h 15 -holdScope S_ARCACHE[3:0]
+addSignal -h 15 -holdScope S_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ARBURST[1:0]
+addSignal -h 15 -holdScope S_ARSIZE[2:0]
+addSignal -h 15 -holdScope S_ARLEN[3:0]
+addSignal -h 15 -holdScope S_ARADDR[31:0]
+addSignal -h 15 -holdScope S_ARVALID
+addSignal -h 15 -holdScope S_ARREADY
+endSubGroup "ar"
+addSubGroup "r" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_RDATA[63:0]
+addSignal -h 15 -holdScope S_RRESP[1:0]
+addSignal -h 15 -holdScope S_RLAST
+addSignal -h 15 -holdScope S_RVALID
+addSignal -h 15 -holdScope S_RREADY
+endSubGroup "r"
+addSubGroup "aw" -e FALSE
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWLOCK[1:0]
+addSignal -h 15 -holdScope S_AWCACHE[3:0]
+addSignal -h 15 -holdScope S_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_AWID[5:0]
+addSignal -h 15 -holdScope S_AWBURST[1:0]
+addSignal -h 15 -holdScope S_AWSIZE[2:0]
+addSignal -h 15 -holdScope S_AWLEN[3:0]
+addSignal -h 15 -holdScope S_AWADDR[31:0]
+addSignal -h 15 -holdScope S_AWVALID
+addSignal -h 15 -holdScope S_AWREADY
+endSubGroup "aw"
+addSubGroup "w" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_ACLK
+addSignal -h 15 -holdScope S_WDATA[63:0]
+addSignal -h 15 -holdScope S_WSTRB[7:0]
+addSignal -h 15 -holdScope S_WLAST
+addSignal -h 15 -holdScope S_WVALID
+addSignal -h 15 -holdScope S_WREADY
+endSubGroup "w"
+addSubGroup "b" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/S_AXI_HP0/S_BRESP[1:0]
+addSignal -h 15 -holdScope S_BVALID
+addSignal -h 15 -holdScope S_BREADY
+endSubGroup "b"
+addGroup "Tiger4NSC-0"
+addSubGroup "C-AXI" -e FALSE
+addSubGroup "ar" -e FALSE
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_ARADDR[31:0]
+addSignal -h 15 -holdScope C_ARVALID
+addSignal -h 15 -holdScope C_ARREADY
+endSubGroup "ar"
+addSubGroup "r" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_RDATA[31:0]
+addSignal -h 15 -holdScope C_RRESP[1:0]
+addSignal -h 15 -holdScope C_RVALID
+addSignal -h 15 -holdScope C_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_AWADDR[31:0]
+addSignal -h 15 -holdScope C_AWVALID
+addSignal -h 15 -holdScope C_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_WDATA[31:0]
+addSignal -h 15 -holdScope C_WSTRB[3:0]
+addSignal -h 15 -holdScope C_WVALID
+addSignal -h 15 -holdScope C_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/C_BRESP[1:0]
+addSignal -h 15 -holdScope C_BVALID
+addSignal -h 15 -holdScope C_BREADY
+endSubGroup "b"
+endSubGroup "C-AXI"
+addSubGroup "D-AXI"
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_ARCACHE[3:0]
+addSignal -h 15 -holdScope D_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_ARBURST[1:0]
+addSignal -h 15 -holdScope D_ARSIZE[2:0]
+addSignal -h 15 -holdScope D_ARLEN[3:0]
+addSignal -h 15 -holdScope D_ARADDR[31:0]
+addSignal -h 15 -holdScope D_ARVALID
+addSignal -h 15 -holdScope D_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_RDATA[31:0]
+addSignal -h 15 -holdScope D_RRESP[1:0]
+addSignal -h 15 -holdScope D_RLAST
+addSignal -h 15 -holdScope D_RVALID
+addSignal -h 15 -holdScope D_RREADY
+endSubGroup "r"
+addSubGroup "aw" -e FALSE
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_AWCACHE[3:0]
+addSignal -h 15 -holdScope D_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_AWBURST[1:0]
+addSignal -h 15 -holdScope D_AWSIZE[2:0]
+addSignal -h 15 -holdScope D_AWLEN[3:0]
+addSignal -h 15 -holdScope D_AWADDR[31:0]
+addSignal -h 15 -holdScope D_AWVALID
+addSignal -h 15 -holdScope D_AWREADY
+endSubGroup "aw"
+addSubGroup "w" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_WDATA[31:0]
+addSignal -h 15 -holdScope D_WSTRB[3:0]
+addSignal -h 15 -holdScope D_WLAST
+addSignal -h 15 -holdScope D_WVALID
+addSignal -h 15 -holdScope D_WREADY
+endSubGroup "w"
+addSubGroup "b" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/D_BRESP[1:0]
+addSignal -h 15 -holdScope D_BVALID
+addSignal -h 15 -holdScope D_BREADY
+endSubGroup "b"
+endSubGroup "D-AXI"
+addSubGroup "ToV2NFC100DDR_0"
+addSubGroup "Cmd"
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/oOpcode[5:0]
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 -holdScope oTargetID[4:0]
+addSignal -h 15 -holdScope oSourceID[4:0]
+addSignal -h 15 -holdScope oAddress[31:0]
+addSignal -h 15 -holdScope oLength[15:0]
+addSignal -h 15 -holdScope oCMDValid
+addSignal -h 15 -holdScope iCMDReady
+endSubGroup "Cmd"
+addSubGroup "Data" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/oWriteData[31:0]
+addSignal -h 15 -holdScope oWriteLast
+addSignal -h 15 -holdScope oWriteValid
+addSignal -h 15 -holdScope iWriteReady
+addSignal -h 15 -holdScope iReadData[31:0]
+addSignal -h 15 -holdScope iReadLast
+addSignal -h 15 -holdScope iReadValid
+addSignal -h 15 -holdScope oReadReady
+addSignal -h 15 -holdScope iReadyBusy[7:0]
+endSubGroup "Data"
+endSubGroup "ToV2NFC100DDR_0"
+addSubGroup "CSR"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/rUProgramSelect[31:0]
+addSignal -h 15 -holdScope rRowAddress[23:0]
+addSignal -h 15 -holdScope rUserData[31:0]
+addSignal -h 15 -holdScope rDataAddress[31:0]
+addSignal -h 15 -holdScope rSpareAddress[31:0]
+addSignal -h 15 -holdScope rErrCntAddress[31:0]
+addSignal -h 15 -holdScope rCmpltAddress[31:0]
+addSignal -h 15 -holdScope rWaySelection[7:0]
+addSignal -h 15 -holdScope rChStatus
+addSignal -h 15 -holdScope iWaysReadybusy[7:0]
+addSignal -h 15 -holdScope rColAddress[15:0]
+addSignal -h 15 /Tiger4NSC_0_CSR_2C_ChBusy
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/wIdleTimeCounter[31:0]
+addSignal -h 15 -holdScope wReqQCount[7:0]
+addSignal -h 15 -holdScope rPipeliningMode
+endSubGroup "CSR"
+addSubGroup "UProgROM"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/Inst_uProgROM/iClock
+addSignal -h 15 -holdScope iNewProgCursor[7:0]
+addSignal -h 15 -holdScope iNewProgCursorValid
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/Inst_uProgROM/Inst_BRAMPopControl/rReadAddress[7:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/Inst_uProgROM/oProgData[63:0]
+addSignal -h 15 -holdScope oProgDataValid
+addSignal -h 15 -holdScope iProgDataReady
+endSubGroup "UProgROM"
+addSubGroup "Dispatcher"
+addSubGroup "WritecmdToModule" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/wMuxedWOpcode[5:0]
+addSignal -h 15 -holdScope wMuxedWTargetID[4:0]
+addSignal -h 15 -holdScope wMuxedWSourceID[4:0]
+addSignal -h 15 -holdScope wMuxedWAddress[31:0]
+addSignal -h 15 -holdScope wMuxedWLength[15:0]
+addSignal -h 15 -holdScope wMuxedWCmdValid
+endSubGroup "WritecmdToModule"
+addSubGroup "ReadcmdToModule"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/wMuxedROpcode[5:0]
+addSignal -h 15 -holdScope wMuxedRTargetID[4:0]
+addSignal -h 15 -holdScope wMuxedRSourceID[4:0]
+addSignal -h 15 -holdScope wMuxedRAddress[31:0]
+addSignal -h 15 -holdScope wMuxedRLength[15:0]
+addSignal -h 15 -holdScope wMuxedRCmdValid
+endSubGroup "ReadcmdToModule"
+aliasname Dispatcher.rCurState
+addSignal -c ID_ORANGE5 -ls solid -lw 1 -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/rCurState[2:0]
+aliasname Dispatcher.rCurState
+addSignal -h 15 -UNSIGNED -HEX -holdScope rNextState[2:0]
+addSignal -h 15 -holdScope iPCGWCmdReady
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/way_CE_condition_timer/rWay3_Timer[3:0]
+addSignal -h 15 -holdScope wWay3_Ready
+addSignal -h 15 -holdScope wWay3_Deasserted
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/wbCMDLastSet[11:0]
+addSignal -h 15 -holdScope wMNC_N_init_Last
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_TIMER/rTimer[15:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_Mux/iMNC_N_init_PM_NumOfData[15:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/iNumOfData[15:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/Inst_ReqQ_High_Priority/iPushData[287:0]
+addSignal -h 15 -holdScope iPushEnable
+addSignal -h 15 -holdScope oPopData[287:0]
+addSignal -h 15 -holdScope iPopEnable
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/Inst_Dispatcher/wReqQValid
+endSubGroup "Dispatcher"
+addSignal -h 15 /BLANK
+addGroup "V2NFC100DDR_0"
+addSubGroup "intf"
+addSubGroup "cmd"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/iOpcode[5:0]
+addSignal -h 15 -holdScope iTargetID[4:0]
+addSignal -h 15 -holdScope iSourceID[4:0]
+addSignal -h 15 -holdScope iAddress[31:0]
+addSignal -h 15 -holdScope iLength[15:0]
+addSignal -h 15 -holdScope iCMDValid
+addSignal -h 15 -holdScope oCMDReady
+endSubGroup "cmd"
+addSubGroup "data"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/iWriteData[31:0]
+addSignal -h 15 -holdScope iWriteLast
+addSignal -h 15 -holdScope iWriteValid
+addSignal -h 15 -holdScope oWriteReady
+addSignal -h 15 -holdScope oReadData[31:0]
+addSignal -h 15 -holdScope oReadLast
+addSignal -h 15 -holdScope oReadValid
+addSignal -h 15 -holdScope iReadReady
+addSignal -h 15 -holdScope oReadyBusy[7:0]
+endSubGroup "data"
+addSubGroup "NAND"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/O_NAND_CE[7:0]
+addSignal -h 15 -holdScope O_NAND_CLE
+addSignal -h 15 -holdScope O_NAND_ALE
+addSignal -h 15 -holdScope O_NAND_RE_P
+addSignal -h 15 -holdScope O_NAND_RE_N
+addSignal -h 15 -holdScope O_NAND_WE
+addSignal -h 15 -holdScope IO_NAND_DQ[7:0]
+addSignal -h 15 -holdScope IO_NAND_DQS_P
+addSignal -h 15 -holdScope IO_NAND_DQS_N
+addSignal -h 15 -holdScope I_NAND_RB[7:0]
+addSignal -h 15 -holdScope O_NAND_WP
+endSubGroup "NAND"
+addSignal -h 15 /BLANK
+endSubGroup "intf"
+addSubGroup "NPCG_Toggle_Top" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/rTargetWay1B[7:0]
+addSignal -h 15 -holdScope rColAddr2B[15:0]
+addSignal -h 15 -holdScope rRowAddr3B[23:0]
+addSignal -h 15 -holdScope wLength_m1[15:0]
+addSubGroup "blocking_CMD_manager" -e FALSE
+aliasname NPCG_Toggle_bCMD_manager.rMNG_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/blocking_CMD_manager/rMNG_cur_state[4:0]
+addSignal -h 15 -holdScope ibCMDStart
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/wSCC_N_poe_Start
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_SCC_N_poe/iCMDValid
+addSignal -h 15 -holdScope iTargetID[4:0]
+addSignal -h 15 -holdScope iOpcode[5:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/blocking_CMD_manager/ibCMDLast
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/wSCC_N_poe_Last
+endSubGroup "blocking_CMD_manager"
+addSubGroup "SCC_X_init" -e FALSE
+addSubGroup "SCC_N_poe"
+aliasname NPCG_Toggle_SCC_N_poe.rCurState
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_SCC_N_poe/rCurState[2:0]
+endSubGroup "SCC_N_poe"
+addSubGroup "GSCC_PO_reset"
+aliasname NPCG_Toggle_SCC_PO_reset.rCurState
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_SCC_PO_reset/rCurState[1:0]
+endSubGroup "GSCC_PO_reset"
+addSubGroup "SCC_PI_reset"
+aliasname NPCG_Toggle_SCC_PI_reset.rCurState
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_SCC_PI_reset/rCurState[2:0]
+endSubGroup "SCC_PI_reset"
+addSubGroup "MNC_N_init" -e FALSE
+aliasname NPCG_Toggle_MNC_N_init.r_N_i_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_MNC_N_init/r_N_i_cur_state[5:0]
+addSignal -h 15 -holdScope wTM_LoopDone
+addSignal -h 15 -holdScope rTM_counter[3:0]
+addSignal -h 15 -holdScope wTMDone
+endSubGroup "MNC_N_init"
+addSignal -h 15 /BLANK
+endSubGroup "SCC_X_init"
+addSubGroup "BNC_B_Erase" -e FALSE
+aliasname NPCG_Toggle_BNC_B_erase.rCurState
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_BNC_B_erase/rCurState[3:0]
+endSubGroup "BNC_B_Erase"
+addSubGroup "MNC_getFT" -e FALSE
+aliasname NPCG_Toggle_MNC_getFT.r_gFT_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_MNC_getFT/r_gFT_cur_state[9:0]
+addSignal -h 15 -holdScope oPM_NumOfData[15:0]
+addSignal -h 15 -holdScope oPM_CAData[7:0]
+addSignal -h 15 -holdScope rPM_CAData[7:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_TIMER/iNumOfData[15:0]
+addSignal -h 15 -holdScope iSystemClock
+addSignal -h 15 -holdScope rNumOfCommand[15:0]
+endSubGroup "MNC_getFT"
+addSubGroup "CMD_Mux"
+addSubGroup "oPM" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_Mux/oPM_PCommand[7:0]
+addSignal -h 15 -holdScope oPM_PCommandOption[2:0]
+addSignal -h 15 -holdScope oPM_TargetWay[7:0]
+addSignal -h 15 -holdScope oPM_NumOfData[15:0]
+addSignal -h 15 -holdScope oPM_CASelect
+addSignal -h 15 -holdScope oPM_CAData[7:0]
+addSignal -h 15 -holdScope oPM_WriteData[31:0]
+addSignal -h 15 -holdScope oPM_WriteLast
+addSignal -h 15 -holdScope oPM_WriteValid
+addSignal -h 15 -holdScope oPM_ReadReady
+endSubGroup "oPM"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_Mux/rPM_PCommand[7:0]
+addSignal -h 15 -holdScope rPM_PCommandOption[2:0]
+addSignal -h 15 -holdScope rPM_TargetWay[7:0]
+addSignal -h 15 -holdScope rPM_NumOfData[15:0]
+endSubGroup "CMD_Mux"
+addSignal -h 15 /BLANK
+endSubGroup "NPCG_Toggle_Top"
+addSubGroup "NPM_Toggle_Top"
+addSubGroup "NPM_Toggle_CAL"
+aliasname NPM_Toggle_CAL_DDR100.rCPT_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_CAL/rCPT_cur_state[4:0]
+aliasname NPM_Toggle_CAL_DDR100.rLCH_cur_state
+addSignal -h 15 -UNSIGNED -HEX -holdScope rLCH_nxt_state[7:0]
+addSignal -h 15 -holdScope wtWPSTHDone
+addSignal -h 15 -holdScope iSystemClock
+addSignal -h 15 -holdScope rPO_WriteEnable[3:0]
+endSubGroup "NPM_Toggle_CAL"
+addSubGroup "NPM_Toggle_DI" -e FALSE
+aliasname NPM_Toggle_DI_DDR100.rREC_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_DI/rREC_cur_state[7:0]
+addSignal -h 15 -holdScope rRECSubCounter[3:0]
+addSignal -h 15 -holdScope rRECDone
+addSignal -h 15 -holdScope rDQIDone
+addSignal -h 15 -holdScope rDQODone
+aliasname NPM_Toggle_DI_DDR100.rDQI_cur_state
+addSignal -h 15 -UNSIGNED -HEX -holdScope rDQI_cur_state[8:0]
+addSignal -h 15 -holdScope wDQIOStart
+addSignal -h 15 -holdScope wTranslatedNum[17:0]
+addSignal -h 15 -holdScope wDQBufferWFirst
+addSignal -h 15 -holdScope rPI_ValidFlag[3:0]
+addSignal -h 15 -holdScope wPMActive
+addSignal -h 15 -holdScope iPI_BUFF_Empty
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Input/iPI_Buff_RE
+addSignal -h 15 -holdScope iSystemClock
+addSignal -h 15 -holdScope wDelayedDQSClock
+addSignal -h 15 -holdScope rIN_FIFO_WE_Latch
+addSignal -h 15 -holdScope wtestFULL
+addSignal -h 15 -holdScope rBufferReset
+addSignal -h 15 -holdScope wDelayedDQS
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Pinpad/iREToNAND
+addSignal -h 15 -holdScope iDQToNAND[7:0]
+addSignal -h 15 -holdScope oDQFromNAND[7:0]
+addSignal -h 15 -holdScope oDQSFromNAND
+addSignal -h 15 -holdScope iDQSToNAND
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Input/wDQAtRising[7:0]
+addSignal -h 15 -holdScope wDQAtFalling[7:0]
+addSignal -h 15 -holdScope wDelayedDQSClock
+endSubGroup "NPM_Toggle_DI"
+addSubGroup "NPM_Toggle_DO" -e FALSE
+aliasname NPM_Toggle_DO_tADL_DDR100.rDTO_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_DO/rDTO_cur_state[8:0]
+addSignal -h 15 -holdScope rPO_WriteEnable[3:0]
+endSubGroup "NPM_Toggle_DO"
+addSubGroup "NPM_Toggle_IDLE"
+endSubGroup "NPM_Toggle_IDLE"
+addSubGroup "NPM_Toggle_TIMER"
+aliasname NPM_Toggle_TIMER.rTIM_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_TIMER/rTIM_cur_state[3:0]
+endSubGroup "NPM_Toggle_TIMER"
+addSubGroup "NPM_Toggle_PHY_B_Reset"
+aliasname NPM_Toggle_PHY_B_Reset.rPBR_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_PHY_B_Reset/rPBR_cur_state[3:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/wPBR_Start
+addSignal -h 15 -holdScope iPCommand[6]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPCG_Toggle_Top/bCMD_Mux/rPM_PCommand[7:0]
+endSubGroup "NPM_Toggle_PHY_B_Reset"
+addSubGroup "NPM_Toggle_PIR" -e FALSE
+aliasname NPM_Toggle_PIR.rPIR_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_PIR/rPIR_cur_state[5:0]
+endSubGroup "NPM_Toggle_PIR"
+addSubGroup "NPM_Toggle_POR" -e FALSE
+aliasname NPM_Toggle_POR.rPOR_cur_state
+addSignal -h 15 -UNSIGNED -HEX /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/Inst_NPM_Toggle_POR/rPOR_cur_state[3:0]
+endSubGroup "NPM_Toggle_POR"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/iReadReady
+addSignal -h 15 -holdScope oReadValid
+addSignal -h 15 -holdScope iWriteValid
+addSignal -h 15 -holdScope oWriteReady
+addSignal -h 15 /BLANK
+endSubGroup "NPM_Toggle_Top"
+addSubGroup "NPhy_Toggle_Top"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Pinpad/iDQSToNAND
+addSignal -h 15 -holdScope iDQSOutEnable
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPM_Toggle_Top/wPHYOutMux_PO_DQStrobe[7:0]
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Output/rDQSOut_IOBUF_T
+addSignal -h 15 -holdScope rDQSOutEnable_buffer
+addSignal -h 15 -holdScope iDQSOutEnable
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Pinpad/oDQSFromNAND
+addSignal -h 15 -holdScope IO_NAND_DQS_P
+addSignal -h 15 -holdScope IO_NAND_DQS_N
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Output/iSystemClock
+addSignal -h 15 -holdScope iOutputDrivingClock
+addSignal -h 15 -holdScope oWEToNAND
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/inst/clk_out1_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 -holdScope clk_in1_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 -holdScope clkfbout_buf_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 -holdScope locked_int
+addSignal -h 15 /tb_OpenSSD2_Top/FIXED_IO_ps_clk
+addSignal -h 15 /BLANK
+endSubGroup "NPhy_Toggle_Top"
+addSignal -h 15 /BLANK
+addGroup "NAND-CH0"
+addSignal -h 15 /tb_OpenSSD2_Top/O_NAND_CH0_CE[7:0]
+addSignal -h 15 -holdScope O_NAND_CH0_CLE
+addSignal -h 15 -holdScope O_NAND_CH0_ALE
+addSignal -h 15 -holdScope O_NAND_CH0_WE
+addSignal -h 15 -holdScope O_NAND_CH0_RE_N
+addSignal -h 15 -holdScope O_NAND_CH0_RE_P
+addSignal -h 15 -holdScope IO_NAND_CH0_DQS_N
+addSignal -h 15 -holdScope IO_NAND_CH0_DQS_P
+addSignal -h 15 -holdScope IO_NAND_CH0_DQ[7:0]
+addSubGroup "G10"
+addSignal -h 15 /tb_OpenSSD2_Top/NAND_CH0_WAY[3]/u_nand_ch0_way/uut_0/Io_wire[7:0]
+addSignal -h 15 -holdScope rd_out
+addSignal -h 15 -holdScope Io_buf[7:0]
+addSignal -h 15 -holdScope data_out_enable_async
+addSignal -h 15 -holdScope Re_n
+addSignal -h 15 -holdScope do_read_unique
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/inst/clk_in1_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/clk_in1
+addSignal -h 15 -holdScope clk_out1
+addSignal -h 15 /tb_OpenSSD2_Top/NAND_CH0_WAY[3]/u_nand_ch0_way/uut_0/lastCmd[7:0]
+addSignal -h 15 -holdScope col_counter[13:0]
+addSignal -h 15 -holdScope onfi_features[1][7:0]
+endSubGroup "G10"
+addSignal -h 15 /tb_OpenSSD2_Top/I_NAND_CH0_RB[7:0]
+addSignal -h 15 -holdScope O_NAND_CH0_WP
+addGroup "Tiger4NSC-1" -e FALSE
+addSubGroup "C-AXI" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_ARADDR[31:0]
+addSignal -h 15 -holdScope C_ARVALID
+addSignal -h 15 -holdScope C_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_RDATA[31:0]
+addSignal -h 15 -holdScope C_RRESP[1:0]
+addSignal -h 15 -holdScope C_RVALID
+addSignal -h 15 -holdScope C_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_AWADDR[31:0]
+addSignal -h 15 -holdScope C_AWVALID
+addSignal -h 15 -holdScope C_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_WDATA[31:0]
+addSignal -h 15 -holdScope C_WSTRB[3:0]
+addSignal -h 15 -holdScope C_WVALID
+addSignal -h 15 -holdScope C_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/C_BRESP[1:0]
+addSignal -h 15 -holdScope C_BVALID
+addSignal -h 15 -holdScope C_BREADY
+endSubGroup "b"
+endSubGroup "C-AXI"
+addSubGroup "D-AXI" -e FALSE
+addSubGroup "ar"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_ARCACHE[3:0]
+addSignal -h 15 -holdScope D_ARPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_ARBURST[1:0]
+addSignal -h 15 -holdScope D_ARSIZE[2:0]
+addSignal -h 15 -holdScope D_ARLEN[3:0]
+addSignal -h 15 -holdScope D_ARADDR[31:0]
+addSignal -h 15 -holdScope D_ARVALID
+addSignal -h 15 -holdScope D_ARREADY
+endSubGroup "ar"
+addSubGroup "r"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_RDATA[31:0]
+addSignal -h 15 -holdScope D_RRESP[1:0]
+addSignal -h 15 -holdScope D_RLAST
+addSignal -h 15 -holdScope D_RVALID
+addSignal -h 15 -holdScope D_RREADY
+endSubGroup "r"
+addSubGroup "aw"
+addSubGroup "tmp" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_AWCACHE[3:0]
+addSignal -h 15 -holdScope D_AWPROT[2:0]
+endSubGroup "tmp"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_AWBURST[1:0]
+addSignal -h 15 -holdScope D_AWSIZE[2:0]
+addSignal -h 15 -holdScope D_AWLEN[3:0]
+addSignal -h 15 -holdScope D_AWADDR[31:0]
+addSignal -h 15 -holdScope D_AWVALID
+addSignal -h 15 -holdScope D_AWREADY
+endSubGroup "aw"
+addSubGroup "w"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_WDATA[31:0]
+addSignal -h 15 -holdScope D_WSTRB[3:0]
+addSignal -h 15 -holdScope D_WLAST
+addSignal -h 15 -holdScope D_WVALID
+addSignal -h 15 -holdScope D_WREADY
+endSubGroup "w"
+addSubGroup "b"
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/D_BRESP[1:0]
+addSignal -h 15 -holdScope D_BVALID
+addSignal -h 15 -holdScope D_BREADY
+endSubGroup "b"
+endSubGroup "D-AXI"
+addSubGroup "CSR" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/Inst_Dispatcher/rUProgramSelect[31:0]
+addSignal -h 15 -holdScope rRowAddress[23:0]
+addSignal -h 15 -holdScope rUserData[31:0]
+addSignal -h 15 -holdScope rDataAddress[31:0]
+addSignal -h 15 -holdScope rSpareAddress[31:0]
+addSignal -h 15 -holdScope rErrCntAddress[31:0]
+addSignal -h 15 -holdScope rCmpltAddress[31:0]
+addSignal -h 15 -holdScope rWaySelection[7:0]
+addSignal -h 15 -holdScope rChStatus
+addSignal -h 15 -holdScope iWaysReadybusy[7:0]
+addSignal -h 15 -holdScope rColAddress[15:0]
+addSignal -h 15 /Tiger4NSC_1_CSR_2C_ChBusy
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_1/Inst_Dispatcher/wIdleTimeCounter[31:0]
+addSignal -h 15 -holdScope wReqQCount[7:0]
+addSignal -h 15 -holdScope rPipeliningMode
+endSubGroup "CSR"
+addSubGroup "G3"
+endSubGroup "G3"
+addSignal -h 15 /BLANK
+addGroup "NAND-CH1" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/O_NAND_CH1_CE[7:0]
+addSignal -h 15 -holdScope O_NAND_CH1_CLE
+addSignal -h 15 -holdScope O_NAND_CH1_ALE
+addSignal -h 15 -holdScope O_NAND_CH1_WE
+addSignal -h 15 -holdScope O_NAND_CH1_RE_N
+addSignal -h 15 -holdScope O_NAND_CH1_RE_P
+addSignal -h 15 -holdScope IO_NAND_CH1_DQS_N
+addSignal -h 15 -holdScope IO_NAND_CH1_DQS_P
+addSignal -h 15 -holdScope IO_NAND_CH1_DQ[7:0]
+addSignal -h 15 -holdScope I_NAND_CH1_RB[7:0]
+addSignal -h 15 -holdScope O_NAND_CH1_WP
+addGroup "G7" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/Tiger4NSC_0/oOpcode[5:0]
+addSignal -h 15 -holdScope oTargetID[4:0]
+addSignal -h 15 -holdScope oSourceID[4:0]
+addGroup "G9" -e FALSE
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/inst/clk_in1
+addSignal -h 15 -holdScope clk_out1
+addSignal -h 15 -holdScope clk_out1_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 -holdScope clkfbout_OpenSSD2_clk_wiz_0_0
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/inst/mmcm_adv_inst/CLKFBOUT
+addSignal -h 15 -holdScope CLKOUT0
+addSignal -h 15 -holdScope CLKFBIN
+addSignal -h 15 -holdScope CLKIN1
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/CH0MMCMC1H200/inst/clk_in1
+addSignal -h 15 /tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/PS/inst/gen_clk/fclk_clk0
+addGroup "G11"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+activeDirFile "" "/home/orysduan/proj/Cosmos-plus-OpenSSD/source/work/sim/tb_openssd2_top.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/_vcs_unit__1035418228"
+"/tb_OpenSSD2_Top"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Output"
+
+SCOPE_LIST_BEGIN
+"/_vcs_unit__1035418228"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Output/Inst_CLEOSERDES/B_OSERDESE2_INST"
+"/tb_OpenSSD2_Top/u_OpenSSD2_wrapper_0/OpenSSD2_i/V2NFC100DDR_0/Inst_NPhy_Toggle_Top/Inst_NPhy_Toggle_Physical_Output/Inst_CLEOSERDES"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
+
